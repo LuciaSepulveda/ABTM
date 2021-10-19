@@ -1,12 +1,11 @@
 import type {AppProps} from "next/app"
 import {ChakraProvider, ThemeConfig, ColorModeScript, extendTheme} from "@chakra-ui/react"
 import Head from "next/head"
-
 import "../css/global.css"
 import React from "react"
 
 const config: ThemeConfig = {
-  initialColorMode: "dark",
+  initialColorMode: "light",
   useSystemColorMode: false,
 }
 
