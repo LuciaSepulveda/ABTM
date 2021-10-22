@@ -1,6 +1,7 @@
 import Image from "next/image"
 import {
   Box,
+  Center,
   Container,
   Heading,
   HStack,
@@ -20,6 +21,7 @@ import {HamburgerIcon} from "@chakra-ui/icons"
 import {motion} from "framer-motion"
 import React from "react"
 import * as Scroll from "react-scroll"
+import {Fade} from "react-awesome-reveal"
 
 import tt from "../public/Tabletennis.png"
 import logo from "../public/logo.png"
@@ -30,8 +32,8 @@ const Header: React.FC = () => {
 
   const goTo = () => {
     Scroll.scroller.scrollTo("elemento1", {
-      duration: 1500,
-      delay: 50,
+      duration: 1100,
+      delay: 40,
       smooth: true,
     })
   }
@@ -65,183 +67,178 @@ const Header: React.FC = () => {
               </Menu>
             )}
             {!isPortrait && (
-              <motion.div
-                animate={{opacity: 1, y: 0}}
-                initial={{opacity: 0, y: -10}}
-                style={{
-                  height: "100%",
-                }}
-                transition={{duration: 0.5}}
-              >
-                <HStack h="100%" m="auto">
-                  <Popover placement="bottom">
-                    <PopoverTrigger>
-                      <Box
-                        _hover={{backgroundColor: "#315caa"}}
-                        as="button"
-                        borderRadius="md"
-                        px={[0, 1, 2, 4]}
-                      >
-                        <Text
-                          fontSize="lg"
-                          fontWeight="bold"
-                          letterSpacing="wide"
-                          lineHeight="taller"
+              <Center h="100%">
+                <Fade direction="down">
+                  <HStack h="100%" m="auto">
+                    <Popover placement="bottom">
+                      <PopoverTrigger>
+                        <Box
+                          _hover={{backgroundColor: "#315caa"}}
+                          as="button"
+                          borderRadius="md"
+                          px={[0, 1, 2, 4]}
                         >
-                          Torneos
-                        </Text>
-                      </Box>
-                    </PopoverTrigger>
-                    <PopoverContent _focus={{border: "none"}} w="100%">
-                      <PopoverArrow />
-                      <PopoverBody>
-                        <Text>Como participar</Text>
-                        <Text>Calendario</Text>
-                      </PopoverBody>
-                    </PopoverContent>
-                  </Popover>
-                  <Popover placement="bottom">
-                    <PopoverTrigger>
-                      <Box
-                        _hover={{backgroundColor: "#315caa"}}
-                        as="button"
-                        borderRadius="md"
-                        px={[0, 1, 2, 4]}
-                      >
-                        <Text
-                          fontSize="lg"
-                          fontWeight="bold"
-                          letterSpacing="wide"
-                          lineHeight="taller"
+                          <Text
+                            fontSize="lg"
+                            fontWeight="bold"
+                            letterSpacing="wide"
+                            lineHeight="taller"
+                          >
+                            Torneos
+                          </Text>
+                        </Box>
+                      </PopoverTrigger>
+                      <PopoverContent _focus={{border: "none"}} w="100%">
+                        <PopoverArrow />
+                        <PopoverBody>
+                          <Text>Como participar</Text>
+                          <Text>Calendario</Text>
+                        </PopoverBody>
+                      </PopoverContent>
+                    </Popover>
+                    <Popover placement="bottom">
+                      <PopoverTrigger>
+                        <Box
+                          _hover={{backgroundColor: "#315caa"}}
+                          as="button"
+                          borderRadius="md"
+                          px={[0, 1, 2, 4]}
                         >
-                          Ranking
-                        </Text>
-                      </Box>
-                    </PopoverTrigger>
-                    <PopoverContent _focus={{border: "none"}} w="100%">
-                      <PopoverArrow />
-                      <PopoverBody>
-                        <Text>Rating general</Text>
-                        <Text>Categorias</Text>
-                      </PopoverBody>
-                    </PopoverContent>
-                  </Popover>
-                  <Popover placement="bottom">
-                    <PopoverTrigger>
-                      <Box
-                        _hover={{backgroundColor: "#315caa"}}
-                        as="button"
-                        borderRadius="md"
-                        px={[0, 1, 2, 4]}
-                      >
-                        <Text
-                          fontSize="lg"
-                          fontWeight="bold"
-                          letterSpacing="wide"
-                          lineHeight="taller"
+                          <Text
+                            fontSize="lg"
+                            fontWeight="bold"
+                            letterSpacing="wide"
+                            lineHeight="taller"
+                          >
+                            Ranking
+                          </Text>
+                        </Box>
+                      </PopoverTrigger>
+                      <PopoverContent _focus={{border: "none"}} w="100%">
+                        <PopoverArrow />
+                        <PopoverBody>
+                          <Text>Rating general</Text>
+                          <Text>Categorias</Text>
+                        </PopoverBody>
+                      </PopoverContent>
+                    </Popover>
+                    <Popover placement="bottom">
+                      <PopoverTrigger>
+                        <Box
+                          _hover={{backgroundColor: "#315caa"}}
+                          as="button"
+                          borderRadius="md"
+                          px={[0, 1, 2, 4]}
                         >
-                          Circuito ABTM
-                        </Text>
-                      </Box>
-                    </PopoverTrigger>
-                    <PopoverContent _focus={{border: "none"}} w="100%">
-                      <PopoverArrow />
-                      <PopoverBody>
-                        <Text>Autoridades</Text>
-                        <Text>Sistema de puntaje</Text>
-                        <Text>Puntaje rating</Text>
-                        <Text>Categorias rating</Text>
-                        <Text>Donde jugar</Text>
-                        <Text>Contacto</Text>
-                      </PopoverBody>
-                    </PopoverContent>
-                  </Popover>
-                  <Popover placement="bottom">
-                    <PopoverTrigger>
-                      <Box
-                        _hover={{backgroundColor: "#315caa"}}
-                        as="button"
-                        borderRadius="md"
-                        px={[0, 1, 2, 4]}
-                      >
-                        <Text
-                          fontSize="lg"
-                          fontWeight="bold"
-                          letterSpacing="wide"
-                          lineHeight="taller"
+                          <Text
+                            fontSize="lg"
+                            fontWeight="bold"
+                            letterSpacing="wide"
+                            lineHeight="taller"
+                          >
+                            Circuito ABTM
+                          </Text>
+                        </Box>
+                      </PopoverTrigger>
+                      <PopoverContent _focus={{border: "none"}} w="100%">
+                        <PopoverArrow />
+                        <PopoverBody>
+                          <Text>Autoridades</Text>
+                          <Text>Sistema de puntaje</Text>
+                          <Text>Puntaje rating</Text>
+                          <Text>Categorias rating</Text>
+                          <Text>Donde jugar</Text>
+                          <Text>Contacto</Text>
+                        </PopoverBody>
+                      </PopoverContent>
+                    </Popover>
+                    <Popover placement="bottom">
+                      <PopoverTrigger>
+                        <Box
+                          _hover={{backgroundColor: "#315caa"}}
+                          as="button"
+                          borderRadius="md"
+                          px={[0, 1, 2, 4]}
                         >
-                          Tenis de mesa
-                        </Text>
-                      </Box>
-                    </PopoverTrigger>
-                    <PopoverContent _focus={{border: "none"}} w="100%">
-                      <PopoverArrow />
-                      <PopoverBody>
-                        <Text>Reglamento</Text>
-                        <Text>Historia</Text>
-                      </PopoverBody>
-                    </PopoverContent>
-                  </Popover>
-                  <Popover placement="bottom">
-                    <PopoverTrigger>
-                      <Box
-                        _hover={{backgroundColor: "#315caa"}}
-                        as="button"
-                        borderRadius="md"
-                        px={[0, 1, 2, 4]}
-                      >
-                        <Text
-                          fontSize="lg"
-                          fontWeight="bold"
-                          letterSpacing="wide"
-                          lineHeight="taller"
+                          <Text
+                            fontSize="lg"
+                            fontWeight="bold"
+                            letterSpacing="wide"
+                            lineHeight="taller"
+                          >
+                            Tenis de mesa
+                          </Text>
+                        </Box>
+                      </PopoverTrigger>
+                      <PopoverContent _focus={{border: "none"}} w="100%">
+                        <PopoverArrow />
+                        <PopoverBody>
+                          <Text>Reglamento</Text>
+                          <Text>Historia</Text>
+                        </PopoverBody>
+                      </PopoverContent>
+                    </Popover>
+                    <Popover placement="bottom">
+                      <PopoverTrigger>
+                        <Box
+                          _hover={{backgroundColor: "#315caa"}}
+                          as="button"
+                          borderRadius="md"
+                          px={[0, 1, 2, 4]}
                         >
-                          Reglamentos
-                        </Text>
-                      </Box>
-                    </PopoverTrigger>
-                    <PopoverContent _focus={{border: "none"}} w="100%">
-                      <PopoverArrow />
-                      <PopoverBody>
-                        <Text>Gomas aprobadas</Text>
-                        <Text>Declaracion jurada</Text>
-                        <Text>Protocola covid</Text>
-                        <Text>Anexo protocolo covid</Text>
-                        <Text>DDJJ Covid</Text>
-                        <Text>Reglamento tecnico</Text>
-                        <Text>Tribunal disciplina</Text>
-                        <Text>Reglamento ABTM</Text>
-                      </PopoverBody>
-                    </PopoverContent>
-                  </Popover>
-                  <Popover placement="bottom">
-                    <PopoverTrigger>
-                      <Box
-                        _hover={{backgroundColor: "#315caa"}}
-                        as="button"
-                        borderRadius="md"
-                        px={[0, 1, 2, 4]}
-                      >
-                        <Text
-                          fontSize="lg"
-                          fontWeight="bold"
-                          letterSpacing="wide"
-                          lineHeight="taller"
+                          <Text
+                            fontSize="lg"
+                            fontWeight="bold"
+                            letterSpacing="wide"
+                            lineHeight="taller"
+                          >
+                            Reglamentos
+                          </Text>
+                        </Box>
+                      </PopoverTrigger>
+                      <PopoverContent _focus={{border: "none"}} w="100%">
+                        <PopoverArrow />
+                        <PopoverBody>
+                          <Text>Gomas aprobadas</Text>
+                          <Text>Declaracion jurada</Text>
+                          <Text>Protocola covid</Text>
+                          <Text>Anexo protocolo covid</Text>
+                          <Text>DDJJ Covid</Text>
+                          <Text>Reglamento tecnico</Text>
+                          <Text>Tribunal disciplina</Text>
+                          <Text>Reglamento ABTM</Text>
+                        </PopoverBody>
+                      </PopoverContent>
+                    </Popover>
+                    <Popover placement="bottom">
+                      <PopoverTrigger>
+                        <Box
+                          _hover={{backgroundColor: "#315caa"}}
+                          as="button"
+                          borderRadius="md"
+                          px={[0, 1, 2, 4]}
                         >
-                          Inscripcion
-                        </Text>
-                      </Box>
-                    </PopoverTrigger>
-                    <PopoverContent _focus={{border: "none"}} w="100%">
-                      <PopoverArrow />
-                      <PopoverBody>
-                        <Text>Inscribirse</Text>
-                        <Text>Ver inscriptos</Text>
-                      </PopoverBody>
-                    </PopoverContent>
-                  </Popover>
-                </HStack>
-              </motion.div>
+                          <Text
+                            fontSize="lg"
+                            fontWeight="bold"
+                            letterSpacing="wide"
+                            lineHeight="taller"
+                          >
+                            Inscripción
+                          </Text>
+                        </Box>
+                      </PopoverTrigger>
+                      <PopoverContent _focus={{border: "none"}} w="100%">
+                        <PopoverArrow />
+                        <PopoverBody>
+                          <Text>Inscribirse</Text>
+                          <Text>Ver inscriptos</Text>
+                        </PopoverBody>
+                      </PopoverContent>
+                    </Popover>
+                  </HStack>
+                </Fade>
+              </Center>
             )}
           </HStack>
           {show && isPortrait && (
@@ -256,7 +253,7 @@ const Header: React.FC = () => {
                 <Text>Circuito ABTM</Text>
                 <Text>Tenis de mesa</Text>
                 <Text>Reglamentos</Text>
-                <Text>Inscripcion</Text>
+                <Text>Inscripción</Text>
               </Box>
             </motion.div>
           )}
@@ -272,18 +269,24 @@ const Header: React.FC = () => {
           paddingBottom={[10, null, 40]}
           paddingTop={[0, null, 24]}
         >
-          <Heading
-            as="h1"
-            color="white"
-            fontSize={["4xl", "4xl", null, "5xl"]}
-            py={[4, null, 0]}
-            textAlign="center"
-            w={["100%", null, "40%"]}
-          >
-            Asociacion Bahiense {!isPortrait && <br />} de Tenis de Mesa
-          </Heading>
+          <Center m="auto" textAlign="center" w={["100%", null, "40%"]}>
+            <Fade direction={isPortrait ? "down" : "up"}>
+              <Heading
+                as="h1"
+                color="white"
+                fontSize={["4xl", "4xl", null, "5xl"]}
+                py={[4, null, 0]}
+                textAlign="center"
+                w="100%"
+              >
+                Asociación Bahiense {!isPortrait && <br />} de Tenis de Mesa
+              </Heading>
+            </Fade>
+          </Center>
           <Box align="center" w={["100%", null, "60%"]}>
-            <Image alt="gif" height={480} src={tt} width={980} />
+            <Fade direction={isPortrait ? "up" : "down"}>
+              <Image alt="gif" height={480} src={tt} width={980} />
+            </Fade>
           </Box>
         </Stack>
       </Container>
