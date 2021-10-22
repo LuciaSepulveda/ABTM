@@ -3,6 +3,7 @@ import React from "react"
 import {Element} from "react-scroll"
 import Image from "next/image"
 import {useMediaQuery} from "react-responsive"
+import {Fade} from "react-awesome-reveal"
 
 import foto from "../public/foto.jpg"
 
@@ -38,94 +39,129 @@ const About: React.FC = () => {
             p={2}
             w={["100%", null, "90%"]}
           >
-            <Text
-              alignSelf="center"
-              color="black"
-              fontSize={["xl", "lg", null, "2xl"]}
-              m="auto"
-              textAlign={["justify", null, "center"]}
-              w={["90%", null, "50%"]}
-              zIndex={1}
+            <Fade
+              delay={100}
+              style={{
+                width: isPortrait ? "90%" : 600,
+                height: "100%",
+                margin: "auto",
+                textAlign: isPortrait ? "justify" : "center",
+              }}
             >
-              La ABTM (Asociación Bahiense de Tenis de Mesa) es la institución que nuclea toda la
-              actividad del Tenis de Mesa de Bahía Blanca y la región. Afiliada a la Federación
-              Argentina de Tenis de Mesa desde el 2013.
-            </Text>
-            <Box bg="#455A64" boxShadow="lg" p={2} zIndex={1}>
-              <Box
-                align="center"
-                h={[280, 300, null, 340]}
-                position="relative"
-                w={[300, 400, null, 540]}
+              <Text
+                alignSelf="center"
+                color="black"
+                fontSize={["xl", "lg", null, "2xl"]}
+                m="auto"
+                textAlign={["justify", null, "center"]}
+                w="100%"
                 zIndex={1}
               >
-                <Image alt="foto" height="100%" layout="fill" objectFit="cover" src={foto} />
+                La ABTM (Asociación Bahiense de Tenis de Mesa) es la institución que nuclea toda la
+                actividad del Tenis de Mesa de Bahía Blanca y la región. Afiliada a la Federación
+                Argentina de Tenis de Mesa desde el 2013.
+              </Text>
+            </Fade>
+            <Fade direction="right">
+              <Box bg="#455A64" boxShadow="lg" p={2} zIndex={1}>
+                <Box
+                  align="center"
+                  h={[280, 300, null, 340]}
+                  position="relative"
+                  w={[300, 400, null, 540]}
+                  zIndex={1}
+                >
+                  <Image alt="foto" height="100%" layout="fill" objectFit="cover" src={foto} />
+                </Box>
               </Box>
-            </Box>
+            </Fade>
           </Stack>
-          {isPortrait && (
-            <Stack
-              align="center"
-              direction={["column", null, "row"]}
-              justify="space-between"
-              m="auto"
-              p={2}
-              w={["100%", null, "90%"]}
-            >
-              <Text
-                alignSelf="center"
-                color="black"
-                fontSize={["xl", "lg", null, "2xl"]}
-                m="auto"
-                textAlign={["justify", null, "center"]}
-                w={["90%", null, "50%"]}
-                zIndex={1}
-              >
-                Nuestro objetivo principal es difundir y desarrollar el deporte como actividad de
-                contención e inclusión de los chicos principalmente y además formar personas
-                íntegras en todo sentido.
-              </Text>
-              <Box bg="#FF725E" boxShadow="lg" p={2} zIndex={1}>
-                <Box
-                  align="center"
-                  h={[280, 300, null, 340]}
-                  position="relative"
-                  w={[300, 400, null, 540]}
-                  zIndex={1}
+          <Stack
+            align="center"
+            direction={isPortrait ? ["column", "column", null, "row"] : "row"}
+            justify="space-between"
+            m="auto"
+            p={2}
+            w={isPortrait ? ["100%", null, "90%"] : "90%"}
+          >
+            {isPortrait && (
+              <>
+                <Fade
+                  delay={100}
+                  style={{
+                    width: isPortrait ? "90%" : 600,
+                    height: "100%",
+                    margin: "auto",
+                    textAlign: isPortrait ? "justify" : "center",
+                  }}
                 >
-                  <Image alt="foto" height="100%" layout="fill" objectFit="cover" src={foto} />
-                </Box>
-              </Box>
-            </Stack>
-          )}
-          {!isPortrait && (
-            <Stack align="center" direction="row" justify="space-between" m="auto" p={2} w="90%">
-              <Box bg="#FF725E" boxShadow="lg" p={2} zIndex={1}>
-                <Box
-                  align="center"
-                  h={[280, 300, null, 340]}
-                  position="relative"
-                  w={[300, 400, null, 540]}
-                  zIndex={1}
+                  <Text
+                    alignSelf="center"
+                    color="black"
+                    fontSize={["xl", "lg", null, "2xl"]}
+                    m="auto"
+                    w="100%"
+                    zIndex={1}
+                  >
+                    Nuestro objetivo principal es difundir y desarrollar el deporte como actividad
+                    de contención e inclusión de los chicos principalmente y además formar personas
+                    íntegras en todo sentido.
+                  </Text>
+                </Fade>
+                <Fade direction="right">
+                  <Box bg="#FF725E" boxShadow="lg" p={2} zIndex={1}>
+                    <Box
+                      align="center"
+                      h={[280, 300, null, 340]}
+                      position="relative"
+                      w={[300, 400, null, 540]}
+                      zIndex={1}
+                    >
+                      <Image alt="foto" height="100%" layout="fill" objectFit="cover" src={foto} />
+                    </Box>
+                  </Box>
+                </Fade>
+              </>
+            )}
+            {!isPortrait && (
+              <>
+                <Fade direction="left">
+                  <Box bg="#FF725E" boxShadow="lg" p={2} zIndex={1}>
+                    <Box
+                      align="center"
+                      h={[280, 300, null, 340]}
+                      position="relative"
+                      w={[300, 400, null, 540]}
+                      zIndex={1}
+                    >
+                      <Image alt="foto" height="100%" layout="fill" objectFit="cover" src={foto} />
+                    </Box>
+                  </Box>
+                </Fade>
+                <Fade
+                  delay={100}
+                  style={{
+                    width: isPortrait ? "90%" : 600,
+                    height: "100%",
+                    margin: "auto",
+                    textAlign: isPortrait ? "justify" : "center",
+                  }}
                 >
-                  <Image alt="foto" height="100%" layout="fill" objectFit="cover" src={foto} />
-                </Box>
-              </Box>
-              <Text
-                alignSelf="center"
-                color="black"
-                fontSize={["xl", "lg", null, "2xl"]}
-                m="auto"
-                textAlign={["justify", null, "center"]}
-                w={["90%", null, "50%"]}
-                zIndex={1}
-              >
-                Nuestro objetivo principal es difundir y desarrollar el deporte como actividad de
-                contencion e inclusion de los chicos principalmente y ademas formar personas
-                integras en todo sentido.
-              </Text>
-            </Stack>
-          )}
+                  <Text
+                    alignSelf="center"
+                    color="black"
+                    fontSize={["xl", "lg", null, "2xl"]}
+                    m="auto"
+                    zIndex={1}
+                  >
+                    Nuestro objetivo principal es difundir y desarrollar el deporte como actividad
+                    de contencion e inclusion de los chicos principalmente y ademas formar personas
+                    integras en todo sentido.
+                  </Text>
+                </Fade>
+              </>
+            )}
+          </Stack>
         </Container>
       </Center>
     </Element>
