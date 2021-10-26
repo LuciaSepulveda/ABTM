@@ -7,7 +7,7 @@ import {useMediaQuery} from "react-responsive"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-import tennis from "../public/Tabletennis2.png"
+import tennis from "../../public/Tabletennis2.png"
 
 const Motivation: React.FC = () => {
   const isPortrait = useMediaQuery({query: "(orientation: portrait)"})
@@ -24,7 +24,7 @@ const Motivation: React.FC = () => {
         w="100%"
       >
         <Fade direction="right" style={{paddingTop: isPortrait ? "50%" : "0px"}}>
-          <Image alt="Tenis de mesa" height={500} src={tennis} width={500} />
+          <Image priority alt="Tenis de mesa" height={500} src={tennis} width={500} />
         </Fade>
       </Center>
       <Container h="100%" maxW="8xl" mt="0px">

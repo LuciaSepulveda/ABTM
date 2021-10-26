@@ -5,7 +5,7 @@ import {useMediaQuery} from "react-responsive"
 import Slider from "react-slick"
 import {Fade} from "react-awesome-reveal"
 
-import {New} from "../types/types"
+import {New} from "../../types/types"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -84,7 +84,6 @@ const News: React.FC = () => {
                   <Image
                     alt=""
                     blurDataURL={news[0].photo}
-                    height="100%"
                     layout="fill"
                     objectFit="cover"
                     objectPosition="center"
@@ -141,7 +140,6 @@ const News: React.FC = () => {
                         <Image
                           alt={e.title}
                           blurDataURL={e.photo}
-                          height="100%"
                           layout="fill"
                           objectFit="cover"
                           objectPosition="center"

@@ -5,7 +5,7 @@ import Image from "next/image"
 import {useMediaQuery} from "react-responsive"
 import {Fade} from "react-awesome-reveal"
 
-import foto from "../public/foto.jpg"
+import foto from "../../public/foto.jpg"
 
 const About: React.FC = () => {
   const isPortrait = useMediaQuery({query: "(orientation: portrait)"})
@@ -20,8 +20,12 @@ const About: React.FC = () => {
         position: "relative",
       }}
     >
-      <Box position="absolute" top="-12px" w="100%">
-        <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+      <Box position="absolute" top="-20px" w="100%">
+        <svg
+          style={{filter: "drop-shadow(0px 5px 2px #2c4c88)"}}
+          viewBox="0 0 1440 320"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M0,64L40,64C80,64,160,64,240,85.3C320,107,400,149,480,165.3C560,181,640,171,720,149.3C800,128,880,96,960,112C1040,128,1120,192,1200,202.7C1280,213,1360,171,1400,149.3L1440,128L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
             fill="#3C6ECD"
@@ -62,7 +66,7 @@ const About: React.FC = () => {
                 Argentina de Tenis de Mesa desde el 2013.
               </Text>
             </Fade>
-            <Fade direction="right">
+            <Fade>
               <Box bg="#455A64" boxShadow="lg" p={2} zIndex={1}>
                 <Box
                   align="center"
@@ -71,7 +75,14 @@ const About: React.FC = () => {
                   w={[300, 400, null, 540]}
                   zIndex={1}
                 >
-                  <Image alt="foto" height="100%" layout="fill" objectFit="cover" src={foto} />
+                  <Image
+                    alt="foto"
+                    blurDataURL={`${foto}`}
+                    layout="fill"
+                    objectFit="cover"
+                    placeholder="blur"
+                    src={foto}
+                  />
                 </Box>
               </Box>
             </Fade>
@@ -108,7 +119,7 @@ const About: React.FC = () => {
                     íntegras en todo sentido.
                   </Text>
                 </Fade>
-                <Fade direction="right">
+                <Fade>
                   <Box bg="#FF725E" boxShadow="lg" p={2} zIndex={1}>
                     <Box
                       align="center"
@@ -117,7 +128,14 @@ const About: React.FC = () => {
                       w={[300, 400, null, 540]}
                       zIndex={1}
                     >
-                      <Image alt="foto" height="100%" layout="fill" objectFit="cover" src={foto} />
+                      <Image
+                        alt="foto"
+                        blurDataURL={`${foto}`}
+                        layout="fill"
+                        objectFit="cover"
+                        placeholder="blur"
+                        src={foto}
+                      />
                     </Box>
                   </Box>
                 </Fade>
@@ -125,7 +143,7 @@ const About: React.FC = () => {
             )}
             {!isPortrait && (
               <>
-                <Fade direction="left">
+                <Fade>
                   <Box bg="#FF725E" boxShadow="lg" p={2} zIndex={1}>
                     <Box
                       align="center"
@@ -134,7 +152,14 @@ const About: React.FC = () => {
                       w={[300, 400, null, 540]}
                       zIndex={1}
                     >
-                      <Image alt="foto" height="100%" layout="fill" objectFit="cover" src={foto} />
+                      <Image
+                        alt=""
+                        blurDataURL={`${foto}`}
+                        layout="fill"
+                        objectFit="cover"
+                        placeholder="blur"
+                        src={foto}
+                      />
                     </Box>
                   </Box>
                 </Fade>
