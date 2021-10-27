@@ -1,0 +1,60 @@
+.timeline ul li:nth-child(odd) div {
+
+    &:not(.imagen) {
+    left: 45px;
+
+    &:before {
+    left: -15px;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent #FF725E transparent transparent;
+    }
+    }
+}
+
+
+.timeline ul li:nth-child(even) div {
+
+    &:not(.imagen) {
+    left: -439px;
+
+    &:before {
+    right: -15px;
+    border-width: 8px 0px 8px 16px;
+    border-color: transparent transparent transparent #FF725E;
+    }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .timeline ul li:nth-child(even) div {
+        &:not(.imagen) {
+            left: -289px;
+        }
+}
+}
+
+@media screen and (max-width: 650px) {
+    .timeline {
+        margin-left: 0;
+        left: 5%;
+        position: absolute;
+    }
+
+    .textCalendario {
+        margin-top: -100px;
+    }
+
+
+    .timeline ul li:nth-child(even) div {
+
+    &:not(.imagen) {
+    left: 45px;
+
+    &:before {
+    left: -15px;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent #FF725E transparent transparent;  
+    }
+    }
+}
+}
