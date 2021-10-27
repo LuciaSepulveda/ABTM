@@ -3,6 +3,7 @@ import {ChakraProvider, ThemeConfig, ColorModeScript, extendTheme} from "@chakra
 import Head from "next/head"
 import "../css/global.css"
 import React from "react"
+import {Provider as UserProvider} from "../context/context"
 
 const config: ThemeConfig = {
   initialColorMode: "light",
@@ -19,8 +20,10 @@ function App({Component, pageProps}: AppProps) {
         <meta content="ABTM page" name="description" />
       </Head>
       <ChakraProvider>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <Component {...pageProps} />
+        <UserProvider>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <Component {...pageProps} />
+        </UserProvider>
       </ChakraProvider>
     </>
   )
