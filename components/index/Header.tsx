@@ -1,5 +1,5 @@
 import Image from "next/image"
-import {Box, Center, Container, Heading, HStack, Stack, VStack} from "@chakra-ui/react"
+import {Box, Center, Container, Heading, HStack, Stack, Text, VStack} from "@chakra-ui/react"
 import {useMediaQuery} from "react-responsive"
 import {motion} from "framer-motion"
 import React from "react"
@@ -43,19 +43,25 @@ const Header: React.FC = () => {
         >
           <Center m="auto" textAlign="center" w={["100%", null, "40%"]}>
             <Fade direction={isPortrait ? "down" : "up"}>
-              <Heading
+              <Text
                 as="h1"
                 color="white"
-                fontSize={["4xl", "4xl", null, "5xl"]}
+                fontSize={["4xl", "4xl", null, "5xl", "6xl"]}
+                fontWeight="semibold"
                 py={[4, null, 0]}
+                style={{textShadow: "6px 4px 4px #2e2e2e83"}}
                 textAlign="center"
                 w="100%"
               >
                 Asociación Bahiense {!isPortrait && <br />} de Tenis de Mesa
-              </Heading>
+              </Text>
             </Fade>
           </Center>
-          <Box align="center" w={["100%", null, "60%"]}>
+          <Box
+            align="center"
+            style={{filter: "drop-shadow(6px 4px 4px #2e2e2e83)"}}
+            w={["100%", null, "60%"]}
+          >
             <Fade direction={isPortrait ? "up" : "down"}>
               <Image priority alt="Tenis de mesa" height={480} src={tt} width={980} />
             </Fade>
