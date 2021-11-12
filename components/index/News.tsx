@@ -1,175 +1,160 @@
-import {Box, Center, Container, Grid, GridItem, HStack, Text, VStack} from "@chakra-ui/react"
+import {Box, Center, Container, Text, VStack} from "@chakra-ui/react"
 import React from "react"
 import Image from "next/image"
 import {useMediaQuery} from "react-responsive"
-import Slider from "react-slick"
-import {Fade} from "react-awesome-reveal"
+import {Carousel} from "@trendyol-js/react-carousel"
+import {MdKeyboardArrowLeft, MdKeyboardArrowRight} from "react-icons/md"
+import {motion} from "framer-motion"
 
 import {New} from "../../types/types"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-const news: New[] = [
-  {
-    title: "Cuarta fecha del circuito anual ABTM 2021",
-    date: "Fecha 2021",
-    description:
-      "La ABTM te invita a participar de la cuarta fecha del circuito anual, a realizarse en el polideportivo norte, el proximo",
-    photo: "http://abtm.ar/images/articulos/cuarto2021.jpeg",
-  },
-  {
-    title: "Tercera fecha del circuito anual ABTM 2021",
-    date: "Fecha 2021",
-    description:
-      "La ABTM te invita a participar de la cuarta fecha del circuito anual, a realizarse en el polideportivo norte, el proximo",
-    photo: "http://abtm.ar/images/articulos/cuarto2021.jpeg",
-  },
-  {
-    title: "Segunda fecha del circuito anual ABTM 2021",
-    date: "Fecha 2021",
-    description:
-      "La ABTM te invita a participar de la cuarta fecha del circuito anual, a realizarse en el polideportivo norte, el proximo",
-    photo: "http://abtm.ar/images/articulos/cuarto2021.jpeg",
-  },
-  {
-    title: "Primera fecha del circuito anual ABTM 2021",
-    date: "Fecha 2021",
-    description:
-      "La ABTM te invita a participar de la cuarta fecha del circuito anual, a realizarse en el polideportivo norte, el proximo",
-    photo: "http://abtm.ar/images/articulos/cuarto2021.jpeg",
-  },
-  {
-    title: "Suspencion fecha del circuito anual ABTM 2021",
-    date: "Fecha 2021",
-    description:
-      "La ABTM te invita a participar de la cuarta fecha del circuito anual, a realizarse en el polideportivo norte, el proximo",
-    photo: "http://abtm.ar/images/articulos/cuarto2021.jpeg",
-  },
-  {
-    title: "Cuarta fecha del circuito anual ABTM 2021",
-    date: "Fecha 2021",
-    description:
-      "La ABTM te invita a participar de la cuarta fecha del circuito anual, a realizarse en el polideportivo norte, el proximo",
-    photo: "http://abtm.ar/images/articulos/cuarto2021.jpeg",
-  },
-]
-const News: React.FC = () => {
+interface Props {
+  news: New[]
+}
+
+const MotionVStack = motion(VStack)
+
+const News2: React.FC<Props> = ({news}) => {
   const isPortrait = useMediaQuery({query: "(orientation: portrait)"})
 
   return (
-    <Box minH="100vh" p={isPortrait ? 0 : 2} paddingTop={10} position="relative" w="100%">
+    <Center minH="100vh" p={isPortrait ? 0 : 2} paddingTop={10} position="relative" w="100%">
       <Container maxW="8xl">
-        <Fade>
-          <Grid
-            gap={[2, null, 6]}
-            m="auto"
-            templateColumns="repeat(3, 1fr)"
-            w={["100%", null, "80%"]}
+        <MotionVStack
+          initial={{opacity: 0}}
+          m="auto"
+          spacing={24}
+          transition={{duration: 0.5}}
+          w={["100%", null, "100%"]}
+          whileInView={{opacity: 1}}
+        >
+          <Text
+            color="#3C6ECD"
+            fontSize="6xl"
+            fontWeight="bold"
+            lineHeight="52px"
+            textAlign="center"
+            w="100%"
           >
-            <GridItem colSpan={3} w="90%">
-              <Text color="#3C6ECD" fontSize="6xl" fontWeight="bold">
-                Noticias
-              </Text>
-            </GridItem>
-            <GridItem colSpan={3} p={2}>
-              <HStack justify="space-between" zIndex={1}>
-                <Center
-                  borderRadius="2xl"
-                  height={[240, 260, null, 340]}
-                  overflow="hidden"
-                  position="relative"
-                  w="70%"
+            Noticias
+          </Text>
+          <Carousel
+            leftArrow={
+              <Center
+                style={{
+                  width: isPortrait ? "30px" : "50px",
+                  height: "100%",
+                }}
+              >
+                <Box
+                  _hover={{backgroundColor: "#3C6ECD", color: "white"}}
+                  as="button"
+                  border="1px solid #3C6ECD"
+                  borderRadius="12px"
+                  color="#3C6ECD"
+                  fontSize="16px"
+                  fontWeight="bold"
+                  h="30px"
+                  paddingX={2}
+                  paddingY={0}
+                  transition="all ease-in 0.2s"
                 >
-                  <Image
-                    alt=""
-                    blurDataURL={news[0].photo}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center"
-                    placeholder="blur"
-                    src={news[0].photo}
-                  />
-                </Center>
-                <VStack
-                  height={[240, 260, null, 340]}
-                  justify="space-between"
-                  overflowY="hidden"
-                  w="60%"
-                  zIndex={1}
+                  <MdKeyboardArrowLeft />
+                </Box>
+              </Center>
+            }
+            rightArrow={
+              <Center
+                style={{
+                  width: isPortrait ? "30px" : "50px",
+                  height: "100%",
+                }}
+              >
+                <Box
+                  _hover={{backgroundColor: "#3C6ECD", color: "white"}}
+                  as="button"
+                  border="1px solid #3C6ECD"
+                  borderRadius="12px"
+                  color="#3C6ECD"
+                  fontSize="16px"
+                  fontWeight="bold"
+                  h="30px"
+                  paddingX={2}
+                  paddingY={0}
+                  transition="all ease-in 0.2s"
                 >
-                  <Text align="left" color="#AEB0B4" fontSize={["md", null, "lg"]} w="100%">
-                    Fecha 2021
-                  </Text>
-                  <Text
-                    as="h2"
-                    color="#242424"
-                    fontSize={["xl", "2xl", "3xl", null, "5xl"]}
-                    fontWeight="bold"
-                    textAlign="left"
+                  <MdKeyboardArrowRight />
+                </Box>
+              </Center>
+            }
+            show={isPortrait ? 1 : 3}
+            slide={1}
+            swiping={true}
+          >
+            {news.map((n) => (
+              <VStack
+                key={n.id}
+                border="2px solid #EBEAED"
+                borderRadius="10px"
+                h={500}
+                justify="center"
+                w={[300, null, 400]}
+              >
+                <Box h="100%" overflow="hidden" position="relative" w="100%">
+                  <Box
+                    _hover={{transform: "scale(1.4)"}}
+                    borderTopRadius="10px"
+                    h="100%"
+                    overflow="hidden"
+                    position="relative"
+                    transition="all ease-in 0.3s"
                     w="100%"
                   >
-                    Cuarta fecha del <br /> circuito anual ABTM 2021
+                    <Image
+                      alt={"Foto de " + n.title}
+                      layout="fill"
+                      objectFit="cover"
+                      src={n.photo.url}
+                    />
+                  </Box>
+                </Box>
+                <Box h={14} overflowY="hidden" p={1} w="100%">
+                  <Text color="rgba(21, 20, 57, 1)" fontSize="14px" ml={4} textAlign="left">
+                    {n.date}
                   </Text>
-                  <Text color="#808080" fontSize="md" overflow="hidden" textAlign="left" w="100%">
-                    La ABTM te invita a participar de la cuarta fecha del circuito anual, a
-                    realizarse en el polideportivo norte, el proximo 2 de Octubre a las 9:00 hs.
+                </Box>
+                <Box
+                  borderTop="1px solid rgba(21, 20, 57, 0.2)"
+                  h={14}
+                  overflowY="hidden"
+                  p={0.5}
+                  w="100%"
+                >
+                  <Text color="rgba(30, 14, 98, 1)" fontWeight="bold" m="auto" textAlign="center">
+                    {n.title}
                   </Text>
-                </VStack>
-              </HStack>
-            </GridItem>
-            <GridItem colSpan={3} p={2}>
-              <Slider
-                accessibility
-                infinite
-                slidesToScroll={isPortrait ? 1 : 3}
-                slidesToShow={isPortrait ? 2 : 3}
-                speed={500}
-              >
-                {news
-                  .filter((elem) => elem.title !== news[0].title)
-                  .map((e) => (
-                    <VStack key={e.title} justify="space-around" paddingX={2} paddingY={10}>
-                      <Center
-                        borderRadius="2xl"
-                        height={[180, null, 300]}
-                        overflow="hidden"
-                        position="relative"
-                        w="100%"
-                      >
-                        <Image
-                          alt={e.title}
-                          blurDataURL={e.photo}
-                          layout="fill"
-                          objectFit="cover"
-                          objectPosition="center"
-                          placeholder="blur"
-                          src={e.photo}
-                        />
-                      </Center>
-                      <Text color="#AEB0B4" fontSize={["md", null, "lg"]} w="100%">
-                        {e.date}
-                      </Text>
-                      <Text
-                        color="#121416"
-                        fontSize={["xl", null, "2xl"]}
-                        fontWeight="bold"
-                        w="100%"
-                      >
-                        {e.title}
-                      </Text>
-                      <Text color="#808080" h="30px" overflowY="hidden" w="100%">
-                        {e.description}
-                      </Text>
-                    </VStack>
-                  ))}
-              </Slider>
-            </GridItem>
-          </Grid>
-        </Fade>
+                </Box>
+                <Box
+                  borderTop="1px solid rgba(21, 20, 57, 0.2)"
+                  h={48}
+                  overflowY="hidden"
+                  p={0.5}
+                  w="100%"
+                >
+                  <Text color="rgba(21, 20, 57, 0.6)" textAlign="center">
+                    {n.short_description + "Hola no se que mas [poner para probnar"}
+                  </Text>
+                </Box>
+              </VStack>
+            ))}
+          </Carousel>
+        </MotionVStack>
       </Container>
-    </Box>
+    </Center>
   )
 }
 
-export default News
+export default News2
