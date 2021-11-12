@@ -1,7 +1,7 @@
 import {Box, Center, Container, HStack, Text, VStack} from "@chakra-ui/react"
 import React from "react"
 import {MdPhoneInTalk, MdMailOutline} from "react-icons/md"
-import {BsInstagram, BsFacebook} from "react-icons/bs"
+import {BsInstagram, BsFacebook, BsInfoCircle} from "react-icons/bs"
 import Link from "next/link"
 
 const Contact: React.FC = () => {
@@ -35,7 +35,12 @@ const Contact: React.FC = () => {
         textAlign="center"
         w="100%"
       >
-        © Copyright 2021 Asociación Bahiense de Tenis de Mesa.
+        {`© Copyright 2021 Asociación Bahiense de Tenis de Mesa. `}
+        <Link passHref href="https://storyset.com/people">
+          <a style={{marginLeft: 6, cursor: "pointer"}}>
+            <BsInfoCircle />
+          </a>
+        </Link>
       </Center>
       <Container
         bottom={[20, 16, 16, 16, 16]}
@@ -49,24 +54,36 @@ const Contact: React.FC = () => {
           </Text>
           <HStack justify="space-between" m="auto" w={16}>
             <Link passHref href={"https://www.facebook.com/ABTMTDM/"}>
-              <a>
+              <Box _hover={{color: "#c0c0c0"}} as="a" color="#fbfbfb" transition="all ease-in 0.2s">
                 <BsFacebook style={{width: 20, height: 20, cursor: "pointer"}} />
-              </a>
+              </Box>
             </Link>
             <Link passHref href={"https://www.instagram.com/abtm_bahia_blanca/"}>
-              <a>
+              <Box _hover={{color: "#c0c0c0"}} as="a" color="#fbfbfb" transition="all ease-in 0.2s">
                 <BsInstagram style={{width: 20, height: 20, cursor: "pointer"}} />
-              </a>
+              </Box>
             </Link>
           </HStack>
           <Link passHref href={"mailto: contacto.abtm.web@gmail.com"}>
-            <HStack as="a" cursor="pointer">
+            <HStack
+              _hover={{color: "#c0c0c0"}}
+              as="a"
+              color="#fbfbfb"
+              cursor="pointer"
+              transition="all ease-in 0.2s"
+            >
               <MdMailOutline />
               <Text fontSize="lg">contacto.abtm.web@gmail.com</Text>
             </HStack>
           </Link>
           <Link passHref href={"https://wa.me/5492916421287"}>
-            <HStack as="a" cursor="pointer">
+            <HStack
+              _hover={{color: "#c0c0c0"}}
+              as="a"
+              color="#fbfbfb"
+              cursor="pointer"
+              transition="all ease-in 0.2s"
+            >
               <MdPhoneInTalk />
               <Text fontSize="lg">+54 (0291) 156421287</Text>
             </HStack>
