@@ -1,13 +1,16 @@
 import Image from "next/image"
-import {Box, Center, Container, Heading, HStack, Stack, Text, VStack} from "@chakra-ui/react"
+import {Box, Center, Container, HStack, Stack, Text, VStack} from "@chakra-ui/react"
 import {useMediaQuery} from "react-responsive"
 import {motion} from "framer-motion"
 import React from "react"
 import * as Scroll from "react-scroll"
-import {Fade} from "react-awesome-reveal"
 
-import MenuHeader from "../Menu"
 import tt from "../../public/Tabletennis.png"
+
+import MenuHeader from "./Menu"
+
+const MotionText = motion(Text)
+const MotionBox = motion(Box)
 
 const Header: React.FC = () => {
   const isPortrait = useMediaQuery({query: "(orientation: portrait)"})
@@ -37,35 +40,36 @@ const Header: React.FC = () => {
           direction={["column", "column", "row"]}
           justify="space-evenly"
           m="auto"
-          p={2}
           paddingBottom={[10, null, 40]}
           paddingTop={[0, null, 24]}
         >
           <Center m="auto" textAlign="center" w={["100%", null, "40%"]}>
-            <Fade direction={isPortrait ? "down" : "up"}>
-              <Text
-                as="h1"
-                color="white"
-                fontSize={["4xl", "4xl", null, "5xl", "6xl"]}
-                fontWeight="semibold"
-                py={[4, null, 0]}
-                style={{textShadow: "6px 4px 4px #2e2e2e83"}}
-                textAlign="center"
-                w="100%"
-              >
-                Asociación Bahiense {!isPortrait && <br />} de Tenis de Mesa
-              </Text>
-            </Fade>
+            <MotionText
+              as="h1"
+              color="white"
+              fontSize={["4xl", "4xl", null, "5xl", "6xl"]}
+              fontWeight="semibold"
+              initial={{opacity: 0, y: isPortrait ? -150 : 150}}
+              py={[4, null, 0]}
+              style={{textShadow: "6px 4px 4px #2e2e2e83"}}
+              textAlign="center"
+              transition={{duration: 0.7}}
+              w="100%"
+              whileInView={{opacity: 1, y: 0}}
+            >
+              Asociación Bahiense {!isPortrait && <br />} de Tenis de Mesa
+            </MotionText>
           </Center>
-          <Box
+          <MotionBox
             align="center"
+            initial={{opacity: 0, y: isPortrait ? 150 : -150}}
             style={{filter: "drop-shadow(6px 4px 4px #2e2e2e83)"}}
+            transition={{duration: 0.7}}
             w={["100%", null, "60%"]}
+            whileInView={{opacity: 1, y: 0}}
           >
-            <Fade direction={isPortrait ? "up" : "down"}>
-              <Image priority alt="Tenis de mesa" height={480} src={tt} width={980} />
-            </Fade>
-          </Box>
+            <Image priority alt="Tenis de mesa" height={480} src={tt} width={980} />
+          </MotionBox>
         </Stack>
       </Container>
       <motion.div
