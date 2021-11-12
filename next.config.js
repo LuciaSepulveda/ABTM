@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["abtm.ar"],
+    domains: ["abtm.ar", "strapi-abtm.herokuapp.com", "res.cloudinary.com"],
   },
 }
