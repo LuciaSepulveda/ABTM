@@ -4,6 +4,8 @@ import Link from "next/link"
 
 import Menu from "../components/Menu"
 import Footer from "../components/Footer"
+import {useChangePage, usePage} from "../context/hooks"
+import {Page} from "../types/types"
 
 const rules = [
   "La mesa",
@@ -24,6 +26,13 @@ const rules = [
 ]
 
 const Reglamento: React.FC = () => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.TenisDeMesa) changePage(Page.TenisDeMesa)
+  }, [page, changePage])
+
   return (
     <VStack
       bg="#FBFBFB"

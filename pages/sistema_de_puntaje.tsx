@@ -3,9 +3,18 @@ import React from "react"
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
+import {useChangePage, usePage} from "../context/hooks"
 import {sistemaDePuntaje} from "../data/data"
+import {Page} from "../types/types"
 
 const SistemaDePuntaje: React.FC = () => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.Circuito) changePage(Page.Circuito)
+  }, [page, changePage])
+
   return (
     <VStack bg="#FBFBFB" color="#242424" minHeight="100vh" overflow="hidden" spacing="0px" w="100%">
       <Menu />
@@ -18,13 +27,27 @@ const SistemaDePuntaje: React.FC = () => {
             <Table colorScheme="facebook" p={[0, null, 4]} variant="simple">
               <Thead bg="#3c6fcd88">
                 <Tr>
-                  <Th textAlign="center">Posicion</Th>
-                  <Th textAlign="center">Quinta</Th>
-                  <Th textAlign="center">Cuarta</Th>
-                  <Th textAlign="center">Tercera</Th>
-                  <Th textAlign="center">Segunda</Th>
-                  <Th textAlign="center">Primera</Th>
-                  <Th textAlign="center">SD</Th>
+                  <Th color="#242424" textAlign="center">
+                    Posicion
+                  </Th>
+                  <Th color="#242424" textAlign="center">
+                    Quinta
+                  </Th>
+                  <Th color="#242424" textAlign="center">
+                    Cuarta
+                  </Th>
+                  <Th color="#242424" textAlign="center">
+                    Tercera
+                  </Th>
+                  <Th color="#242424" textAlign="center">
+                    Segunda
+                  </Th>
+                  <Th color="#242424" textAlign="center">
+                    Primera
+                  </Th>
+                  <Th color="#242424" textAlign="center">
+                    SD
+                  </Th>
                 </Tr>
               </Thead>
               <Tbody>
