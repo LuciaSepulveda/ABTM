@@ -24,7 +24,12 @@ const Card2: React.FC<Props> = ({autoridad}) => {
       onMouseLeave={() => setShow(false)}
     >
       <Box borderRadius="50%" h="140px" overflow="hidden" position="relative" w="130px">
-        <Image alt={`Foto de ${autoridad.name}`} layout="fill" objectFit="cover" src={user} />
+        <Image
+          alt={`Foto de ${autoridad.name}`}
+          layout="fill"
+          objectFit="cover"
+          src={autoridad.photo?.url ? autoridad.photo.url : user}
+        />
       </Box>
       <VStack borderRadius="10px" h="160px" justify="center" position="relative" w="100%">
         {show && (
