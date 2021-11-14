@@ -7,7 +7,8 @@ import {motion} from "framer-motion"
 import Card from "../components/autoridades/Card"
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
-import {Autoridad} from "../types/types"
+import {Autoridad, Page} from "../types/types"
+import {useChangePage, usePage} from "../context/hooks"
 
 interface Props {
   autoridades: Autoridad[]
@@ -18,6 +19,13 @@ const MotionGridItem = motion(GridItem)
 const URL = "https://strapi-abtm.herokuapp.com"
 
 const Autoridades: React.FC<Props> = ({autoridades}) => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.Circuito) changePage(Page.Circuito)
+  }, [page, changePage])
+
   return (
     <VStack bg="#FBFBFB" color="#242424" minHeight="100vh" overflow="hidden" spacing="0px" w="100%">
       <Menu />
@@ -39,6 +47,7 @@ const Autoridades: React.FC<Props> = ({autoridades}) => {
                 key={autoridad.id}
                 initial={{opacity: 0}}
                 transition={{duration: 0.5}}
+                viewport={{once: true}}
                 whileInView={{opacity: 1}}
               >
                 <Card autoridad={autoridad} />

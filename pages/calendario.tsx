@@ -8,7 +8,8 @@ import {motion} from "framer-motion"
 import styles from "../css/calendario.module.scss"
 import Menu from "../components/Menu"
 import Footer from "../components/Footer"
-import {Calendar} from "../types/types"
+import {Calendar, Page} from "../types/types"
+import {useChangePage, usePage} from "../context/hooks"
 
 interface Props {
   calendar: Calendar[]
@@ -19,6 +20,13 @@ const MotionVStack = motion(VStack)
 const URL = "https://strapi-abtm.herokuapp.com"
 
 const Calendario: React.FC<Props> = ({calendar}) => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.Torneos) changePage(Page.Torneos)
+  }, [page, changePage])
+
   return (
     <VStack
       bg="#FBFBFB"
@@ -84,6 +92,7 @@ const Calendario: React.FC<Props> = ({calendar}) => {
                           bounce: 0.5,
                           type: "spring",
                         }}
+                        viewport={{once: true}}
                         whileInView={{opacity: 1, scale: 1}}
                         width={["250px", "250px", null, "400px"]}
                       >
