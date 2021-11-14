@@ -5,7 +5,8 @@ import React from "react"
 
 import Menu from "../../components/Menu"
 import Footer from "../../components/Footer"
-import {Ranking} from "../../types/types"
+import {Ranking, Page} from "../../types/types"
+import {useChangePage, usePage} from "../../context/hooks"
 
 interface Props {
   ranking: Ranking[]
@@ -18,7 +19,14 @@ interface Params extends Record<string, any> {
 
 const URL = "https://strapi-abtm.herokuapp.com"
 
-const rankingCategoria: NextPage<Props, Params> = ({ranking, cat}, {categoria}) => {
+const RankingCategoria: NextPage<Props> = ({ranking, cat}) => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.Ranking) changePage(Page.Ranking)
+  }, [page, changePage])
+
   return (
     <VStack
       bg="#FBFBFB"
@@ -37,9 +45,15 @@ const rankingCategoria: NextPage<Props, Params> = ({ranking, cat}, {categoria}) 
           <Table colorScheme="facebook" paddingTop={30} variant="simple">
             <Thead bg="#3c6fcd88">
               <Tr>
-                <Th textAlign="center">Posicion</Th>
-                <Th textAlign="center">Jugador</Th>
-                <Th textAlign="center">Puntos</Th>
+                <Th color="#242424" textAlign="center">
+                  Posicion
+                </Th>
+                <Th color="#242424" textAlign="center">
+                  Jugador
+                </Th>
+                <Th color="#242424" textAlign="center">
+                  Puntos
+                </Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -73,6 +87,12 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async ({params}) => {
+  if (!params?.categoria) {
+    return {
+      notFound: true,
+    }
+  }
+
   const res = await axios.get<Ranking[]>(URL + `/ranking-${params?.categoria}s`)
 
   const ranking = res.data
@@ -91,4 +111,4 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({params}) =>
   }
 }
 
-export default rankingCategoria
+export default RankingCategoria

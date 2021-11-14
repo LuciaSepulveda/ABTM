@@ -5,7 +5,8 @@ import React from "react"
 
 import Menu from "../../components/Menu"
 import Footer from "../../components/Footer"
-import {Pdf} from "../../types/types"
+import {Pdf, Page} from "../../types/types"
+import {useChangePage, usePage} from "../../context/hooks"
 
 interface Props {
   reglamentos: Pdf[]
@@ -18,7 +19,14 @@ interface Params extends Record<string, any> {
 
 const URL = "https://strapi-abtm.herokuapp.com"
 
-const Reglamentos: NextPage<Props, Params> = ({reglamentos, name}, {reglamento}) => {
+const Reglamentos: NextPage<Props> = ({reglamentos, name}) => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.Reglamentos) changePage(Page.Reglamentos)
+  }, [page, changePage])
+
   return (
     <VStack
       bg="#FBFBFB"
@@ -74,6 +82,12 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async ({params}) => {
+  if (!params?.reglamento) {
+    return {
+      notFound: true,
+    }
+  }
+
   const res = await axios.get<Pdf[]>(URL + `/pdfs?name=${params?.reglamento}`)
 
   const reglamentos = res.data
