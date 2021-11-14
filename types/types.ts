@@ -23,6 +23,9 @@ export interface Autoridad {
   position: string
   name: string
   id: number
+  photo: {
+    url: string
+  }
 }
 
 export enum Page {
@@ -101,4 +104,8 @@ export interface Photo {
   photo: {
     url: string
   }
+}
+
+export interface Open {
+  Abierta: boolean
 }

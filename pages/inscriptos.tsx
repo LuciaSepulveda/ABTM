@@ -1,17 +1,25 @@
-import {Box, Container, Center, Table, Text, Tbody, Td, Th, Thead, VStack} from "@chakra-ui/react"
+import {Box, Container, Table, Text, Tbody, Td, Th, Thead, VStack} from "@chakra-ui/react"
 import axios from "axios"
 import {GetStaticProps} from "next"
 import React from "react"
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
-import {Inscripto} from "../types/types"
+import {useChangePage, usePage} from "../context/hooks"
+import {Inscripto, Page} from "../types/types"
 
 interface Props {
   inscriptos: Inscripto[]
 }
 
 const Inscriptos: React.FC<Props> = ({inscriptos}) => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.Inscripcion) changePage(Page.Inscripcion)
+  }, [page, changePage])
+
   return (
     <VStack
       bg="#FBFBFB"
@@ -30,9 +38,15 @@ const Inscriptos: React.FC<Props> = ({inscriptos}) => {
           <Box overflowX={["scroll", null, "hidden"]} w={["100%", null, "80%"]}>
             <Table colorScheme="facebook" p={[0, null, 4]} variant="simple">
               <Thead bg="#3c6fcd88">
-                <Th textAlign="center">Nombre</Th>
-                <Th textAlign="center">Apellido</Th>
-                <Th textAlign="center">Categoria</Th>
+                <Th color="#242424" textAlign="center">
+                  Nombre
+                </Th>
+                <Th color="#242424" textAlign="center">
+                  Apellido
+                </Th>
+                <Th color="#242424" textAlign="center">
+                  Categoria
+                </Th>
               </Thead>
               {inscriptos.map((inscripto) => (
                 <Tbody key={inscripto.id}>
