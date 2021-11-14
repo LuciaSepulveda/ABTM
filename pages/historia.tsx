@@ -4,10 +4,19 @@ import {motion} from "framer-motion"
 
 import Menu from "../components/Menu"
 import Footer from "../components/Footer"
+import {useChangePage, usePage} from "../context/hooks"
+import {Page} from "../types/types"
 
 const MotionText = motion(Text)
 
 const Historia: React.FC = () => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.TenisDeMesa) changePage(Page.TenisDeMesa)
+  }, [page, changePage])
+
   return (
     <VStack
       bg="#FBFBFB"

@@ -8,8 +8,9 @@ import About from "../components/index/About"
 import Footer from "../components/Footer"
 import Photos from "../components/index/Photos"
 import Motivation from "../components/index/Motivation"
-import {New, Photo} from "../types/types"
+import {New, Photo, Page} from "../types/types"
 import News from "../components/index/News"
+import {useChangePage, usePage} from "../context/hooks"
 
 interface Props {
   news: New[]
@@ -17,6 +18,13 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({news, photos}) => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.Index) changePage(Page.Index)
+  }, [page, changePage])
+
   return (
     <VStack bg="#FBFBFB" minHeight="100vh" overflowX="hidden" spacing="0px" w="100%">
       <Header />

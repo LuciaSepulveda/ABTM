@@ -5,7 +5,8 @@ import React from "react"
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
-import {Pdf} from "../types/types"
+import {useChangePage, usePage} from "../context/hooks"
+import {Pdf, Page} from "../types/types"
 
 interface Props {
   pdfs: Pdf[]
@@ -14,6 +15,13 @@ interface Props {
 const URL = "https://strapi-abtm.herokuapp.com"
 
 const Rating: React.FC<Props> = ({pdfs}) => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.Circuito) changePage(Page.Circuito)
+  }, [page, changePage])
+
   return (
     <VStack bg="#FBFBFB" color="#242424" minHeight="100vh" overflow="hidden" spacing="0px" w="100%">
       <Menu />
