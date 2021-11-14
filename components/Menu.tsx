@@ -59,7 +59,7 @@ const MenuHeader: React.FC = () => {
             <HStack justify="space-between" w="100%">
               <Link passHref href={"/"}>
                 <Box as="a" cursor="pointer" onClick={() => changePage(Page.Index)}>
-                  <Image alt="logo abtm" src={logo} />
+                  <Image alt="logo abtm" blurDataURL={`${logo}`} placeholder="blur" src={logo} />
                 </Box>
               </Link>
               {isPortrait && (
@@ -75,6 +75,7 @@ const MenuHeader: React.FC = () => {
                     h="100%"
                     initial={{y: -20, opacity: 0}}
                     m="auto"
+                    viewport={{once: true}}
                     whileInView={{y: 0, opacity: 1}}
                   >
                     <Popover placement="bottom">
