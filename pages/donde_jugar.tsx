@@ -12,8 +12,17 @@ import {
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
 import Card from "../components/donde_jugar/Card"
+import {useChangePage, usePage} from "../context/hooks"
+import {Page} from "../types/types"
 
 const DondeJugar: React.FC = () => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.Circuito) changePage(Page.Circuito)
+  }, [page, changePage])
+
   const Front1 = (
     <VStack color="black" spacing={4}>
       <Text fontSize="4xl" fontWeight="bold">

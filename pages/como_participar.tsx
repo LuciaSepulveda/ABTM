@@ -4,10 +4,19 @@ import {motion} from "framer-motion"
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
+import {useChangePage, usePage} from "../context/hooks"
+import {Page} from "../types/types"
 
 const MotionStack = motion(Stack)
 
 const ComoParticipar: React.FC = () => {
+  const changePage = useChangePage()
+  const page = usePage()
+
+  React.useEffect(() => {
+    if (page !== Page.Torneos) changePage(Page.Torneos)
+  }, [page, changePage])
+
   return (
     <VStack
       bg="#FBFBFB"
@@ -34,6 +43,7 @@ const ComoParticipar: React.FC = () => {
             m="auto"
             p={2}
             transition={{duration: 0.5}}
+            viewport={{once: true}}
             w={["100%", null, "90%"]}
             whileInView={{opacity: 1}}
           >
