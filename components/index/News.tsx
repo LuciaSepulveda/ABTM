@@ -5,6 +5,7 @@ import {useMediaQuery} from "react-responsive"
 import {Carousel} from "@trendyol-js/react-carousel"
 import {MdKeyboardArrowLeft, MdKeyboardArrowRight} from "react-icons/md"
 import {motion} from "framer-motion"
+import Link from "next/link"
 
 import {New} from "../../types/types"
 
@@ -28,6 +29,7 @@ const News2: React.FC<Props> = ({news}) => {
           m="auto"
           spacing={24}
           transition={{duration: 0.5}}
+          viewport={{once: true}}
           w={["100%", null, "100%"]}
           whileInView={{opacity: 1}}
         >
@@ -95,60 +97,70 @@ const News2: React.FC<Props> = ({news}) => {
             swiping={true}
           >
             {news.map((n) => (
-              <VStack
-                key={n.id}
-                border="2px solid #EBEAED"
-                borderRadius="10px"
-                h={500}
-                justify="center"
-                w={[300, null, 400]}
-              >
-                <Box h="100%" overflow="hidden" position="relative" w="100%">
-                  <Box
-                    _hover={{transform: "scale(1.4)"}}
-                    borderTopRadius="10px"
-                    h="100%"
-                    overflow="hidden"
-                    position="relative"
-                    transition="all ease-in 0.3s"
-                    w="100%"
+              <Link key={n.id} passHref href={`/noticias/${n.id}`}>
+                <a>
+                  <VStack
+                    border="2px solid #EBEAED"
+                    borderRadius="10px"
+                    h={500}
+                    justify="center"
+                    w={[300, null, 400]}
                   >
-                    <Image
-                      alt={"Foto de " + n.title}
-                      layout="fill"
-                      objectFit="cover"
-                      src={n.photo.url}
-                    />
-                  </Box>
-                </Box>
-                <Box h={14} overflowY="hidden" p={1} w="100%">
-                  <Text color="rgba(21, 20, 57, 1)" fontSize="14px" ml={4} textAlign="left">
-                    {n.date}
-                  </Text>
-                </Box>
-                <Box
-                  borderTop="1px solid rgba(21, 20, 57, 0.2)"
-                  h={14}
-                  overflowY="hidden"
-                  p={0.5}
-                  w="100%"
-                >
-                  <Text color="rgba(30, 14, 98, 1)" fontWeight="bold" m="auto" textAlign="center">
-                    {n.title}
-                  </Text>
-                </Box>
-                <Box
-                  borderTop="1px solid rgba(21, 20, 57, 0.2)"
-                  h={48}
-                  overflowY="hidden"
-                  p={0.5}
-                  w="100%"
-                >
-                  <Text color="rgba(21, 20, 57, 0.6)" textAlign="center">
-                    {n.short_description + "Hola no se que mas [poner para probnar"}
-                  </Text>
-                </Box>
-              </VStack>
+                    <Box h="100%" overflow="hidden" position="relative" w="100%">
+                      <Box
+                        _hover={{transform: "scale(1.4)"}}
+                        borderTopRadius="10px"
+                        h="100%"
+                        overflow="hidden"
+                        position="relative"
+                        transition="all ease-in 0.3s"
+                        w="100%"
+                      >
+                        <Image
+                          alt={"Foto de " + n.title}
+                          blurDataURL={`${n.photo.url}`}
+                          layout="fill"
+                          objectFit="cover"
+                          placeholder="blur"
+                          src={n.photo.url}
+                        />
+                      </Box>
+                    </Box>
+                    <Box h={14} overflowY="hidden" p={1} w="100%">
+                      <Text color="rgba(21, 20, 57, 1)" fontSize="14px" ml={4} textAlign="left">
+                        {n.date}
+                      </Text>
+                    </Box>
+                    <Box
+                      borderTop="1px solid rgba(21, 20, 57, 0.2)"
+                      h={14}
+                      overflowY="hidden"
+                      p={0.5}
+                      w="100%"
+                    >
+                      <Text
+                        color="rgba(30, 14, 98, 1)"
+                        fontWeight="bold"
+                        m="auto"
+                        textAlign="center"
+                      >
+                        {n.title}
+                      </Text>
+                    </Box>
+                    <Box
+                      borderTop="1px solid rgba(21, 20, 57, 0.2)"
+                      h={48}
+                      overflowY="hidden"
+                      p={0.5}
+                      w="100%"
+                    >
+                      <Text color="rgba(21, 20, 57, 0.6)" textAlign="center">
+                        {n.short_description + "Hola no se que mas [poner para probnar"}
+                      </Text>
+                    </Box>
+                  </VStack>
+                </a>
+              </Link>
             ))}
           </Carousel>
         </MotionVStack>

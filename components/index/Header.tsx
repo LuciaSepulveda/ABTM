@@ -54,6 +54,7 @@ const Header: React.FC = () => {
               style={{textShadow: "6px 4px 4px #2e2e2e83"}}
               textAlign="center"
               transition={{duration: 0.7}}
+              viewport={{once: true}}
               w="100%"
               whileInView={{opacity: 1, y: 0}}
             >
@@ -65,10 +66,19 @@ const Header: React.FC = () => {
             initial={{opacity: 0, y: isPortrait ? 150 : -150}}
             style={{filter: "drop-shadow(6px 4px 4px #2e2e2e83)"}}
             transition={{duration: 0.7}}
+            viewport={{once: true}}
             w={["100%", null, "60%"]}
             whileInView={{opacity: 1, y: 0}}
           >
-            <Image priority alt="Tenis de mesa" height={480} src={tt} width={980} />
+            <Image
+              priority
+              alt="Tenis de mesa"
+              blurDataURL={`${tt}`}
+              height={480}
+              placeholder="blur"
+              src={tt}
+              width={980}
+            />
           </MotionBox>
         </Stack>
       </Container>

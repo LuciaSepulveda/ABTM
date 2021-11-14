@@ -67,6 +67,7 @@ const MenuHeader: React.FC = () => {
                   initial={{y: -20, opacity: 0}}
                   m="auto"
                   transition={{duration: 0.5}}
+                  viewport={{once: true}}
                   whileInView={{y: 0, opacity: 1}}
                 >
                   <Popover placement="bottom">

@@ -20,6 +20,7 @@ const Photos: React.FC<Props> = ({photos}) => {
           m="auto"
           spacing={8}
           transition={{duration: 0.5}}
+          viewport={{once: true}}
           w={["100%", null, "86%"]}
           whileInView={{opacity: 1}}
         >

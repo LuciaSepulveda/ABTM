@@ -34,9 +34,18 @@ const Motivation: React.FC = () => {
             filter: "drop-shadow(10px 0px 4px #2e2e2e83)",
           }}
           transition={{duration: 0.7}}
+          viewport={{once: true}}
           whileInView={{opacity: 1, x: 0}}
         >
-          <Image priority alt="Tenis de mesa" height={500} src={tennis} width={500} />
+          <Image
+            priority
+            alt="Tenis de mesa"
+            blurDataURL={`${tennis}`}
+            height={500}
+            placeholder="blur"
+            src={tennis}
+            width={500}
+          />
         </MotionBox>
       </Center>
       <Container h="100%" maxW="8xl" mt="0px">
@@ -46,6 +55,7 @@ const Motivation: React.FC = () => {
           paddingBottom="25%"
           paddingTop={["50%", "40%", "35%", "35%", "28%"]}
           transition={{duration: 0.7}}
+          viewport={{once: true}}
           w={["100%", "100%", 400, 500, 700]}
           whileInView={{opacity: 1}}
         >
