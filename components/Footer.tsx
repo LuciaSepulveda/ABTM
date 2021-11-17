@@ -1,4 +1,14 @@
-import {Box, Center, Container, HStack, Text, VStack} from "@chakra-ui/react"
+import {
+  Box,
+  Center,
+  Container,
+  HStack,
+  Popover,
+  PopoverTrigger,
+  Text,
+  Tooltip,
+  VStack,
+} from "@chakra-ui/react"
 import React from "react"
 import {MdPhoneInTalk, MdMailOutline} from "react-icons/md"
 import {BsInstagram, BsFacebook, BsInfoCircle} from "react-icons/bs"
