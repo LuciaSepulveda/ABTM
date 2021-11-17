@@ -52,7 +52,7 @@ const About: React.FC = () => {
               textAlign={["justify", null, "center"]}
               transition={{duration: 0.5, delay: 0.1}}
               viewport={{once: true}}
-              w={isPortrait ? "90%" : 600}
+              w={["90%", null, 600]}
               whileInView={{opacity: 1}}
               zIndex={1}
             >
@@ -90,11 +90,11 @@ const About: React.FC = () => {
           </Stack>
           <Stack
             align="center"
-            direction={isPortrait ? ["column", "column", null, "row"] : "row"}
+            direction={["column", null, "row"]}
             justify="space-between"
             m="auto"
             p={2}
-            w={isPortrait ? ["100%", null, "90%"] : "90%"}
+            w={["100%", null, "90%"]}
           >
             {isPortrait && (
               <>
@@ -107,7 +107,7 @@ const About: React.FC = () => {
                   textAlign={["justify", null, "center"]}
                   transition={{duration: 0.5, delay: 0.1}}
                   viewport={{once: true}}
-                  w={isPortrait ? "90%" : 600}
+                  w={["90%", null, 600]}
                   whileInView={{opacity: 1}}
                   zIndex={1}
                 >
@@ -180,7 +180,7 @@ const About: React.FC = () => {
                   textAlign={["justify", null, "center"]}
                   transition={{duration: 0.5, delay: 0.1}}
                   viewport={{once: true}}
-                  w={isPortrait ? "90%" : 600}
+                  w={["90%", null, 600]}
                   whileInView={{opacity: 1}}
                   zIndex={1}
                 >

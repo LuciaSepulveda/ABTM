@@ -36,60 +36,52 @@ const News: React.FC<Props> = ({news}) => {
           dots
           infinite
           nextArrow={
-            isPortrait ? (
-              <Text>{`<`}</Text>
-            ) : (
-              <Center
-                style={{
-                  width: isPortrait ? "30px" : "50px",
-                  height: "100%",
-                }}
+            <Center
+              style={{
+                width: isPortrait ? "30px" : "50px",
+                height: "100%",
+              }}
+            >
+              <Box
+                _hover={{backgroundColor: "#3C6ECD", color: "white"}}
+                as="button"
+                border="1px solid #3C6ECD"
+                borderRadius="12px"
+                color="#3C6ECD"
+                fontSize="16px"
+                fontWeight="bold"
+                h="30px"
+                paddingX={2}
+                paddingY={0}
+                transition="all ease-in 0.2s"
               >
-                <Box
-                  _hover={{backgroundColor: "#3C6ECD", color: "white"}}
-                  as="button"
-                  border="1px solid #3C6ECD"
-                  borderRadius="12px"
-                  color="#3C6ECD"
-                  fontSize="16px"
-                  fontWeight="bold"
-                  h="30px"
-                  paddingX={2}
-                  paddingY={0}
-                  transition="all ease-in 0.2s"
-                >
-                  <MdKeyboardArrowRight />
-                </Box>
-              </Center>
-            )
+                <MdKeyboardArrowRight />
+              </Box>
+            </Center>
           }
           prevArrow={
-            isPortrait ? (
-              <Text>{`<`}</Text>
-            ) : (
-              <Center
-                style={{
-                  width: isPortrait ? "30px" : "50px",
-                  height: "100%",
-                }}
+            <Center
+              style={{
+                width: isPortrait ? "30px" : "50px",
+                height: "100%",
+              }}
+            >
+              <Box
+                _hover={{backgroundColor: "#3C6ECD", color: "white"}}
+                as="button"
+                border="1px solid #3C6ECD"
+                borderRadius="12px"
+                color="#3C6ECD"
+                fontSize="16px"
+                fontWeight="bold"
+                h="30px"
+                paddingX={2}
+                paddingY={0}
+                transition="all ease-in 0.2s"
               >
-                <Box
-                  _hover={{backgroundColor: "#3C6ECD", color: "white"}}
-                  as="button"
-                  border="1px solid #3C6ECD"
-                  borderRadius="12px"
-                  color="#3C6ECD"
-                  fontSize="16px"
-                  fontWeight="bold"
-                  h="30px"
-                  paddingX={2}
-                  paddingY={0}
-                  transition="all ease-in 0.2s"
-                >
-                  <MdKeyboardArrowLeft />
-                </Box>
-              </Center>
-            )
+                <MdKeyboardArrowLeft />
+              </Box>
+            </Center>
           }
           slidesToScroll={1}
           slidesToShow={isPortrait ? 1 : 3}
