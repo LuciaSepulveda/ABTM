@@ -140,8 +140,8 @@ const Inscribirse: React.FC<Props> = ({open}) => {
       w="100%"
     >
       <Menu />
-      <Container maxW="8xl" overflowX="hidden" paddingBottom={[8, null, 28]}>
-        <HStack justify={["center", null, "start"]} spacing={2} w="100%">
+      <Container maxW="8xl" overflowX="hidden" paddingBottom={10} paddingTop={[8, null, 24]}>
+        <HStack justify={["center", null, "start"]} minH="100vh" spacing={2}>
           {!open[0]?.Abierta && (
             <Center minH="50vh">
               <Text fontSize="4xl" fontWeight="medium" textAlign="center">
@@ -159,7 +159,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
               p={2}
               paddingBottom={10}
               paddingTop={[8, null, 20]}
-              spacing={[32, null, 2]}
+              spacing={[10, null, 2]}
               transition={{duration: 0.5}}
               viewport={{once: true}}
               whileInView={{opacity: 1}}

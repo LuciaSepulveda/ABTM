@@ -3,11 +3,13 @@ import {GetStaticPaths, GetStaticProps, NextPage} from "next"
 import {Box, Container, Divider, Text, VStack} from "@chakra-ui/react"
 import React from "react"
 import Image from "next/image"
+import Linkify from "linkify-react"
 
 import Menu from "../../components/Menu"
 import Footer from "../../components/Footer"
 import {New, Page} from "../../types/types"
 import {useChangePage, usePage} from "../../context/hooks"
+import styles from "../../css/noticias.module.scss"
 
 interface Props {
   newElement: New[]
@@ -37,9 +39,9 @@ const Noticia: NextPage<Props> = ({newElement}) => {
       w="100%"
     >
       <Menu />
-      <Container maxW="8xl" paddingBottom={10} paddingTop={[8, null, 24]}>
-        <VStack m="auto" minH="100vh" p={2} spacing={10} w={["100%", null, "90%"]}>
-          <Text as="h2" fontSize="6xl" fontWeight="bold">
+      <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
+        <VStack minH="100vh" overflow="hidden" p={2} spacing={10}>
+          <Text as="h2" fontSize={["3xl", null, "5xl"]} fontWeight="bold" textAlign="center">
             {newElement[0].title}
           </Text>
           <Divider w="90%" />
@@ -53,8 +55,14 @@ const Noticia: NextPage<Props> = ({newElement}) => {
             />
           </Box>
           <Divider w="90%" />
-          <Text fontWeight="semibold" m="auto" w="90%" whiteSpace="pre-wrap">
-            {newElement[0].description}
+          <Text
+            className={styles.link}
+            fontWeight="semibold"
+            m="auto"
+            w="90%"
+            whiteSpace="pre-wrap"
+          >
+            <Linkify className={styles.link}>{newElement[0].description}</Linkify>
           </Text>
         </VStack>
       </Container>

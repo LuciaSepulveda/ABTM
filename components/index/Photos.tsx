@@ -47,7 +47,7 @@ const Photos: React.FC<Props> = ({photos}) => {
                 >
                   <Image
                     alt=""
-                    blurDataURL={`${photo.photo.url}`}
+                    blurDataURL={`${photo.photo.formats.small.url}`}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="center"
