@@ -31,7 +31,7 @@ const Autoridades: React.FC<Props> = ({autoridades}) => {
       <Menu />
       <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
         <VStack p={2} spacing={10}>
-          <Text as="h2" fontSize="6xl" fontWeight="bold">
+          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
             Autoridades
           </Text>
           <Grid

@@ -164,7 +164,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
               viewport={{once: true}}
               whileInView={{opacity: 1}}
             >
-              <Text as="h2" fontSize="6xl" fontWeight="bold">
+              <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
                 Inscribirse
               </Text>
               <Modal isCentered isOpen={isOpen} onClose={onClose}>

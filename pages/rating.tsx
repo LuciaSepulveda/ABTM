@@ -27,7 +27,7 @@ const Rating: React.FC<Props> = ({pdfs}) => {
       <Menu />
       <Container maxW="8xl" paddingBottom={10} paddingTop={[8, null, 24]}>
         <VStack p={2} spacing={10}>
-          <Text as="h2" fontSize="6xl" fontWeight="bold">
+          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
             Rating General
           </Text>
           <Box

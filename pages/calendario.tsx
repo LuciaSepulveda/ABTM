@@ -39,7 +39,7 @@ const Calendario: React.FC<Props> = ({calendar}) => {
       <Menu />
       <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
         <VStack minH={calendar.length * 500} overflow="hidden" p={2} spacing={10}>
-          <Text as="h2" fontSize="6xl" fontWeight="bold">
+          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
             Calendario
           </Text>
           <Box className={styles.timeline} paddingTop={[14, null, 0]}>

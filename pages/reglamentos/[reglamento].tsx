@@ -39,7 +39,7 @@ const Reglamentos: NextPage<Props> = ({reglamentos, name}) => {
       <Menu />
       <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
         <VStack minH="100vh" spacing={10} w="100%">
-          <Text as="h2" fontSize="6xl" fontWeight="bold">
+          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
             {name}
           </Text>
           <Box

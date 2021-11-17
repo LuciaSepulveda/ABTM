@@ -39,7 +39,7 @@ const RankingCategoria: NextPage<Props> = ({ranking, cat}) => {
       <Menu />
       <Container maxW="8xl" paddingBottom={10} paddingTop={[8, null, 24]}>
         <VStack minH="100vh" p={2} spacing={10} w="100%">
-          <Text as="h2" fontSize="6xl" fontWeight="bold">
+          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
             Ranking {cat}
           </Text>
           <Table colorScheme="facebook" paddingTop={30} variant="simple">

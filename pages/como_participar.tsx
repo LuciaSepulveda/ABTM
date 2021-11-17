@@ -29,7 +29,7 @@ const ComoParticipar: React.FC = () => {
       <Menu />
       <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
         <VStack justify="space-evenly" minH="100vh" spacing={[10, null, 20]}>
-          <Text as="h2" fontSize="6xl" fontWeight="bold">
+          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
             ¿Cómo participar?
           </Text>
           <MotionStack

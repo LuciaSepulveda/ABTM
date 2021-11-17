@@ -32,7 +32,7 @@ const Inscriptos: React.FC<Props> = ({inscriptos}) => {
       <Menu />
       <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
         <VStack minH="100vh" overflow="hidden" p={2} spacing={10}>
-          <Text as="h2" fontSize="6xl" fontWeight="bold">
+          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
             Inscriptos
           </Text>
           <Box overflowX={["scroll", null, "hidden"]} w={["100%", null, "80%"]}>

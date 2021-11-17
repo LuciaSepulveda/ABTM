@@ -45,7 +45,7 @@ const Reglamento: React.FC = () => {
       <Menu />
       <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
         <VStack minH="100vh" p={2} spacing={20} w="100%">
-          <Text as="h2" fontSize="6xl" fontWeight="bold">
+          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
             Reglamento del Tenis de Mesa
           </Text>
           <Grid
