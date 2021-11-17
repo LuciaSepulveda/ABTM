@@ -564,7 +564,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
           height={260}
           position="relative"
           style={{filter: "drop-shadow(6px 4px 4px #2e2e2e83)"}}
-          top="-40"
+          top="-50"
           width={350}
         >
           <Image

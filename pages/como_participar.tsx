@@ -1,4 +1,4 @@
-import {Center, Container, HStack, Stack, Text, VStack} from "@chakra-ui/react"
+import {Center, Container, Stack, Text, VStack} from "@chakra-ui/react"
 import React from "react"
 import {motion} from "framer-motion"
 
@@ -47,9 +47,10 @@ const ComoParticipar: React.FC = () => {
             w={["100%", null, "90%"]}
             whileInView={{opacity: 1}}
           >
-            <HStack
+            <Stack
               alignContent="center"
               alignItems="center"
+              direction={["column", null, "row"]}
               justify="start"
               w={["100%", "40%", null, "40%"]}
             >
@@ -66,7 +67,7 @@ const ComoParticipar: React.FC = () => {
               <Text fontSize={["2xl", null, "4xl"]} fontWeight="bold" m="auto" textAlign="center">
                 ¿Quiénes pueden jugar?
               </Text>
-            </HStack>
+            </Stack>
             <Text fontSize={["md", null, "lg"]} textAlign="center" w={["100%", "50%", null, "50%"]}>
               En los torneos pueden participar jugadores desde el nivel inicial (que nunca jugaron
               un torneo y/o que sólo juegan en su casa o con amigos) hasta jugadores federados. Por
@@ -88,9 +89,10 @@ const ComoParticipar: React.FC = () => {
             w={["100%", null, "90%"]}
             whileInView={{opacity: 1}}
           >
-            <HStack
+            <Stack
               alignContent="center"
               alignItems="center"
+              direction={["column", null, "row"]}
               justify="start"
               w={["100%", "40%", null, "40%"]}
             >
@@ -107,7 +109,7 @@ const ComoParticipar: React.FC = () => {
               <Text fontSize={["2xl", null, "4xl"]} fontWeight="bold" m="auto" textAlign="center">
                 ¿Cómo me inscribo?
               </Text>
-            </HStack>
+            </Stack>
             <Text fontSize={["md", null, "lg"]} textAlign="center" w={["100%", "50%", null, "50%"]}>
               El horario de cierre de inscripciones a los torneos para todas las categorías
               puntables, está especificado en el mail de invitación que les llega previo a cada
@@ -120,7 +122,7 @@ const ComoParticipar: React.FC = () => {
             alignItems="center"
             bg="#89D6AE"
             direction={["column", "row", null, "row"]}
-            h={[400, 240, null, 200]}
+            h={[300, 240, null, 200]}
             initial={{opacity: 0}}
             justify="center"
             m="auto"
@@ -129,9 +131,10 @@ const ComoParticipar: React.FC = () => {
             w={["100%", null, "90%"]}
             whileInView={{opacity: 1}}
           >
-            <HStack
+            <Stack
               alignContent="center"
               alignItems="center"
+              direction={["column", null, "row"]}
               justify="start"
               w={["100%", "40%", null, "40%"]}
             >
@@ -148,7 +151,7 @@ const ComoParticipar: React.FC = () => {
               <Text fontSize={["2xl", null, "4xl"]} fontWeight="bold" m="auto" textAlign="center">
                 ¿En qué categoría juego?
               </Text>
-            </HStack>
+            </Stack>
             <Text fontSize={["md", null, "lg"]} textAlign="center" w={["100%", "50%", null, "50%"]}>
               Si no estas ranqueado, en el primer torneo en el que participes tenemos que decidir
               cual es la categoría en la que podés jugar.
