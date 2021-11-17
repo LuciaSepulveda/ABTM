@@ -95,7 +95,7 @@ const DondeJugar: React.FC = () => {
             <MdPhoneInTalk style={{height: "40px", width: "40px", color: "#FF725E"}} />
             {`Contacto: `}
             <Link passHref href="https://wa.me/549291507112">
-              <a>291-5071112</a>
+              <a>291-4136813</a>
             </Link>
           </HStack>
         </ListItem>
