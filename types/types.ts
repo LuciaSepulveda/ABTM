@@ -5,6 +5,11 @@ export interface New {
   short_description: string
   photo: {
     url: string
+    formats: {
+      small: {
+        url: string
+      }
+    }
   }
   id: number
 }
@@ -103,6 +108,11 @@ export interface Photo {
   id: number
   photo: {
     url: string
+    formats: {
+      small: {
+        url: string
+      }
+    }
   }
 }
 
