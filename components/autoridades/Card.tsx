@@ -26,8 +26,10 @@ const Card2: React.FC<Props> = ({autoridad}) => {
       <Box borderRadius="50%" h="140px" overflow="hidden" position="relative" w="130px">
         <Image
           alt={`Foto de ${autoridad.name}`}
+          blurDataURL={`${autoridad.photo?.url ? autoridad.photo.url : user}`}
           layout="fill"
           objectFit="cover"
+          placeholder="blur"
           src={autoridad.photo?.url ? autoridad.photo.url : user}
         />
       </Box>
