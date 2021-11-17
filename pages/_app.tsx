@@ -3,6 +3,7 @@ import {ChakraProvider, ThemeConfig, ColorModeScript, extendTheme} from "@chakra
 import Head from "next/head"
 import "../css/global.css"
 import React from "react"
+
 import {Provider as UserProvider} from "../context/context"
 
 const config: ThemeConfig = {
@@ -18,6 +19,7 @@ function App({Component, pageProps}: AppProps) {
       <Head>
         <title>ABTM</title>
         <meta content="ABTM page" name="description" />
+        <link href="logo.png" rel="icon" />
       </Head>
       <ChakraProvider>
         <UserProvider>
