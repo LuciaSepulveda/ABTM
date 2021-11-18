@@ -78,6 +78,7 @@ export const getStaticProps: GetStaticProps<Props, never> = async () => {
     props: {
       inscriptos: inscriptos,
     },
+    revalidate: 1,
   }
 }
 

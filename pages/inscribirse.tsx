@@ -592,6 +592,7 @@ export const getStaticProps: GetStaticProps<Props, never> = async () => {
     props: {
       open: open,
     },
+    revalidate: 60,
   }
 }
 
