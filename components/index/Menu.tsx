@@ -28,6 +28,19 @@ import {Page} from "../../types/types"
 import logo from "../../public/logo.png"
 import {usePage, useChangePage} from "../../context/hooks"
 
+const reglamentos = [
+  "Anexo protocolo covid",
+  "DDJJ covid",
+  "Declaracion jurada",
+  "Gomas aprobadas",
+  "Protocolo covid",
+  "Reglamento ABTM",
+  "Reglamento tecnico",
+  "Tribunal disciplina",
+]
+
+const categorias = ["SD", "Primera", "Segunda", "Tercera", "Cuarta", "Quinta"]
+
 const MotionHStack = motion(HStack)
 
 const MenuHeader: React.FC = () => {
@@ -212,138 +225,30 @@ const MenuHeader: React.FC = () => {
                           <PopoverContent _focus={{border: "none"}} bg="#315caa" w="100%">
                             <PopoverArrow bg="#315caa" />
                             <PopoverBody>
-                              <Link passHref href={"/categorias/sd"}>
-                                <a>
-                                  <Center
-                                    _hover={{
-                                      backgroundColor: "#5586e0",
-                                    }}
-                                    borderRadius="lg"
-                                    h={10}
-                                    p={2}
-                                  >
-                                    <Text
-                                      alignItems="center"
-                                      cursor="pointer"
-                                      fontSize="lg"
-                                      textAlign="center"
-                                      onClick={() => changePage(Page.Ranking)}
+                              {categorias.map((cat) => (
+                                <Link key={cat} passHref href={`/categorias/${cat.toLowerCase()}`}>
+                                  <a>
+                                    <Center
+                                      _hover={{
+                                        backgroundColor: "#5586e0",
+                                      }}
+                                      borderRadius="lg"
+                                      h={10}
+                                      p={2}
                                     >
-                                      SD
-                                    </Text>
-                                  </Center>
-                                </a>
-                              </Link>
-                              <Link passHref href={"/categorias/primera"}>
-                                <a>
-                                  <Center
-                                    _hover={{
-                                      backgroundColor: "#5586e0",
-                                    }}
-                                    borderRadius="lg"
-                                    h={10}
-                                    p={2}
-                                  >
-                                    <Text
-                                      alignItems="center"
-                                      cursor="pointer"
-                                      fontSize="lg"
-                                      textAlign="center"
-                                      onClick={() => changePage(Page.Ranking)}
-                                    >
-                                      Primera
-                                    </Text>
-                                  </Center>
-                                </a>
-                              </Link>
-                              <Link passHref href={"/categorias/segunda"}>
-                                <a>
-                                  <Center
-                                    _hover={{
-                                      backgroundColor: "#5586e0",
-                                    }}
-                                    borderRadius="lg"
-                                    h={10}
-                                    p={2}
-                                  >
-                                    <Text
-                                      alignItems="center"
-                                      cursor="pointer"
-                                      fontSize="lg"
-                                      textAlign="center"
-                                      onClick={() => changePage(Page.Ranking)}
-                                    >
-                                      Segunda
-                                    </Text>
-                                  </Center>
-                                </a>
-                              </Link>
-                              <Link passHref href={"/categorias/tercera"}>
-                                <a>
-                                  <Center
-                                    _hover={{
-                                      backgroundColor: "#5586e0",
-                                    }}
-                                    borderRadius="lg"
-                                    h={10}
-                                    p={2}
-                                  >
-                                    <Text
-                                      alignItems="center"
-                                      cursor="pointer"
-                                      fontSize="lg"
-                                      textAlign="center"
-                                      onClick={() => changePage(Page.Ranking)}
-                                    >
-                                      Tercera
-                                    </Text>
-                                  </Center>
-                                </a>
-                              </Link>
-                              <Link passHref href={"/categorias/cuarta"}>
-                                <a>
-                                  <Center
-                                    _hover={{
-                                      backgroundColor: "#5586e0",
-                                    }}
-                                    borderRadius="lg"
-                                    h={10}
-                                    p={2}
-                                  >
-                                    <Text
-                                      alignItems="center"
-                                      cursor="pointer"
-                                      fontSize="lg"
-                                      textAlign="center"
-                                      onClick={() => changePage(Page.Ranking)}
-                                    >
-                                      Cuarta
-                                    </Text>
-                                  </Center>
-                                </a>
-                              </Link>
-                              <Link passHref href={"/categorias/quinta"}>
-                                <a>
-                                  <Center
-                                    _hover={{
-                                      backgroundColor: "#5586e0",
-                                    }}
-                                    borderRadius="lg"
-                                    h={10}
-                                    p={2}
-                                  >
-                                    <Text
-                                      alignItems="center"
-                                      cursor="pointer"
-                                      fontSize="lg"
-                                      textAlign="center"
-                                      onClick={() => changePage(Page.Ranking)}
-                                    >
-                                      Quinta
-                                    </Text>
-                                  </Center>
-                                </a>
-                              </Link>
+                                      <Text
+                                        alignItems="center"
+                                        cursor="pointer"
+                                        fontSize="lg"
+                                        textAlign="center"
+                                        onClick={() => changePage(Page.Ranking)}
+                                      >
+                                        {cat}
+                                      </Text>
+                                    </Center>
+                                  </a>
+                                </Link>
+                              ))}
                             </PopoverBody>
                           </PopoverContent>
                         </Popover>
@@ -582,182 +487,30 @@ const MenuHeader: React.FC = () => {
                     <PopoverContent _focus={{border: "none"}} bg="#315caa" w="100%">
                       <PopoverArrow bg="#315caa" />
                       <PopoverBody bg="#315caa" borderRadius="xl" p={2}>
-                        <Link passHref href={"/reglamentos/Gomas aprobadas"}>
-                          <a>
-                            <Center
-                              _hover={{
-                                backgroundColor: "#5586e0",
-                              }}
-                              borderRadius="lg"
-                              h={10}
-                              p={2}
-                            >
-                              <Text
-                                alignItems="center"
-                                cursor="pointer"
-                                fontSize="lg"
-                                textAlign="center"
-                                onClick={() => changePage(Page.Reglamentos)}
+                        {reglamentos.map((reg) => (
+                          <Link key={reg} passHref href={`/reglamentos/${reg}`}>
+                            <a>
+                              <Center
+                                _hover={{
+                                  backgroundColor: "#5586e0",
+                                }}
+                                borderRadius="lg"
+                                h={10}
+                                p={2}
                               >
-                                Gomas aprobadas
-                              </Text>
-                            </Center>
-                          </a>
-                        </Link>
-                        <Link passHref href={"/reglamentos/Declaracion jurada"}>
-                          <a>
-                            <Center
-                              _hover={{
-                                backgroundColor: "#5586e0",
-                              }}
-                              borderRadius="lg"
-                              h={10}
-                              p={2}
-                            >
-                              <Text
-                                alignItems="center"
-                                cursor="pointer"
-                                fontSize="lg"
-                                textAlign="center"
-                                onClick={() => changePage(Page.Reglamentos)}
-                              >
-                                Declaración jurada
-                              </Text>
-                            </Center>
-                          </a>
-                        </Link>
-                        <Link passHref href={"/reglamentos/Protocolo covid"}>
-                          <a>
-                            <Center
-                              _hover={{
-                                backgroundColor: "#5586e0",
-                              }}
-                              borderRadius="lg"
-                              h={10}
-                              p={2}
-                            >
-                              <Text
-                                alignItems="center"
-                                cursor="pointer"
-                                fontSize="lg"
-                                textAlign="center"
-                                onClick={() => changePage(Page.Reglamentos)}
-                              >
-                                Protocolo covid
-                              </Text>
-                            </Center>
-                          </a>
-                        </Link>
-                        <Link passHref href={"/reglamentos/Anexo protocolo covid"}>
-                          <a>
-                            <Center
-                              _hover={{
-                                backgroundColor: "#5586e0",
-                              }}
-                              borderRadius="lg"
-                              h={10}
-                              p={2}
-                            >
-                              <Text
-                                alignItems="center"
-                                cursor="pointer"
-                                fontSize="lg"
-                                textAlign="center"
-                                onClick={() => changePage(Page.Reglamentos)}
-                              >
-                                Anexo protocolo covid
-                              </Text>
-                            </Center>
-                          </a>
-                        </Link>
-                        <Link passHref href={"/reglamentos/DDJJ covid"}>
-                          <a>
-                            <Center
-                              _hover={{
-                                backgroundColor: "#5586e0",
-                              }}
-                              borderRadius="lg"
-                              h={10}
-                              p={2}
-                            >
-                              <Text
-                                alignItems="center"
-                                cursor="pointer"
-                                fontSize="lg"
-                                textAlign="center"
-                                onClick={() => changePage(Page.Reglamentos)}
-                              >
-                                DDJJ Covid
-                              </Text>
-                            </Center>
-                          </a>
-                        </Link>
-                        <Link passHref href={"/reglamentos/Reglamento tecnico"}>
-                          <a>
-                            <Center
-                              _hover={{
-                                backgroundColor: "#5586e0",
-                              }}
-                              borderRadius="lg"
-                              h={10}
-                              p={2}
-                            >
-                              <Text
-                                alignItems="center"
-                                cursor="pointer"
-                                fontSize="lg"
-                                textAlign="center"
-                                onClick={() => changePage(Page.Reglamentos)}
-                              >
-                                Reglamento técnico
-                              </Text>
-                            </Center>
-                          </a>
-                        </Link>
-                        <Link passHref href={"/reglamentos/Tribunal disciplina"}>
-                          <a>
-                            <Center
-                              _hover={{
-                                backgroundColor: "#5586e0",
-                              }}
-                              borderRadius="lg"
-                              h={10}
-                              p={2}
-                            >
-                              <Text
-                                alignItems="center"
-                                cursor="pointer"
-                                fontSize="lg"
-                                textAlign="center"
-                                onClick={() => changePage(Page.Reglamentos)}
-                              >
-                                Tribunal disciplina
-                              </Text>
-                            </Center>
-                          </a>
-                        </Link>
-                        <Link passHref href={"/reglamentos/Reglamento ABTM"}>
-                          <a>
-                            <Center
-                              _hover={{
-                                backgroundColor: "#5586e0",
-                              }}
-                              borderRadius="lg"
-                              h={10}
-                              p={2}
-                            >
-                              <Text
-                                alignItems="center"
-                                cursor="pointer"
-                                fontSize="lg"
-                                textAlign="center"
-                                onClick={() => changePage(Page.Reglamentos)}
-                              >
-                                Reglamento ABTM
-                              </Text>
-                            </Center>
-                          </a>
-                        </Link>
+                                <Text
+                                  alignItems="center"
+                                  cursor="pointer"
+                                  fontSize="lg"
+                                  textAlign="center"
+                                  onClick={() => changePage(Page.Reglamentos)}
+                                >
+                                  {reg}
+                                </Text>
+                              </Center>
+                            </a>
+                          </Link>
+                        ))}
                       </PopoverBody>
                     </PopoverContent>
                   </Popover>
@@ -942,144 +695,31 @@ const MenuHeader: React.FC = () => {
                             </HStack>
                           </AccordionButton>
                           <AccordionPanel>
-                            <Link passHref href={"/categorias/sd"}>
-                              <a>
-                                <Center
-                                  _hover={{
-                                    backgroundColor: "#5586e0",
-                                  }}
-                                  borderRadius="lg"
-                                  h={10}
-                                  p={2}
-                                >
-                                  <Text
-                                    cursor="pointer"
-                                    fontSize="lg"
-                                    w="100%"
-                                    onClick={() => {
-                                      changePage(Page.Ranking), setShow(false)
+                            {categorias.map((cat) => (
+                              <Link key={cat} passHref href={`/categorias/${cat.toLowerCase()}`}>
+                                <a>
+                                  <Center
+                                    _hover={{
+                                      backgroundColor: "#5586e0",
                                     }}
+                                    borderRadius="lg"
+                                    h={10}
+                                    p={2}
                                   >
-                                    SD
-                                  </Text>
-                                </Center>
-                              </a>
-                            </Link>
-                            <Link passHref href={"/categorias/primera"}>
-                              <a>
-                                <Center
-                                  _hover={{
-                                    backgroundColor: "#5586e0",
-                                  }}
-                                  borderRadius="lg"
-                                  h={10}
-                                  p={2}
-                                >
-                                  <Text
-                                    cursor="pointer"
-                                    fontSize="lg"
-                                    w="100%"
-                                    onClick={() => {
-                                      changePage(Page.Ranking), setShow(false)
-                                    }}
-                                  >
-                                    Primera
-                                  </Text>
-                                </Center>
-                              </a>
-                            </Link>
-                            <Link passHref href={"/categorias/segunda"}>
-                              <a>
-                                <Center
-                                  _hover={{
-                                    backgroundColor: "#5586e0",
-                                  }}
-                                  borderRadius="lg"
-                                  h={10}
-                                  p={2}
-                                >
-                                  <Text
-                                    cursor="pointer"
-                                    fontSize="lg"
-                                    w="100%"
-                                    onClick={() => {
-                                      changePage(Page.Ranking), setShow(false)
-                                    }}
-                                  >
-                                    Segunda
-                                  </Text>
-                                </Center>
-                              </a>
-                            </Link>
-                            <Link passHref href={"/categorias/tercera"}>
-                              <a>
-                                <Center
-                                  _hover={{
-                                    backgroundColor: "#5586e0",
-                                  }}
-                                  borderRadius="lg"
-                                  h={10}
-                                  p={2}
-                                >
-                                  <Text
-                                    cursor="pointer"
-                                    fontSize="lg"
-                                    w="100%"
-                                    onClick={() => {
-                                      changePage(Page.Ranking), setShow(false)
-                                    }}
-                                  >
-                                    Tercera
-                                  </Text>
-                                </Center>
-                              </a>
-                            </Link>
-                            <Link passHref href={"/categorias/cuarta"}>
-                              <a>
-                                <Center
-                                  _hover={{
-                                    backgroundColor: "#5586e0",
-                                  }}
-                                  borderRadius="lg"
-                                  h={10}
-                                  p={2}
-                                >
-                                  <Text
-                                    cursor="pointer"
-                                    fontSize="lg"
-                                    w="100%"
-                                    onClick={() => {
-                                      changePage(Page.Ranking), setShow(false)
-                                    }}
-                                  >
-                                    Cuarta
-                                  </Text>
-                                </Center>
-                              </a>
-                            </Link>
-                            <Link passHref href={"/categorias/quinta"}>
-                              <a>
-                                <Center
-                                  _hover={{
-                                    backgroundColor: "#5586e0",
-                                  }}
-                                  borderRadius="lg"
-                                  h={10}
-                                  p={2}
-                                >
-                                  <Text
-                                    cursor="pointer"
-                                    fontSize="lg"
-                                    w="100%"
-                                    onClick={() => {
-                                      changePage(Page.Ranking), setShow(false)
-                                    }}
-                                  >
-                                    Quinta
-                                  </Text>
-                                </Center>
-                              </a>
-                            </Link>
+                                    <Text
+                                      cursor="pointer"
+                                      fontSize="lg"
+                                      w="100%"
+                                      onClick={() => {
+                                        changePage(Page.Ranking), setShow(false)
+                                      }}
+                                    >
+                                      {cat}
+                                    </Text>
+                                  </Center>
+                                </a>
+                              </Link>
+                            ))}
                           </AccordionPanel>
                         </AccordionItem>
                       </Accordion>
@@ -1280,190 +920,31 @@ const MenuHeader: React.FC = () => {
                       </HStack>
                     </AccordionButton>
                     <AccordionPanel>
-                      <Link passHref href={"/reglamentos/Gomas aprobadas"}>
-                        <a>
-                          <Center
-                            _hover={{
-                              backgroundColor: "#5586e0",
-                            }}
-                            borderRadius="lg"
-                            h={10}
-                            p={2}
-                          >
-                            <Text
-                              cursor="pointer"
-                              fontSize="lg"
-                              w="100%"
-                              onClick={() => {
-                                changePage(Page.Reglamentos), setShow(false)
+                      {reglamentos.map((reg) => (
+                        <Link key={reg} passHref href={`/reglamentos/${reg}`}>
+                          <a>
+                            <Center
+                              _hover={{
+                                backgroundColor: "#5586e0",
                               }}
+                              borderRadius="lg"
+                              h={10}
+                              p={2}
                             >
-                              Gomas aprobadas
-                            </Text>
-                          </Center>
-                        </a>
-                      </Link>
-                      <Link passHref href={"/reglamentos/Declaracion jurada"}>
-                        <a>
-                          <Center
-                            _hover={{
-                              backgroundColor: "#5586e0",
-                            }}
-                            borderRadius="lg"
-                            h={10}
-                            p={2}
-                          >
-                            <Text
-                              cursor="pointer"
-                              fontSize="lg"
-                              w="100%"
-                              onClick={() => {
-                                changePage(Page.Reglamentos), setShow(false)
-                              }}
-                            >
-                              Calendario
-                            </Text>
-                          </Center>
-                        </a>
-                      </Link>
-                      <Link passHref href={"/reglamentos/Protocolo covid"}>
-                        <a>
-                          <Center
-                            _hover={{
-                              backgroundColor: "#5586e0",
-                            }}
-                            borderRadius="lg"
-                            h={10}
-                            p={2}
-                          >
-                            <Text
-                              cursor="pointer"
-                              fontSize="lg"
-                              w="100%"
-                              onClick={() => {
-                                changePage(Page.Reglamentos), setShow(false)
-                              }}
-                            >
-                              Protocolo covid
-                            </Text>
-                          </Center>
-                        </a>
-                      </Link>
-                      <Link passHref href={"/reglamentos/Anexo protocolo covid"}>
-                        <a>
-                          <Center
-                            _hover={{
-                              backgroundColor: "#5586e0",
-                            }}
-                            borderRadius="lg"
-                            h={10}
-                            p={2}
-                          >
-                            <Text
-                              cursor="pointer"
-                              fontSize="lg"
-                              w="100%"
-                              onClick={() => {
-                                changePage(Page.Reglamentos), setShow(false)
-                              }}
-                            >
-                              Anexo protocolo covid
-                            </Text>
-                          </Center>
-                        </a>
-                      </Link>
-                      <Link passHref href={"/reglamentos/DDJJ covid"}>
-                        <a>
-                          <Center
-                            _hover={{
-                              backgroundColor: "#5586e0",
-                            }}
-                            borderRadius="lg"
-                            h={10}
-                            p={2}
-                          >
-                            <Text
-                              cursor="pointer"
-                              fontSize="lg"
-                              w="100%"
-                              onClick={() => {
-                                changePage(Page.Reglamentos), setShow(false)
-                              }}
-                            >
-                              DDJJ covid
-                            </Text>
-                          </Center>
-                        </a>
-                      </Link>
-                      <Link passHref href={"/reglamentos/Reglamento tecnico"}>
-                        <a>
-                          <Center
-                            _hover={{
-                              backgroundColor: "#5586e0",
-                            }}
-                            borderRadius="lg"
-                            h={10}
-                            p={2}
-                          >
-                            <Text
-                              cursor="pointer"
-                              fontSize="lg"
-                              w="100%"
-                              onClick={() => {
-                                changePage(Page.Reglamentos), setShow(false)
-                              }}
-                            >
-                              Reglamento técnico
-                            </Text>
-                          </Center>
-                        </a>
-                      </Link>
-                      <Link passHref href={"/reglamentos/Tribunal disciplina"}>
-                        <a>
-                          <Center
-                            _hover={{
-                              backgroundColor: "#5586e0",
-                            }}
-                            borderRadius="lg"
-                            h={10}
-                            p={2}
-                          >
-                            <Text
-                              cursor="pointer"
-                              fontSize="lg"
-                              w="100%"
-                              onClick={() => {
-                                changePage(Page.Reglamentos), setShow(false)
-                              }}
-                            >
-                              Tribunal disciplina
-                            </Text>
-                          </Center>
-                        </a>
-                      </Link>
-                      <Link passHref href={"/reglamentos/Reglamento ABTM"}>
-                        <a>
-                          <Center
-                            _hover={{
-                              backgroundColor: "#5586e0",
-                            }}
-                            borderRadius="lg"
-                            h={10}
-                            p={2}
-                          >
-                            <Text
-                              cursor="pointer"
-                              fontSize="lg"
-                              w="100%"
-                              onClick={() => {
-                                changePage(Page.Reglamentos), setShow(false)
-                              }}
-                            >
-                              Reglamento ABTM
-                            </Text>
-                          </Center>
-                        </a>
-                      </Link>
+                              <Text
+                                cursor="pointer"
+                                fontSize="lg"
+                                w="100%"
+                                onClick={() => {
+                                  changePage(Page.Reglamentos), setShow(false)
+                                }}
+                              >
+                                {reg}
+                              </Text>
+                            </Center>
+                          </a>
+                        </Link>
+                      ))}
                     </AccordionPanel>
                   </AccordionItem>
                 </Accordion>
