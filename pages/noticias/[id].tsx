@@ -81,7 +81,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
         id: n.id.toString(),
       },
     })),
-    fallback: false,
+    fallback: "blocking",
   }
 }
 
@@ -106,6 +106,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({params}) =>
     props: {
       newElement: newElement,
     },
+    revalidate: 60,
   }
 }
 

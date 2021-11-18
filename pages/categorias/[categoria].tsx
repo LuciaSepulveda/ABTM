@@ -82,7 +82,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
         categoria: cat,
       },
     })),
-    fallback: false,
+    fallback: "blocking",
   }
 }
 
@@ -108,6 +108,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({params}) =>
       ranking: ranking,
       cat: params?.categoria,
     },
+    revalidate: 60,
   }
 }
 

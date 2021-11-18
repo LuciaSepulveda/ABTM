@@ -55,6 +55,7 @@ export const getStaticProps: GetStaticProps<Props, never> = async () => {
       news: news,
       photos: photos,
     },
+    revalidate: 60,
   }
 }
 

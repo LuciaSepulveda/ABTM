@@ -70,6 +70,7 @@ export const getStaticProps: GetStaticProps<Props, never> = async () => {
     props: {
       autoridades: autoridades,
     },
+    revalidate: 60,
   }
 }
 

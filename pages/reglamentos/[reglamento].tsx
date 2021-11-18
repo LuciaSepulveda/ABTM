@@ -77,7 +77,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
         reglamento: reg,
       },
     })),
-    fallback: false,
+    fallback: "blocking",
   }
 }
 
@@ -103,6 +103,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({params}) =>
       reglamentos: reglamentos,
       name: params?.reglamento,
     },
+    revalidate: 3600,
   }
 }
 
