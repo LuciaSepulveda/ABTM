@@ -1,4 +1,4 @@
-import {Box, Container, ListItem, Text, UnorderedList, VStack} from "@chakra-ui/react"
+import {Box, Container, Divider, ListItem, Text, UnorderedList, VStack} from "@chakra-ui/react"
 import Image from "next/image"
 import {GetStaticProps} from "next"
 import React from "react"
@@ -82,7 +82,7 @@ const Calendario: React.FC<Props> = ({calendar}) => {
                         background="#FF725E"
                         bottom={0}
                         boxShadow="xl"
-                        h={400}
+                        h={420}
                         initial={{opacity: 0, scale: 0}}
                         padding="15px"
                         position="relative"
@@ -96,8 +96,11 @@ const Calendario: React.FC<Props> = ({calendar}) => {
                         whileInView={{opacity: 1, scale: 1}}
                         width={["250px", "250px", null, "400px"]}
                       >
-                        <Text fontSize="md">{elem.date}</Text>
-                        <Text fontSize="xl" fontWeight="bold">
+                        <Text fontSize="md" textAlign="center" w="100%">
+                          {elem.date}
+                        </Text>
+                        <Divider w="90%" />
+                        <Text fontSize="xl" fontWeight="bold" textAlign="center" w="100%">
                           {elem.title}
                         </Text>
                         <Box
@@ -116,7 +119,9 @@ const Calendario: React.FC<Props> = ({calendar}) => {
                             src={elem.photo.url}
                           />
                         </Box>
-                        <Text fontSize="md">{elem.description}</Text>
+                        <Text fontSize="md" textAlign="center" w="100%" whiteSpace="pre-wrap">
+                          {elem.description}
+                        </Text>
                       </MotionVStack>
                     </ListItem>
                   )
