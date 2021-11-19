@@ -25,7 +25,7 @@ const Contact: React.FC = () => {
           />
         </svg>
       </Box>
-      <Box bg="#3C6ECD" bottom={0} h={["60%", 40, 32, 36, 20]} position="absolute" w="100%" />
+      <Box bg="#3C6ECD" bottom={0} h={["61%", 44, 36, 40, 24]} position="absolute" w="100%" />
       <Center
         bg="rgba(0,0,0,0.2)"
         bottom={0}

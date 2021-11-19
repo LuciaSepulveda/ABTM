@@ -25,7 +25,7 @@ const DondeJugar: React.FC = () => {
 
   const Front1 = (
     <VStack color="black" spacing={4}>
-      <Text fontSize="4xl" fontWeight="bold">
+      <Text fontSize="4xl" fontWeight="bold" textAlign="center">
         Polideportive Norte
       </Text>
       <UnorderedList fontSize="2xl" styleType="none">
@@ -68,7 +68,7 @@ const DondeJugar: React.FC = () => {
 
   const Front2 = (
     <VStack color="black" spacing={4}>
-      <Text fontSize="4xl" fontWeight="bold">
+      <Text fontSize="4xl" fontWeight="bold" textAlign="center">
         Club Tiro Federal
       </Text>
       <UnorderedList fontSize="2xl" styleType="none">
@@ -124,7 +124,7 @@ const DondeJugar: React.FC = () => {
           <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
             ¿Dónde jugar?
           </Text>
-          <VStack m="auto" spacing={10} w={["100%", "100%", null, "80%"]}>
+          <VStack m="auto" spacing={10} w={["100%", "100%", "100%", "90%", "80%"]}>
             <Card
               front={Front1}
               src={

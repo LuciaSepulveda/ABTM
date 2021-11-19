@@ -43,7 +43,7 @@ const Inscriptos: React.FC = () => {
           </Text>
           {!status && <Spinner />}
           {status && (
-            <Box overflowX={["scroll", null, "hidden"]} w={["100%", null, "80%"]}>
+            <Box overflowX={["scroll", null, "hidden"]} w={["100%", "90%", null, "80%"]}>
               <Table colorScheme="facebook" p={[0, null, 4]} variant="simple">
                 <Thead bg="#3c6fcd88">
                   <Th color="#242424" textAlign="center">

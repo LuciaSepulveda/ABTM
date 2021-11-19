@@ -40,7 +40,7 @@ const Autoridades: React.FC<Props> = ({autoridades}) => {
             p={2}
             paddingTop={20}
             templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
-            w={["70%", "80%", "80%", "60%"]}
+            w={["80%", "80%", "90%", "80%", "60%"]}
           >
             {autoridades.map((autoridad) => (
               <MotionGridItem

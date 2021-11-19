@@ -72,9 +72,9 @@ const About: React.FC = () => {
             >
               <Box
                 align="center"
-                h={[280, 300, null, 340]}
+                h={[280, 300, 300, 300, 340]}
                 position="relative"
-                w={[300, 400, null, 540]}
+                w={[300, 400, 400, 400, 540]}
                 zIndex={1}
               >
                 <Image
@@ -126,9 +126,9 @@ const About: React.FC = () => {
                 >
                   <Box
                     align="center"
-                    h={[280, 300, null, 340]}
+                    h={[280, 300, 300, 300, 340]}
                     position="relative"
-                    w={[300, 400, null, 540]}
+                    w={[300, 400, 400, 400, 540]}
                     zIndex={1}
                   >
                     <Image
@@ -156,9 +156,9 @@ const About: React.FC = () => {
                 >
                   <Box
                     align="center"
-                    h={[280, 300, null, 340]}
+                    h={[280, 300, 300, 300, 340]}
                     position="relative"
-                    w={[300, 400, null, 540]}
+                    w={[300, 400, 400, 400, 540]}
                     zIndex={1}
                   >
                     <Image

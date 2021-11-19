@@ -66,10 +66,10 @@ const Card2: React.FC<Props> = ({autoridad}) => {
           </motion.div>
         )}
         {!show && <div style={{position: "absolute"}} />}
-        <Text fontSize="2xl" zIndex="1">
+        <Text fontSize="2xl" textAlign="center" zIndex="1">
           {autoridad.name}
         </Text>
-        <Text fontSize="2xl" zIndex="1">
+        <Text fontSize="2xl" textAlign="center" zIndex="1">
           {autoridad.position}
         </Text>
       </VStack>

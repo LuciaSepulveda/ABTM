@@ -52,6 +52,7 @@ const Reglamento: React.FC = () => {
             gap={4}
             m="auto"
             templateColumns={[
+              "repeat(2, 1fr)",
               "repeat(3, 1fr)",
               "repeat(4, 1fr)",
               "repeat(5, 1fr)",

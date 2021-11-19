@@ -23,7 +23,10 @@ const SistemaDePuntaje: React.FC = () => {
           <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
             Sistema de puntaje
           </Text>
-          <Box overflowX={["scroll", null, "hidden"]} w={["100%", null, "80%"]}>
+          <Box
+            overflowX={["scroll", "scroll", "scroll", "hidden", "hidden"]}
+            w={["100%", null, "80%"]}
+          >
             <Table colorScheme="facebook" p={[0, null, 4]} variant="simple">
               <Thead bg="#3c6fcd88">
                 <Tr>

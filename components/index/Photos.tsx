@@ -14,7 +14,7 @@ const MotionVStack = motion(VStack)
 const Photos: React.FC<Props> = ({photos}) => {
   return (
     <Box minH="100vh" paddingTop={[40, null, 20]} w="100%">
-      <Container h="100%" maxW="8xl">
+      <Container maxW="8xl" minH="100vh">
         <MotionVStack
           initial={{opacity: 0}}
           m="auto"
@@ -31,7 +31,7 @@ const Photos: React.FC<Props> = ({photos}) => {
             gap={[2, null, 4]}
             h="100%"
             m="auto"
-            templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
+            templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", null, "repeat(3, 1fr)"]}
             w="100%"
           >
             {photos.map((photo) => (
