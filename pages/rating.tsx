@@ -5,6 +5,7 @@ import React from "react"
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
+import Head from "../components/Head"
 import {useChangePage, usePage} from "../context/hooks"
 import {Pdf, Page} from "../types/types"
 
@@ -23,26 +24,36 @@ const Rating: React.FC<Props> = ({pdfs}) => {
   }, [page, changePage])
 
   return (
-    <VStack bg="#FBFBFB" color="#242424" minHeight="100vh" overflow="hidden" spacing="0px" w="100%">
-      <Menu />
-      <Container maxW="8xl" paddingBottom={10} paddingTop={[8, null, 24]}>
-        <VStack p={2} spacing={10}>
-          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
-            Rating General
-          </Text>
-          <Box
-            h={[500, null, 800]}
-            m="auto"
-            mt={[20, 40, null, 40]}
-            p={2}
-            w={["100%", "100%", "90%", "70%"]}
-          >
-            <iframe height="100%" src={pdfs[0]?.file.url} width="100%" />
-          </Box>
-        </VStack>
-      </Container>
-      <Footer />
-    </VStack>
+    <>
+      <Head description="Tabla de puntaje rating general" siteTitle="ABTM" title="Rating" />
+      <VStack
+        bg="#FBFBFB"
+        color="#242424"
+        minHeight="100vh"
+        overflow="hidden"
+        spacing="0px"
+        w="100%"
+      >
+        <Menu />
+        <Container maxW="8xl" paddingBottom={10} paddingTop={[8, null, 24]}>
+          <VStack p={2} spacing={10}>
+            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+              Rating General
+            </Text>
+            <Box
+              h={[500, null, 800]}
+              m="auto"
+              mt={[20, 40, null, 40]}
+              p={2}
+              w={["100%", "100%", "90%", "70%"]}
+            >
+              <iframe height="100%" src={pdfs[0]?.file.url} width="100%" />
+            </Box>
+          </VStack>
+        </Container>
+        <Footer />
+      </VStack>
+    </>
   )
 }
 

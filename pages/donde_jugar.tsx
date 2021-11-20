@@ -11,6 +11,7 @@ import {
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
+import Head from "../components/Head"
 import Card from "../components/donde_jugar/Card"
 import {useChangePage, usePage} from "../context/hooks"
 import {Page} from "../types/types"
@@ -110,37 +111,44 @@ const DondeJugar: React.FC = () => {
   )
 
   return (
-    <VStack
-      bg="#FBFBFB"
-      color="#242424"
-      minHeight="100vh"
-      overflowX="hidden"
-      spacing="0px"
-      w="100%"
-    >
-      <Menu />
-      <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
-        <VStack p={2} spacing={10} w="100%">
-          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
-            ¿Dónde jugar?
-          </Text>
-          <VStack m="auto" spacing={10} w={["100%", "100%", "100%", "90%", "80%"]}>
-            <Card
-              front={Front1}
-              src={
-                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.855347703798!2d-62.30065928465549!3d-38.69816687960194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95edbb7299953ccb%3A0xbeb9c1750deca3f0!2sVieytes%202700%2C%20B8003AGZ%20Bah%C3%ADa%20Blanca%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1636320520133!5m2!1ses-419!2sar"
-              }
-            />
-            <Divider w="90%" />
-            <Card
-              front={Front2}
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.7975064413167!2d-62.24702268408682!3d-38.722457794355165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95eda33f4db2c415%3A0x4ccbcca4ca6ab755!2sNewton%201180%2C%20B8000%20Bah%C3%ADa%20Blanca%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1636320686171!5m2!1ses-419!2sar"
-            />
+    <>
+      <Head
+        description="Lugares donde practicar tenis de mesa"
+        siteTitle="ABTM"
+        title="Dónde jugar"
+      />
+      <VStack
+        bg="#FBFBFB"
+        color="#242424"
+        minHeight="100vh"
+        overflowX="hidden"
+        spacing="0px"
+        w="100%"
+      >
+        <Menu />
+        <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
+          <VStack p={2} spacing={10} w="100%">
+            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+              ¿Dónde jugar?
+            </Text>
+            <VStack m="auto" spacing={10} w={["100%", "100%", "100%", "90%", "80%"]}>
+              <Card
+                front={Front1}
+                src={
+                  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.855347703798!2d-62.30065928465549!3d-38.69816687960194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95edbb7299953ccb%3A0xbeb9c1750deca3f0!2sVieytes%202700%2C%20B8003AGZ%20Bah%C3%ADa%20Blanca%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1636320520133!5m2!1ses-419!2sar"
+                }
+              />
+              <Divider w="90%" />
+              <Card
+                front={Front2}
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.7975064413167!2d-62.24702268408682!3d-38.722457794355165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95eda33f4db2c415%3A0x4ccbcca4ca6ab755!2sNewton%201180%2C%20B8000%20Bah%C3%ADa%20Blanca%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1636320686171!5m2!1ses-419!2sar"
+              />
+            </VStack>
           </VStack>
-        </VStack>
-      </Container>
-      <Footer />
-    </VStack>
+        </Container>
+        <Footer />
+      </VStack>
+    </>
   )
 }
 

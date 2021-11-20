@@ -2,6 +2,7 @@ import type {GetStaticProps, NextPage} from "next"
 import {VStack} from "@chakra-ui/react"
 import React from "react"
 import axios from "axios"
+import Head from "next/head"
 
 import Header from "../components/index/Header"
 import About from "../components/index/About"
@@ -26,14 +27,27 @@ const Home: NextPage<Props> = ({news, photos}) => {
   }, [page, changePage])
 
   return (
-    <VStack bg="#FBFBFB" minHeight="100vh" overflowX="hidden" spacing="0px" w="100%">
-      <Header />
-      <About />
-      <News news={news} />
-      <Motivation />
-      <Photos photos={photos} />
-      <Footer />
-    </VStack>
+    <>
+      <Head>
+        <title>ABTM</title>
+        <meta content="Página web de la Asociación Bahiense de Tenis de Mesa" name="description" />
+        <meta content="website" property="og:type" />
+        <meta content="Asociación Bahiense de Tenis de Mesa" property="og:title" />
+        <meta
+          content="Página web de la Asociación Bahiense de Tenis de Mesa"
+          property="og:description"
+        />
+        <meta content="ABTM" property="og:site_name" />
+      </Head>
+      <VStack bg="#FBFBFB" minHeight="100vh" overflowX="hidden" spacing="0px" w="100%">
+        <Header />
+        <About />
+        <News news={news} />
+        <Motivation />
+        <Photos photos={photos} />
+        <Footer />
+      </VStack>
+    </>
   )
 }
 

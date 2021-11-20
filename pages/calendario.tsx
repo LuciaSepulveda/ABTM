@@ -8,6 +8,7 @@ import {motion} from "framer-motion"
 import styles from "../css/calendario.module.scss"
 import Menu from "../components/Menu"
 import Footer from "../components/Footer"
+import Head from "../components/Head"
 import {Calendar, Page} from "../types/types"
 import {useChangePage, usePage} from "../context/hooks"
 
@@ -28,110 +29,117 @@ const Calendario: React.FC<Props> = ({calendar}) => {
   }, [page, changePage])
 
   return (
-    <VStack
-      bg="#FBFBFB"
-      color="#242424"
-      minHeight="100vh"
-      overflowX="hidden"
-      spacing="0px"
-      w="100%"
-    >
-      <Menu />
-      <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
-        <VStack minH={calendar.length * 500} overflow="hidden" p={2} spacing={10}>
-          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
-            Calendario
-          </Text>
-          <Box className={styles.timeline} paddingTop={[14, null, 0]}>
-            <UnorderedList>
-              {calendar
-                .sort((a, b) => a.id - b.id)
-                .map((elem: Calendar) => {
-                  return (
-                    <ListItem
-                      key={elem.id}
-                      _after={{
-                        content: '""',
-                        position: "absolute",
-                        left: "50%",
-                        bottom: 0,
-                        transform: "translateX(-50%)",
-                        width: "30px",
-                        height: "30px",
-                        borderRadius: "50%",
-                        background: "inherit",
-                      }}
-                      backgroundColor="#242424"
-                      color="white"
-                      margin="0 auto"
-                      paddingTop="50px"
-                      position="relative"
-                      style={{listStyleType: "none"}}
-                      w="6px"
-                    >
-                      <MotionVStack
-                        _before={{
+    <>
+      <Head
+        description="Calendario torneo puntable anual ABTM"
+        siteTitle="ABTM"
+        title="Calendario"
+      />
+      <VStack
+        bg="#FBFBFB"
+        color="#242424"
+        minHeight="100vh"
+        overflowX="hidden"
+        spacing="0px"
+        w="100%"
+      >
+        <Menu />
+        <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
+          <VStack minH={calendar.length * 500} overflow="hidden" p={2} spacing={10}>
+            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+              Calendario
+            </Text>
+            <Box className={styles.timeline} paddingTop={[14, null, 0]}>
+              <UnorderedList>
+                {calendar
+                  .sort((a, b) => a.id - b.id)
+                  .map((elem: Calendar) => {
+                    return (
+                      <ListItem
+                        key={elem.id}
+                        _after={{
                           content: '""',
                           position: "absolute",
-                          bottom: "7px",
-                          width: 0,
-                          height: 0,
-                          borderStyle: "solid",
+                          left: "50%",
+                          bottom: 0,
+                          transform: "translateX(-50%)",
+                          width: "30px",
+                          height: "30px",
+                          borderRadius: "50%",
+                          background: "inherit",
                         }}
-                        alignContent="center"
-                        background="#FF725E"
-                        bottom={0}
-                        boxShadow="xl"
-                        h={420}
-                        initial={{opacity: 0, scale: 0}}
-                        padding="15px"
+                        backgroundColor="#242424"
+                        color="white"
+                        margin="0 auto"
+                        paddingTop="50px"
                         position="relative"
-                        transition={{
-                          delay: 0.1,
-                          duration: 0.8,
-                          bounce: 0.5,
-                          type: "spring",
-                        }}
-                        viewport={{once: true}}
-                        whileInView={{opacity: 1, scale: 1}}
-                        width={["250px", "250px", null, "400px"]}
+                        style={{listStyleType: "none"}}
+                        w="6px"
                       >
-                        <Text fontSize="md" textAlign="center" w="100%">
-                          {elem.date}
-                        </Text>
-                        <Divider w="90%" />
-                        <Text fontSize="xl" fontWeight="bold" textAlign="center" w="100%">
-                          {elem.title}
-                        </Text>
-                        <Box
-                          className={styles.imagen}
-                          h={200}
-                          overflow="hidden"
+                        <MotionVStack
+                          _before={{
+                            content: '""',
+                            position: "absolute",
+                            bottom: "7px",
+                            width: 0,
+                            height: 0,
+                            borderStyle: "solid",
+                          }}
+                          alignContent="center"
+                          background="#FF725E"
+                          bottom={0}
+                          boxShadow="xl"
+                          h={420}
+                          initial={{opacity: 0, scale: 0}}
+                          padding="15px"
                           position="relative"
-                          w="100%"
+                          transition={{
+                            delay: 0.1,
+                            duration: 0.8,
+                            bounce: 0.5,
+                            type: "spring",
+                          }}
+                          viewport={{once: true}}
+                          whileInView={{opacity: 1, scale: 1}}
+                          width={["250px", "250px", null, "400px"]}
                         >
-                          <Image
-                            alt={elem.title}
-                            blurDataURL={elem.photo.url}
-                            layout="fill"
-                            objectFit="cover"
-                            objectPosition="center"
-                            src={elem.photo.url}
-                          />
-                        </Box>
-                        <Text fontSize="md" textAlign="center" w="100%" whiteSpace="pre-wrap">
-                          {elem.description}
-                        </Text>
-                      </MotionVStack>
-                    </ListItem>
-                  )
-                })}
-            </UnorderedList>
-          </Box>
-        </VStack>
-      </Container>
-      <Footer />
-    </VStack>
+                          <Text fontSize="md" textAlign="center" w="100%">
+                            {elem.date}
+                          </Text>
+                          <Divider w="90%" />
+                          <Text fontSize="xl" fontWeight="bold" textAlign="center" w="100%">
+                            {elem.title}
+                          </Text>
+                          <Box
+                            className={styles.imagen}
+                            h={200}
+                            overflow="hidden"
+                            position="relative"
+                            w="100%"
+                          >
+                            <Image
+                              alt={elem.title}
+                              blurDataURL={elem.photo.url}
+                              layout="fill"
+                              objectFit="cover"
+                              objectPosition="center"
+                              src={elem.photo.url}
+                            />
+                          </Box>
+                          <Text fontSize="md" textAlign="center" w="100%" whiteSpace="pre-wrap">
+                            {elem.description}
+                          </Text>
+                        </MotionVStack>
+                      </ListItem>
+                    )
+                  })}
+              </UnorderedList>
+            </Box>
+          </VStack>
+        </Container>
+        <Footer />
+      </VStack>
+    </>
   )
 }
 

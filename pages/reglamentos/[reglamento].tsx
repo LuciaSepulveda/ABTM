@@ -5,6 +5,7 @@ import React from "react"
 
 import Menu from "../../components/Menu"
 import Footer from "../../components/Footer"
+import Head from "../../components/Head"
 import {Pdf, Page} from "../../types/types"
 import {useChangePage, usePage} from "../../context/hooks"
 
@@ -28,34 +29,37 @@ const Reglamentos: NextPage<Props> = ({reglamentos, name}) => {
   }, [page, changePage])
 
   return (
-    <VStack
-      bg="#FBFBFB"
-      color="#242424"
-      minHeight="100vh"
-      overflowX="hidden"
-      spacing="0px"
-      w="100%"
-    >
-      <Menu />
-      <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
-        <VStack minH="100vh" spacing={10} w="100%">
-          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
-            {name}
-          </Text>
-          <Box
-            h={[500, null, 800]}
-            m="auto"
-            mt={[20, 40, null, 40]}
-            p={2}
-            paddingTop={20}
-            w={["100%", "100%", "90%", "70%"]}
-          >
-            <iframe height="100%" src={reglamentos[0]?.file.url} width="100%" />
-          </Box>
-        </VStack>
-      </Container>
-      <Footer />
-    </VStack>
+    <>
+      <Head description={`PDF sobre: ${name}`} siteTitle="ABTM" title={`${name}`} />
+      <VStack
+        bg="#FBFBFB"
+        color="#242424"
+        minHeight="100vh"
+        overflowX="hidden"
+        spacing="0px"
+        w="100%"
+      >
+        <Menu />
+        <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
+          <VStack minH="100vh" spacing={10} w="100%">
+            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+              {name}
+            </Text>
+            <Box
+              h={[500, null, 800]}
+              m="auto"
+              mt={[20, 40, null, 40]}
+              p={2}
+              paddingTop={20}
+              w={["100%", "100%", "90%", "70%"]}
+            >
+              <iframe height="100%" src={reglamentos[0]?.file.url} width="100%" />
+            </Box>
+          </VStack>
+        </Container>
+        <Footer />
+      </VStack>
+    </>
   )
 }
 

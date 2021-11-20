@@ -4,6 +4,7 @@ import {GetStaticProps} from "next"
 import React from "react"
 import {motion} from "framer-motion"
 
+import Head from "../components/Head"
 import Card from "../components/autoridades/Card"
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
@@ -27,37 +28,51 @@ const Autoridades: React.FC<Props> = ({autoridades}) => {
   }, [page, changePage])
 
   return (
-    <VStack bg="#FBFBFB" color="#242424" minHeight="100vh" overflow="hidden" spacing="0px" w="100%">
-      <Menu />
-      <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
-        <VStack p={2} spacing={10}>
-          <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
-            Autoridades
-          </Text>
-          <Grid
-            gap={10}
-            m="auto"
-            p={2}
-            paddingTop={20}
-            templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
-            w={["80%", "80%", "90%", "80%", "60%"]}
-          >
-            {autoridades.map((autoridad) => (
-              <MotionGridItem
-                key={autoridad.id}
-                initial={{opacity: 0}}
-                transition={{duration: 0.5}}
-                viewport={{once: true}}
-                whileInView={{opacity: 1}}
-              >
-                <Card autoridad={autoridad} />
-              </MotionGridItem>
-            ))}
-          </Grid>
-        </VStack>
-      </Container>
-      <Footer />
-    </VStack>
+    <>
+      <Head
+        description="Autoridades de la Asociación Bahiense de Tenis de Mesa"
+        siteTitle="ABTM"
+        title="Autoridades"
+      />
+      <VStack
+        bg="#FBFBFB"
+        color="#242424"
+        minHeight="100vh"
+        overflow="hidden"
+        spacing="0px"
+        w="100%"
+      >
+        <Menu />
+        <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
+          <VStack p={2} spacing={10}>
+            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+              Autoridades
+            </Text>
+            <Grid
+              gap={10}
+              m="auto"
+              p={2}
+              paddingTop={20}
+              templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
+              w={["80%", "80%", "90%", "80%", "60%"]}
+            >
+              {autoridades.map((autoridad) => (
+                <MotionGridItem
+                  key={autoridad.id}
+                  initial={{opacity: 0}}
+                  transition={{duration: 0.5}}
+                  viewport={{once: true}}
+                  whileInView={{opacity: 1}}
+                >
+                  <Card autoridad={autoridad} />
+                </MotionGridItem>
+              ))}
+            </Grid>
+          </VStack>
+        </Container>
+        <Footer />
+      </VStack>
+    </>
   )
 }
 
