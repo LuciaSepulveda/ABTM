@@ -18,7 +18,14 @@ function App({Component, pageProps}: AppProps) {
     <>
       <Head>
         <title>ABTM</title>
-        <meta content="ABTM page" name="description" />
+        <meta content="Página web de la Asociación Bahiense de Tenis de Mesa" name="description" />
+        <meta content="website" property="og:type" />
+        <meta content="Asociación Bahiense de Tenis de Mesa" property="og:title" />
+        <meta
+          content="Página web de la Asociación Bahiense de Tenis de Mesa"
+          property="og:description"
+        />
+        <meta content="ABTM" property="og:site_name" />
         <link href="logo.png" rel="icon" />
       </Head>
       <ChakraProvider>
