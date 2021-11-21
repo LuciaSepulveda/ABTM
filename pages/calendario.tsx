@@ -152,7 +152,7 @@ export const getStaticProps: GetStaticProps<Props, never> = async () => {
     props: {
       calendar: calendar,
     },
-    revalidate: 60,
+    revalidate: 1,
   }
 }
 

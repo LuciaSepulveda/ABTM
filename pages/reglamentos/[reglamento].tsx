@@ -107,7 +107,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({params}) =>
       reglamentos: reglamentos,
       name: params?.reglamento,
     },
-    revalidate: 3600,
+    revalidate: 1,
   }
 }
 

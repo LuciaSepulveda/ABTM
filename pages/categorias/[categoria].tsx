@@ -112,7 +112,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({params}) =>
       ranking: ranking,
       cat: params?.categoria,
     },
-    revalidate: 60,
+    revalidate: 1,
   }
 }
 
