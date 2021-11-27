@@ -23,9 +23,12 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.18.1",
     "react-icons": "^4.3.1",
+    "react-markdown": "^7.1.0",
+    "react-marked": "^0.3.1",
     "react-responsive": "^9.0.0-beta.4",
     "react-scroll": "^1.8.4",
     "react-slick": "^0.28.1",
+    "remark-gfm": "^3.0.1",
     "sass": "^1.43.3",
     "slick-carousel": "^1.8.1",
     "yup": "^0.32.11"
