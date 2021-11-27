@@ -1,6 +1,7 @@
 import {Container, Divider, HStack, ListItem, Text, UnorderedList, VStack} from "@chakra-ui/react"
 import React from "react"
 import Link from "next/link"
+import {motion} from "framer-motion"
 import {
   MdLocationPin,
   MdPhoneInTalk,
@@ -16,39 +17,81 @@ import Card from "../components/donde_jugar/Card"
 import {useChangePage, usePage} from "../context/hooks"
 import {Page} from "../types/types"
 
+const MotionVStack = motion(VStack)
+const MotionUnorderedList = motion(UnorderedList)
+const MotionListItem = motion(ListItem)
+const MotionText = motion(Text)
+
 const DondeJugar: React.FC = () => {
   const changePage = useChangePage()
   const page = usePage()
+
+  const animationText = {
+    hidden: {opacity: 0, y: 20},
+    show: {opacity: 1, y: 0},
+  }
+
+  const container = {
+    hidden: {opacity: 0},
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
 
   React.useEffect(() => {
     if (page !== Page.Circuito) changePage(Page.Circuito)
   }, [page, changePage])
 
   const Front1 = (
-    <VStack color="black" spacing={4}>
-      <Text fontSize="4xl" fontWeight="bold" textAlign="center">
+    <MotionVStack
+      color="black"
+      initial={{opacity: 0}}
+      spacing={4}
+      transition={{duration: 0.5}}
+      viewport={{once: true}}
+      whileInView={{opacity: 1}}
+    >
+      <MotionText
+        fontSize="4xl"
+        fontWeight="bold"
+        initial={{opacity: 0}}
+        textAlign="center"
+        transition={{duration: 0.5}}
+        viewport={{once: true}}
+        whileInView={{opacity: 1}}
+      >
         Polideportive Norte
-      </Text>
-      <UnorderedList fontSize="2xl" styleType="none">
-        <ListItem m="2px">
+      </MotionText>
+      <MotionUnorderedList
+        fontSize="2xl"
+        initial="hidden"
+        styleType="none"
+        variants={container}
+        viewport={{once: true}}
+        whileInView="show"
+      >
+        <MotionListItem m="2px" variants={animationText}>
           <HStack>
             <MdArrowRightAlt style={{height: "40px", width: "40px", color: "#FF725E"}} />
             <Text>Clases abiertas a toda la comunidad</Text>
           </HStack>
-        </ListItem>
-        <ListItem m="2px">
+        </MotionListItem>
+        <MotionListItem m="2px" variants={animationText}>
           <HStack>
             <MdOutlineInfo style={{height: "40px", width: "40px", color: "#FF725E"}} />
             <Text>Lunes, miércoles y viernes de 19 a 21hs</Text>
           </HStack>
-        </ListItem>
-        <ListItem m="2px">
+        </MotionListItem>
+        <MotionListItem m="2px" variants={animationText}>
           <HStack>
             <MdPersonPin style={{height: "40px", width: "40px", color: "#FF725E"}} />
             <Text>Profesor: Gerardo Gutierrez</Text>
           </HStack>
-        </ListItem>
-        <ListItem m="2px">
+        </MotionListItem>
+        <MotionListItem m="2px" variants={animationText}>
           <HStack>
             <MdPhoneInTalk style={{height: "40px", width: "40px", color: "#FF725E"}} />
             {`Contacto: `}
@@ -56,42 +99,64 @@ const DondeJugar: React.FC = () => {
               <a>291-5071112</a>
             </Link>
           </HStack>
-        </ListItem>
-        <ListItem m="2px">
+        </MotionListItem>
+        <MotionListItem m="2px" variants={animationText}>
           <HStack>
             <MdLocationPin style={{height: "40px", width: "40px", color: "#FF725E"}} />
             <Text>Lugar: Vieytes 2700</Text>
           </HStack>
-        </ListItem>
-      </UnorderedList>
-    </VStack>
+        </MotionListItem>
+      </MotionUnorderedList>
+    </MotionVStack>
   )
 
   const Front2 = (
-    <VStack color="black" spacing={4}>
-      <Text fontSize="4xl" fontWeight="bold" textAlign="center">
+    <MotionVStack
+      color="black"
+      initial={{opacity: 0}}
+      spacing={4}
+      transition={{duration: 0.5}}
+      viewport={{once: true}}
+      whileInView={{opacity: 1}}
+    >
+      <MotionText
+        fontSize="4xl"
+        fontWeight="bold"
+        initial={{opacity: 0}}
+        textAlign="center"
+        transition={{duration: 0.5}}
+        viewport={{once: true}}
+        whileInView={{opacity: 1}}
+      >
         Club Tiro Federal
-      </Text>
-      <UnorderedList fontSize="2xl" styleType="none">
-        <ListItem m="2px">
+      </MotionText>
+      <MotionUnorderedList
+        fontSize="2xl"
+        initial="hidden"
+        styleType="none"
+        variants={container}
+        viewport={{once: true}}
+        whileInView="show"
+      >
+        <MotionListItem m="2px" variants={animationText}>
           <HStack>
             <MdArrowRightAlt style={{height: "40px", width: "40px", color: "#FF725E"}} />
             <Text>Clases abiertas a toda la comunidad</Text>
           </HStack>
-        </ListItem>
-        <ListItem m="2px">
+        </MotionListItem>
+        <MotionListItem m="2px" variants={animationText}>
           <HStack>
             <MdOutlineInfo style={{height: "40px", width: "40px", color: "#FF725E"}} />
             <Text>Martes y jueves de 18 a 21hs</Text>
           </HStack>
-        </ListItem>
-        <ListItem m="2px">
+        </MotionListItem>
+        <MotionListItem m="2px" variants={animationText}>
           <HStack>
             <MdPersonPin style={{height: "40px", width: "40px", color: "#FF725E"}} />
             <Text>Profesor: Sergio Zabaloy</Text>
           </HStack>
-        </ListItem>
-        <ListItem m="2px">
+        </MotionListItem>
+        <MotionListItem m="2px" variants={animationText}>
           <HStack>
             <MdPhoneInTalk style={{height: "40px", width: "40px", color: "#FF725E"}} />
             {`Contacto: `}
@@ -99,15 +164,15 @@ const DondeJugar: React.FC = () => {
               <a>291-4136813</a>
             </Link>
           </HStack>
-        </ListItem>
-        <ListItem m="2px">
+        </MotionListItem>
+        <MotionListItem m="2px" variants={animationText}>
           <HStack>
             <MdLocationPin style={{height: "40px", width: "40px", color: "#FF725E"}} />
             <Text>Lugar: Newton 1180</Text>
           </HStack>
-        </ListItem>
-      </UnorderedList>
-    </VStack>
+        </MotionListItem>
+      </MotionUnorderedList>
+    </MotionVStack>
   )
 
   return (
@@ -128,9 +193,18 @@ const DondeJugar: React.FC = () => {
         <Menu />
         <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack p={2} spacing={10} w="100%">
-            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize="6xl"
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               ¿Dónde jugar?
-            </Text>
+            </MotionText>
             <VStack m="auto" spacing={10} w={["100%", "100%", "100%", "90%", "80%"]}>
               <Card
                 front={Front1}

@@ -7,36 +7,36 @@ interface Props {
   src: string
 }
 
-const MotionStack = motion(Stack)
+const MotionBox = motion(Box)
 
 const Card3: React.FC<Props> = ({front, src}) => {
   return (
-    <MotionStack
+    <Stack
       alignItems="center"
       borderRadius="xl"
       direction={["column", null, "row"]}
       h={["100%", null, 500]}
-      initial={{opacity: 0, y: 100}}
       justify="space-between"
       p={8}
-      transition={{type: "spring", bounce: 0.4}}
-      viewport={{once: true}}
       w="100%"
-      whileInView={{opacity: 1, y: 0}}
     >
       <VStack borderRadius="xl" color="white" m="auto" p={4} w={["100%", "90%", null, "50%"]}>
         {front}
       </VStack>
-      <Box
+      <MotionBox
         bg="gray"
         borderRadius="xl"
         h={[300, 300, null, 300]}
+        initial={{opacity: 0, y: 20}}
         overflow="hidden"
+        transition={{duration: 0.5, delay: 0.2}}
+        viewport={{once: true}}
         w={["100%", "90%", null, "40%"]}
+        whileInView={{opacity: 1, y: 0}}
       >
         <iframe allowFullScreen={true} height="100%" loading="lazy" src={src} width="100%" />
-      </Box>
-    </MotionStack>
+      </MotionBox>
+    </Stack>
   )
 }
 

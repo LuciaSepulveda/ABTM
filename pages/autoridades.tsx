@@ -16,6 +16,7 @@ interface Props {
 }
 
 const MotionGridItem = motion(GridItem)
+const MotionText = motion(Text)
 
 const URL = "https://strapi-abtm.herokuapp.com"
 
@@ -45,9 +46,18 @@ const Autoridades: React.FC<Props> = ({autoridades}) => {
         <Menu />
         <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack p={2} spacing={10}>
-            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize="6xl"
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               Autoridades
-            </Text>
+            </MotionText>
             <Grid
               gap={10}
               m="auto"
@@ -56,13 +66,13 @@ const Autoridades: React.FC<Props> = ({autoridades}) => {
               templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
               w={["80%", "80%", "90%", "80%", "60%"]}
             >
-              {autoridades.map((autoridad) => (
+              {autoridades.map((autoridad, i) => (
                 <MotionGridItem
                   key={autoridad.id}
-                  initial={{opacity: 0}}
-                  transition={{duration: 0.5}}
+                  initial={{opacity: 0, y: -50}}
+                  transition={{duration: 0.5, delay: i * 0.1}}
                   viewport={{once: true}}
-                  whileInView={{opacity: 1}}
+                  whileInView={{opacity: 1, y: 0}}
                 >
                   <Card autoridad={autoridad} />
                 </MotionGridItem>

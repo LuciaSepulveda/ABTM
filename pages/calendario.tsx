@@ -17,6 +17,7 @@ interface Props {
 }
 
 const MotionVStack = motion(VStack)
+const MotionText = motion(Text)
 
 const URL = "https://strapi-abtm.herokuapp.com"
 
@@ -46,9 +47,18 @@ const Calendario: React.FC<Props> = ({calendar}) => {
         <Menu />
         <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack minH={calendar.length * 500} overflow="hidden" p={2} spacing={10}>
-            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize="6xl"
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.3}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               Calendario
-            </Text>
+            </MotionText>
             <Box className={styles.timeline} paddingTop={[14, null, 0]}>
               <UnorderedList>
                 {calendar
