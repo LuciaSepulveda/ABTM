@@ -4,7 +4,7 @@ import {MdPhoneInTalk, MdMailOutline} from "react-icons/md"
 import {BsInstagram, BsFacebook, BsInfoCircle} from "react-icons/bs"
 import Link from "next/link"
 
-const Contact: React.FC = () => {
+const Footer: React.FC = () => {
   return (
     <Box
       minH={["60vh", "50vh", "30vh", null, "40vh"]}
@@ -94,4 +94,4 @@ const Contact: React.FC = () => {
   )
 }
 
-export default Contact
+export default Footer
