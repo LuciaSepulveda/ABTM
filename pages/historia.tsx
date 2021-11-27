@@ -32,9 +32,18 @@ const Historia: React.FC = () => {
         <Menu />
         <Container maxW="8xl" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack minH="100vh" p={2} spacing={20} w="100%">
-            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize="6xl"
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               Historia
-            </Text>
+            </MotionText>
             <VStack fontSize="xl" spacing={10} textAlign="justify">
               <MotionText initial={{opacity: 0}} viewport={{once: true}} whileInView={{opacity: 1}}>
                 {`Los principios del Tenis de Mesa son oscuros y no se sabe con certeza cuando se practicó por primera vez. 

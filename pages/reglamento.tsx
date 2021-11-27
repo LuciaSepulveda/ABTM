@@ -1,6 +1,7 @@
 import React from "react"
 import {Center, Container, Text, VStack, List, ListItem, Grid} from "@chakra-ui/react"
 import Link from "next/link"
+import {motion} from "framer-motion"
 
 import Menu from "../components/Menu"
 import Footer from "../components/Footer"
@@ -26,9 +27,28 @@ const rules = [
   "Regla de aceleracion",
 ]
 
+const MotionText = motion(Text)
+const MotionGrid = motion(Grid)
+const MotionVStack = motion(VStack)
+
 const Reglamento: React.FC = () => {
   const changePage = useChangePage()
   const page = usePage()
+
+  const animation = {
+    hidden: {opacity: 0, y: 20},
+    show: {opacity: 1, y: 0},
+  }
+
+  const container = {
+    hidden: {opacity: 0},
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
 
   React.useEffect(() => {
     if (page !== Page.TenisDeMesa) changePage(Page.TenisDeMesa)
@@ -48,11 +68,21 @@ const Reglamento: React.FC = () => {
         <Menu />
         <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack minH="100vh" p={2} spacing={20} w="100%">
-            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize="6xl"
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               Reglamento del Tenis de Mesa
-            </Text>
-            <Grid
+            </MotionText>
+            <MotionGrid
               gap={4}
+              initial="hidden"
               m="auto"
               templateColumns={[
                 "repeat(2, 1fr)",
@@ -61,27 +91,40 @@ const Reglamento: React.FC = () => {
                 "repeat(5, 1fr)",
                 "repeat(8, 1fr)",
               ]}
+              variants={container}
+              viewport={{once: true}}
               w="100%"
+              whileInView="show"
             >
               {rules.map((rule) => (
-                <Link key={rule} passHref href={`#${rule}`}>
-                  <a>
-                    <Center
-                      _hover={{backgroundColor: "orange"}}
-                      bg="#FFC727"
-                      borderRadius="lg"
-                      p={2}
-                      transition="ease-in 0.3s"
-                    >
-                      <Text fontSize="sm" fontWeight="semibold" textAlign="center">
-                        {rule}
-                      </Text>
-                    </Center>
-                  </a>
-                </Link>
+                <MotionVStack key={rule} variants={animation} w="100%">
+                  <Link key={rule} passHref href={`#${rule}`}>
+                    <a style={{width: "100%"}}>
+                      <Center
+                        _hover={{backgroundColor: "orange"}}
+                        bg="#FFC727"
+                        borderRadius="lg"
+                        p={2}
+                        transition="ease-in 0.3s"
+                      >
+                        <Text fontSize="sm" fontWeight="semibold" textAlign="center">
+                          {rule}
+                        </Text>
+                      </Center>
+                    </a>
+                  </Link>
+                </MotionVStack>
               ))}
-            </Grid>
-            <VStack alignItems="start" id="La%20mesa" w={["90%", null, "100%"]}>
+            </MotionGrid>
+            <MotionVStack
+              alignItems="start"
+              id="La%20mesa"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5, delay: 0.1}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 La mesa
               </Text>
@@ -127,8 +170,16 @@ const Reglamento: React.FC = () => {
                   </Text>
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="El%20conjunto%20de%20la%20red" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="El%20conjunto%20de%20la%20red"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 El conjunto de la red
               </Text>
@@ -160,8 +211,16 @@ const Reglamento: React.FC = () => {
                   </Text>
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="La%20pelota" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="La%20pelota"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 La pelota
               </Text>
@@ -179,8 +238,16 @@ const Reglamento: React.FC = () => {
                   </Text>
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="La%20raqueta" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="La%20raqueta"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 La raqueta
               </Text>
@@ -255,8 +322,16 @@ const Reglamento: React.FC = () => {
                   </Text>
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="Definiciones" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="Definiciones"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 Definiciones
               </Text>
@@ -340,8 +415,8 @@ const Reglamento: React.FC = () => {
                   </Text>
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="Servicio%20correcto" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack alignItems="start" id="Servicio%20correcto" w={["90%", null, "100%"]}>
               <Text fontSize="4xl" fontWeight="bold">
                 Servicio correcto
               </Text>
@@ -409,8 +484,16 @@ const Reglamento: React.FC = () => {
                   </Text>
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="Devolucion%20correcta" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="Devolucion%20correcta"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 Devolución correcta
               </Text>
@@ -423,8 +506,16 @@ const Reglamento: React.FC = () => {
                   </Text>
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="Orden%20del%20juego" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="Orden%20del%20juego"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 Orden de juego
               </Text>
@@ -446,8 +537,16 @@ const Reglamento: React.FC = () => {
                   </Text>
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="Anulacion" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="Anulacion"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 Anulación
               </Text>
@@ -492,8 +591,16 @@ const Reglamento: React.FC = () => {
                   </VStack>
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="Tanto" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="Tanto"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 Tanto
               </Text>
@@ -556,8 +663,16 @@ const Reglamento: React.FC = () => {
                   </VStack>
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="Juego" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="Juego"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 Juego
               </Text>
@@ -568,8 +683,16 @@ const Reglamento: React.FC = () => {
                   primer jugador o pareja que posteriormente obtenga 2 tantos de diferencia.
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="Partido" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="Partido"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 Partido
               </Text>
@@ -578,11 +701,15 @@ const Reglamento: React.FC = () => {
                   Un partido se disputará al mejor de cualquier número impar de juegos.
                 </ListItem>
               </List>
-            </VStack>
-            <VStack
+            </MotionVStack>
+            <MotionVStack
               alignItems="start"
               id="Orden%20del%20servicio,%20resto%20y%20lados"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
               w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
             >
               <Text fontSize="4xl" fontWeight="bold">
                 Orden del servicio, resto y lados
@@ -628,11 +755,15 @@ const Reglamento: React.FC = () => {
                   jugadores o parejas anote 5 tantos.
                 </ListItem>
               </List>
-            </VStack>
-            <VStack
+            </MotionVStack>
+            <MotionVStack
               alignItems="start"
               id="Errores%20en%20el%20orden%20de%20servicio,%20resto%20o%20lados"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
               w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
             >
               <Text fontSize="4xl" fontWeight="bold">
                 Errores en el orden del servicio, resto o lados
@@ -657,8 +788,16 @@ const Reglamento: React.FC = () => {
                   válidos.
                 </ListItem>
               </List>
-            </VStack>
-            <VStack alignItems="start" id="Regla%20de%20aceleracion" w={["90%", null, "100%"]}>
+            </MotionVStack>
+            <MotionVStack
+              alignItems="start"
+              id="Regla%20de%20aceleracion"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              w={["90%", null, "100%"]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Text fontSize="4xl" fontWeight="bold">
                 Regla de aceleración
               </Text>
@@ -688,7 +827,7 @@ const Reglamento: React.FC = () => {
                   final del partido.
                 </ListItem>
               </List>
-            </VStack>
+            </MotionVStack>
           </VStack>
         </Container>
         <Footer />
