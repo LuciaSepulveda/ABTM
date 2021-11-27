@@ -1,6 +1,7 @@
 import {Box, Container, Table, Text, Tbody, Td, Th, Thead, VStack, Spinner} from "@chakra-ui/react"
 import axios from "axios"
 import React from "react"
+import {motion} from "framer-motion"
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
@@ -8,11 +9,39 @@ import Head from "../components/Head"
 import {useChangePage, usePage} from "../context/hooks"
 import {Inscripto, Page} from "../types/types"
 
+const MotionText = motion(Text)
+const MotionTable = motion(Table)
+const MotionTh = motion(Th)
+const MotionThead = motion(Thead)
+const MotionTd = motion(Td)
+const MotionTbody = motion(Tbody)
+
 const Inscriptos: React.FC = () => {
   const [status, setStatus] = React.useState<boolean>(false)
   const [inscriptos, setInscriptos] = React.useState<Inscripto[]>([])
   const changePage = useChangePage()
   const page = usePage()
+
+  const animationChildren = {
+    hidden: {opacity: 0, y: 10},
+    show: {opacity: 1, y: 0, transition: {duration: 0.5}},
+  }
+
+  const animationDatos = {
+    hidden: {opacity: 0},
+    show: {opacity: 1, transition: {duration: 0.5}},
+  }
+
+  const container = {
+    hidden: {opacity: 0},
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        duration: 0.5,
+      },
+    },
+  }
 
   React.useEffect(() => {
     if (page !== Page.Inscripcion) changePage(Page.Inscripcion)
@@ -45,32 +74,71 @@ const Inscriptos: React.FC = () => {
         <Menu />
         <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack minH="100vh" overflow="hidden" p={2} spacing={10}>
-            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize="6xl"
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               Inscriptos
-            </Text>
+            </MotionText>
             {!status && <Spinner />}
             {status && (
-              <Box overflowX={["scroll", null, "hidden"]} w={["100%", "90%", null, "80%"]}>
-                <Table colorScheme="facebook" p={[0, null, 4]} variant="simple">
-                  <Thead bg="#3c6fcd88">
-                    <Th color="#242424" textAlign="center">
+              <Box
+                overflowX={["scroll", null, "hidden"]}
+                overflowY="hidden"
+                w={["100%", "90%", null, "80%"]}
+              >
+                <MotionTable
+                  colorScheme="facebook"
+                  initial={{opacity: 0, y: 20}}
+                  p={[0, null, 4]}
+                  transition={{duration: 0.5}}
+                  variant="simple"
+                  viewport={{once: true}}
+                  whileInView={{opacity: 1, y: 0}}
+                >
+                  <MotionThead
+                    bg="#3c6fcd88"
+                    initial="hidden"
+                    variants={container}
+                    viewport={{once: true}}
+                    whileInView="show"
+                  >
+                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                       Nombre
-                    </Th>
-                    <Th color="#242424" textAlign="center">
+                    </MotionTh>
+                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                       Apellido
-                    </Th>
-                    <Th color="#242424" textAlign="center">
+                    </MotionTh>
+                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                       Categoria
-                    </Th>
-                  </Thead>
+                    </MotionTh>
+                  </MotionThead>
                   {inscriptos.map((inscripto) => (
-                    <Tbody key={inscripto.id}>
-                      <Td textAlign="center">{inscripto.nombre}</Td>
-                      <Td textAlign="center">{inscripto.apellido}</Td>
-                      <Td textAlign="center">{inscripto.categoria}</Td>
-                    </Tbody>
+                    <MotionTbody
+                      key={inscripto.id}
+                      initial="hidden"
+                      variants={container}
+                      viewport={{once: true}}
+                      whileInView="show"
+                    >
+                      <MotionTd textAlign="center" variants={animationDatos}>
+                        {inscripto.nombre}
+                      </MotionTd>
+                      <MotionTd textAlign="center" variants={animationDatos}>
+                        {inscripto.apellido}
+                      </MotionTd>
+                      <MotionTd textAlign="center" variants={animationDatos}>
+                        {inscripto.categoria}
+                      </MotionTd>
+                    </MotionTbody>
                   ))}
-                </Table>
+                </MotionTable>
               </Box>
             )}
           </VStack>

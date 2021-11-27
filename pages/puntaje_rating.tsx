@@ -2,6 +2,7 @@ import {Box, Container, Text, VStack} from "@chakra-ui/react"
 import axios from "axios"
 import {GetStaticProps} from "next"
 import React from "react"
+import {motion} from "framer-motion"
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
@@ -14,6 +15,9 @@ interface Props {
 }
 
 const URL = "https://strapi-abtm.herokuapp.com"
+
+const MotionText = motion(Text)
+const MotionBox = motion(Box)
 
 const Rating: React.FC<Props> = ({pdfs}) => {
   const changePage = useChangePage()
@@ -37,19 +41,32 @@ const Rating: React.FC<Props> = ({pdfs}) => {
         <Menu />
         <Container maxW="8xl" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack p={2} spacing={10}>
-            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize="6xl"
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               Rating General
-            </Text>
-            <Box
+            </MotionText>
+            <MotionBox
               h={[500, null, 800]}
+              initial={{opacity: 0, y: 20}}
               m="auto"
               mt={[20, 40, null, 40]}
               p={2}
               paddingTop={20}
+              transition={{duration: 0.5, delay: 0.1}}
+              viewport={{once: true}}
               w={["100%", "100%", "90%", "70%"]}
+              whileInView={{opacity: 1, y: 0}}
             >
               <iframe height="100%" src={pdfs[0]?.file.url} width="100%" />
-            </Box>
+            </MotionBox>
           </VStack>
         </Container>
         <Footer />

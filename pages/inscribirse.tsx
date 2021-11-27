@@ -25,7 +25,8 @@ import {useForm, SubmitHandler} from "react-hook-form"
 import axios from "axios"
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import {motion} from "framer-motion"
+import {motion, useViewportScroll, useTransform} from "framer-motion"
+import {useMediaQuery} from "react-responsive"
 
 import Menu from "../components/Menu"
 import Footer from "../components/Footer"
@@ -42,6 +43,7 @@ const URL = "https://strapi-abtm.herokuapp.com"
 
 const MotionCenter = motion(Center)
 const MotionVStack = motion(VStack)
+const MotionText = motion(Text)
 
 const provincias = [
   "Buenos Aires",
@@ -97,9 +99,14 @@ const schema = yup.object({
 
 const Inscribirse: React.FC<Props> = ({open}) => {
   const {isOpen, onOpen, onClose} = useDisclosure()
+  const isPortrait = useMediaQuery({query: "(orientation: portrait)"})
 
   const changePage = useChangePage()
   const page = usePage()
+
+  const {scrollY} = useViewportScroll()
+
+  const y1 = useTransform(scrollY, [0, 300], [-260, 140])
 
   React.useEffect(() => {
     if (page !== Page.Inscripcion) changePage(Page.Inscripcion)
@@ -150,28 +157,41 @@ const Inscribirse: React.FC<Props> = ({open}) => {
             <VStack>
               {!open[0]?.Abierta && (
                 <Center minH="50vh" w={["100%", "100%", "100%", 400, 500]}>
-                  <Text fontSize="5xl" fontWeight="medium" textAlign="center">
+                  <MotionText
+                    fontSize="5xl"
+                    fontWeight="medium"
+                    initial={{opacity: 0, y: 20}}
+                    textAlign="center"
+                    transition={{duration: 0.5}}
+                    viewport={{once: true}}
+                    whileInView={{opacity: 1, y: 0}}
+                  >
                     La inscripción <br />
                     se encuentra cerrada
-                  </Text>
+                  </MotionText>
                 </Center>
               )}
               {open[0]?.Abierta && (
-                <MotionVStack
-                  initial={{opacity: 0}}
+                <VStack
                   minH="100vh"
                   overflow="hidden"
                   p={2}
                   paddingBottom={10}
                   paddingTop={[8, null, 20]}
                   spacing={[10, null, 2]}
-                  transition={{duration: 0.5}}
-                  viewport={{once: true}}
-                  whileInView={{opacity: 1}}
                 >
-                  <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+                  <MotionText
+                    as="h2"
+                    fontSize="6xl"
+                    fontWeight="bold"
+                    initial={{opacity: 0, y: 20}}
+                    textAlign="center"
+                    transition={{duration: 0.5}}
+                    viewport={{once: true}}
+                    whileInView={{opacity: 1, y: 0}}
+                  >
                     Inscribirse
-                  </Text>
+                  </MotionText>
                   <Modal isCentered isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
@@ -181,7 +201,14 @@ const Inscribirse: React.FC<Props> = ({open}) => {
                     </ModalContent>
                   </Modal>
                   <form onSubmit={handleSubmit(onSubmit)}>
-                    <VStack p={6} w={["100%", null, 460]}>
+                    <MotionVStack
+                      initial={{opacity: 0, y: 20}}
+                      p={6}
+                      transition={{duration: 0.5, delay: 0.1}}
+                      viewport={{once: true}}
+                      w={["100%", null, 460]}
+                      whileInView={{opacity: 1, y: 0}}
+                    >
                       <VStack spacing={0} w="100%">
                         <label
                           style={{
@@ -519,15 +546,20 @@ const Inscribirse: React.FC<Props> = ({open}) => {
                       >
                         Enviar
                       </Button>
-                    </VStack>
+                    </MotionVStack>
                   </form>
-                </MotionVStack>
+                </VStack>
               )}
             </VStack>
             <MotionCenter
               height={[240, 280, 320, 400, 550, 690]}
               initial={{opacity: 0, x: 100}}
-              style={{filter: "drop-shadow(6px 4px 4px #2e2e2e83)"}}
+              style={{
+                filter: "drop-shadow(6px 4px 4px #2e2e2e83)",
+                y: isPortrait ? 0 : y1,
+              }}
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
               whileInView={{opacity: 1, x: 0}}
               width="100%"
             >
