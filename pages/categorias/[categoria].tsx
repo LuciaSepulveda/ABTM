@@ -2,6 +2,7 @@ import axios from "axios"
 import {GetStaticPaths, GetStaticProps, NextPage} from "next"
 import {Container, Table, Tbody, Td, Text, Th, Thead, Tr, VStack} from "@chakra-ui/react"
 import React from "react"
+import {motion} from "framer-motion"
 
 import Menu from "../../components/Menu"
 import Footer from "../../components/Footer"
@@ -20,6 +21,12 @@ interface Params extends Record<string, any> {
 
 const URL = "https://strapi-abtm.herokuapp.com"
 
+const MotionText = motion(Text)
+const MotionTable = motion(Table)
+const MotionTh = motion(Th)
+const MotionTr = motion(Tr)
+const MotionTd = motion(Td)
+
 const RankingCategoria: NextPage<Props> = ({ranking, cat}) => {
   const changePage = useChangePage()
   const page = usePage()
@@ -27,6 +34,27 @@ const RankingCategoria: NextPage<Props> = ({ranking, cat}) => {
   React.useEffect(() => {
     if (page !== Page.Ranking) changePage(Page.Ranking)
   }, [page, changePage])
+
+  const animationChildren = {
+    hidden: {opacity: 0, y: 10},
+    show: {opacity: 1, y: 0, transition: {duration: 0.5}},
+  }
+
+  const animationDatos = {
+    hidden: {opacity: 0},
+    show: {opacity: 1, transition: {duration: 0.5}},
+  }
+
+  const container = {
+    hidden: {opacity: 0},
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        duration: 0.5,
+      },
+    },
+  }
 
   return (
     <>
@@ -42,33 +70,62 @@ const RankingCategoria: NextPage<Props> = ({ranking, cat}) => {
         <Menu />
         <Container maxW="8xl" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack minH="100vh" p={2} spacing={10} w="100%">
-            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize="6xl"
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               Ranking {cat}
-            </Text>
-            <Table colorScheme="facebook" paddingTop={30} variant="simple">
+            </MotionText>
+            <MotionTable
+              colorScheme="facebook"
+              initial={{opacity: 0, y: 20}}
+              paddingTop={30}
+              transition={{duration: 0.5, delay: 0.1}}
+              variant="simple"
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Thead bg="#3c6fcd88">
-                <Tr>
-                  <Th color="#242424" textAlign="center">
+                <MotionTr initial="hidden" variants={container} whileInView="show">
+                  <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                     Posicion
-                  </Th>
-                  <Th color="#242424" textAlign="center">
+                  </MotionTh>
+                  <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                     Jugador
-                  </Th>
-                  <Th color="#242424" textAlign="center">
+                  </MotionTh>
+                  <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                     Puntos
-                  </Th>
-                </Tr>
+                  </MotionTh>
+                </MotionTr>
               </Thead>
               <Tbody>
                 {ranking.map((elem) => (
-                  <Tr key={elem.id}>
-                    <Td textAlign="center">{elem.position}</Td>
-                    <Td textAlign="center">{elem.name}</Td>
-                    <Td textAlign="center">{elem.points}</Td>
-                  </Tr>
+                  <MotionTr
+                    key={elem.id}
+                    initial="hidden"
+                    variants={container}
+                    viewport={{once: true}}
+                    whileInView="show"
+                  >
+                    <MotionTd textAlign="center" variants={animationDatos}>
+                      {elem.position}
+                    </MotionTd>
+                    <MotionTd textAlign="center" variants={animationDatos}>
+                      {elem.name}
+                    </MotionTd>
+                    <MotionTd textAlign="center" variants={animationDatos}>
+                      {elem.points}
+                    </MotionTd>
+                  </MotionTr>
                 ))}
               </Tbody>
-            </Table>
+            </MotionTable>
           </VStack>
         </Container>
         <Footer />

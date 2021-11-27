@@ -1,5 +1,6 @@
 import {Box, Container, Table, Tbody, Td, Th, Thead, Tr, Text, VStack} from "@chakra-ui/react"
 import React from "react"
+import {motion} from "framer-motion"
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
@@ -8,6 +9,12 @@ import {useChangePage, usePage} from "../context/hooks"
 import {sistemaDePuntaje} from "../data/data"
 import {Page} from "../types/types"
 
+const MotionText = motion(Text)
+const MotionTable = motion(Table)
+const MotionTh = motion(Th)
+const MotionTr = motion(Tr)
+const MotionTd = motion(Td)
+
 const SistemaDePuntaje: React.FC = () => {
   const changePage = useChangePage()
   const page = usePage()
@@ -15,6 +22,27 @@ const SistemaDePuntaje: React.FC = () => {
   React.useEffect(() => {
     if (page !== Page.Circuito) changePage(Page.Circuito)
   }, [page, changePage])
+
+  const animationChildren = {
+    hidden: {opacity: 0, y: 10},
+    show: {opacity: 1, y: 0, transition: {duration: 0.5}},
+  }
+
+  const animationDatos = {
+    hidden: {opacity: 0},
+    show: {opacity: 1, transition: {duration: 0.5}},
+  }
+
+  const container = {
+    hidden: {opacity: 0},
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        duration: 0.5,
+      },
+    },
+  }
 
   return (
     <>
@@ -34,53 +62,96 @@ const SistemaDePuntaje: React.FC = () => {
         <Menu />
         <Container maxW="8xl" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack minH="100vh" p={2} spacing={10}>
-            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize="6xl"
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               Sistema de puntaje
-            </Text>
+            </MotionText>
             <Box
               overflowX={["scroll", "scroll", "scroll", "hidden", "hidden"]}
+              overflowY="hidden"
               w={["100%", null, "80%"]}
             >
-              <Table colorScheme="facebook" p={[0, null, 4]} variant="simple">
+              <MotionTable
+                colorScheme="facebook"
+                initial={{opacity: 0, y: 20}}
+                p={[0, null, 4]}
+                transition={{duration: 0.5, delay: 0.1}}
+                variant="simple"
+                viewport={{once: true}}
+                whileInView={{opacity: 1, y: 0}}
+              >
                 <Thead bg="#3c6fcd88">
-                  <Tr>
-                    <Th color="#242424" textAlign="center">
+                  <MotionTr
+                    initial="hidden"
+                    variants={container}
+                    viewport={{once: true}}
+                    whileInView="show"
+                  >
+                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                       Posicion
-                    </Th>
-                    <Th color="#242424" textAlign="center">
+                    </MotionTh>
+                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                       Quinta
-                    </Th>
-                    <Th color="#242424" textAlign="center">
+                    </MotionTh>
+                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                       Cuarta
-                    </Th>
-                    <Th color="#242424" textAlign="center">
+                    </MotionTh>
+                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                       Tercera
-                    </Th>
-                    <Th color="#242424" textAlign="center">
+                    </MotionTh>
+                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                       Segunda
-                    </Th>
-                    <Th color="#242424" textAlign="center">
+                    </MotionTh>
+                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                       Primera
-                    </Th>
-                    <Th color="#242424" textAlign="center">
+                    </MotionTh>
+                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                       SD
-                    </Th>
-                  </Tr>
+                    </MotionTh>
+                  </MotionTr>
                 </Thead>
                 <Tbody>
                   {sistemaDePuntaje.map((elem) => (
-                    <Tr key={elem.posicion}>
-                      <Td textAlign="center">{elem.posicion}</Td>
-                      <Td textAlign="center">{elem.quinta}</Td>
-                      <Td textAlign="center">{elem.cuarta}</Td>
-                      <Td textAlign="center">{elem.tercera}</Td>
-                      <Td textAlign="center">{elem.segunda}</Td>
-                      <Td textAlign="center">{elem.primera}</Td>
-                      <Td textAlign="center">{elem.SD}</Td>
-                    </Tr>
+                    <MotionTr
+                      key={elem.posicion}
+                      initial="hidden"
+                      variants={container}
+                      viewport={{once: true}}
+                      whileInView="show"
+                    >
+                      <MotionTd textAlign="center" variants={animationDatos}>
+                        {elem.posicion}
+                      </MotionTd>
+                      <MotionTd textAlign="center" variants={animationDatos}>
+                        {elem.quinta}
+                      </MotionTd>
+                      <MotionTd textAlign="center" variants={animationDatos}>
+                        {elem.cuarta}
+                      </MotionTd>
+                      <MotionTd textAlign="center" variants={animationDatos}>
+                        {elem.tercera}
+                      </MotionTd>
+                      <MotionTd textAlign="center" variants={animationDatos}>
+                        {elem.segunda}
+                      </MotionTd>
+                      <MotionTd textAlign="center" variants={animationDatos}>
+                        {elem.primera}
+                      </MotionTd>
+                      <MotionTd textAlign="center" variants={animationDatos}>
+                        {elem.SD}
+                      </MotionTd>
+                    </MotionTr>
                   ))}
                 </Tbody>
-              </Table>
+              </MotionTable>
             </Box>
           </VStack>
         </Container>

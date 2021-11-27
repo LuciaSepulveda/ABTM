@@ -2,6 +2,7 @@ import axios from "axios"
 import {GetStaticPaths, GetStaticProps, NextPage} from "next"
 import {Box, Container, VStack, Text} from "@chakra-ui/react"
 import React from "react"
+import {motion} from "framer-motion"
 
 import Menu from "../../components/Menu"
 import Footer from "../../components/Footer"
@@ -17,6 +18,9 @@ interface Props {
 interface Params extends Record<string, any> {
   reglamento: string
 }
+
+const MotionText = motion(Text)
+const MotionBox = motion(Box)
 
 const URL = "https://strapi-abtm.herokuapp.com"
 
@@ -42,19 +46,32 @@ const Reglamentos: NextPage<Props> = ({reglamentos, name}) => {
         <Menu />
         <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack minH="100vh" spacing={10} w="100%">
-            <Text as="h2" fontSize="6xl" fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize="6xl"
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               {name}
-            </Text>
-            <Box
+            </MotionText>
+            <MotionBox
               h={[500, null, 800]}
+              initial={{opacity: 0, y: 20}}
               m="auto"
               mt={[20, 40, null, 40]}
               p={2}
               paddingTop={20}
+              transition={{duration: 0.5, delay: 0.1}}
+              viewport={{once: true}}
               w={["100%", "100%", "90%", "70%"]}
+              whileInView={{opacity: 1, y: 0}}
             >
               <iframe height="100%" src={reglamentos[0]?.file.url} width="100%" />
-            </Box>
+            </MotionBox>
           </VStack>
         </Container>
         <Footer />
