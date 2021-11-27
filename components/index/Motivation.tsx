@@ -25,7 +25,6 @@ const Motivation: React.FC = () => {
         position="absolute"
         top="14%"
         w="100%"
-        whileInView={{opacity: 1, x: 0}}
       >
         <MotionBox
           initial={{opacity: 0, x: 300}}

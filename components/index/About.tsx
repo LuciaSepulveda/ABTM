@@ -47,13 +47,13 @@ const About: React.FC = () => {
               alignSelf="center"
               color="black"
               fontSize={["xl", "lg", null, "2xl"]}
-              initial={{opacity: 0}}
+              initial={{opacity: 0, x: -50}}
               m="auto"
               textAlign={["justify", null, "center"]}
               transition={{duration: 0.5, delay: 0.1}}
               viewport={{once: true}}
               w={["90%", null, 600]}
-              whileInView={{opacity: 1}}
+              whileInView={{opacity: 1, x: 0}}
               zIndex={1}
             >
               La ABTM (Asociación Bahiense de Tenis de Mesa) es la institución que nuclea toda la
@@ -63,11 +63,11 @@ const About: React.FC = () => {
             <MotionBox
               bg="#455A64"
               boxShadow="6px 4px 6px #2e2e2e83"
-              initial={{opacity: 0}}
+              initial={{opacity: 0, x: 50}}
               p={2}
-              transition={{duration: 0.5}}
+              transition={{duration: 0.5, delay: 0.1}}
               viewport={{once: true}}
-              whileInView={{opacity: 1}}
+              whileInView={{opacity: 1, x: 0}}
               zIndex={1}
             >
               <Box
@@ -102,13 +102,13 @@ const About: React.FC = () => {
                   alignSelf="center"
                   color="black"
                   fontSize={["xl", "lg", null, "2xl"]}
-                  initial={{opacity: 0}}
+                  initial={{opacity: 0, x: -50}}
                   m="auto"
                   textAlign={["justify", null, "center"]}
                   transition={{duration: 0.5, delay: 0.1}}
                   viewport={{once: true}}
                   w={["90%", null, 600]}
-                  whileInView={{opacity: 1}}
+                  whileInView={{opacity: 1, x: 0}}
                   zIndex={1}
                 >
                   Nuestro objetivo principal es difundir y desarrollar el deporte como actividad de
@@ -118,10 +118,11 @@ const About: React.FC = () => {
                 <MotionBox
                   bg="#FF725E"
                   boxShadow="6px 4px 6px #2e2e2e83"
-                  initial={{opacity: 0}}
+                  initial={{opacity: 0, x: 50}}
                   p={2}
+                  transition={{duration: 0.5, delay: 0.1}}
                   viewport={{once: true}}
-                  whileInView={{opacity: 1}}
+                  whileInView={{opacity: 1, x: 0}}
                   zIndex={1}
                 >
                   <Box
@@ -148,10 +149,11 @@ const About: React.FC = () => {
                 <MotionBox
                   bg="#FF725E"
                   boxShadow="6px 4px 6px #2e2e2e83"
-                  initial={{opacity: 0}}
+                  initial={{opacity: 0, x: -50}}
                   p={2}
+                  transition={{duration: 0.5, delay: 0.1}}
                   viewport={{once: true}}
-                  whileInView={{opacity: 1}}
+                  whileInView={{opacity: 1, x: 0}}
                   zIndex={1}
                 >
                   <Box
@@ -175,13 +177,13 @@ const About: React.FC = () => {
                   alignSelf="center"
                   color="black"
                   fontSize={["xl", "lg", null, "2xl"]}
-                  initial={{opacity: 0}}
+                  initial={{opacity: 0, x: 50}}
                   m="auto"
                   textAlign={["justify", null, "center"]}
                   transition={{duration: 0.5, delay: 0.1}}
                   viewport={{once: true}}
                   w={["90%", null, 600]}
-                  whileInView={{opacity: 1}}
+                  whileInView={{opacity: 1, x: 0}}
                   zIndex={1}
                 >
                   Nuestro objetivo principal es difundir y desarrollar el deporte como actividad de
