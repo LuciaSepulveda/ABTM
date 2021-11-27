@@ -42,6 +42,7 @@ const reglamentos = [
 const categorias = ["SD", "Primera", "Segunda", "Tercera", "Cuarta", "Quinta"]
 
 const MotionHStack = motion(HStack)
+const MotionBox = motion(Box)
 
 const MenuHeader: React.FC = () => {
   const isPortrait = useMediaQuery({query: "(orientation: portrait)"})
@@ -71,9 +72,17 @@ const MenuHeader: React.FC = () => {
           >
             <HStack justify="space-between" w="100%">
               <Link passHref href={"/"}>
-                <Box as="a" cursor="pointer" onClick={() => changePage(Page.Index)}>
+                <MotionBox
+                  as="a"
+                  cursor="pointer"
+                  initial={{opacity: 0, y: -20}}
+                  transition={{duration: 0.5}}
+                  viewport={{once: true}}
+                  whileInView={{opacity: 1, y: 0}}
+                  onClick={() => changePage(Page.Index)}
+                >
                   <Image alt="logo abtm" blurDataURL={`${logo}`} placeholder="blur" src={logo} />
-                </Box>
+                </MotionBox>
               </Link>
               {isPortrait && (
                 <>
@@ -88,6 +97,7 @@ const MenuHeader: React.FC = () => {
                     h="100%"
                     initial={{y: -20, opacity: 0}}
                     m="auto"
+                    transition={{duration: 0.5}}
                     viewport={{once: true}}
                     whileInView={{y: 0, opacity: 1}}
                   >
