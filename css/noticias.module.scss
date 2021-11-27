@@ -1,5 +1,38 @@
-.link {
+.noticia {
     a:hover {
-        color: #3C6ECD;
+        color: blue;
     }
+
+    a {
+      color: #044ace;
+      text-decoration: underline;
+    }
+
+
+ tr {
+  border-top: 1px solid #c6cbd1;
+}
+
+ th,
+ td {
+  padding: 6px 13px;
+  border: 1px solid #000000;
+}
+
+ table tr:nth-child(2n) {
+  background: #3c6fcd75;
+}
+
+th {
+    background: #3c6fcd75;
+}
+
+p {
+  width: 100%;
+}
+
+ul {
+  width: 96%;
+}
+
 }

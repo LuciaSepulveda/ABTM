@@ -1,9 +1,11 @@
 import axios from "axios"
 import {GetStaticPaths, GetStaticProps, NextPage} from "next"
 import {Box, Container, Divider, Text, VStack} from "@chakra-ui/react"
+import {motion} from "framer-motion"
 import React from "react"
 import Image from "next/image"
-import Linkify from "linkify-react"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 import Menu from "../../components/Menu"
 import Footer from "../../components/Footer"
@@ -22,6 +24,9 @@ interface Params extends Record<string, any> {
 
 const URL = "https://strapi-abtm.herokuapp.com"
 
+const MotionText = motion(Text)
+const MotionBox = motion(Box)
+
 const Noticia: NextPage<Props> = ({newElement}) => {
   const changePage = useChangePage()
   const page = usePage()
@@ -39,6 +44,7 @@ const Noticia: NextPage<Props> = ({newElement}) => {
       />
       <VStack
         bg="#FBFBFB"
+        className={styles.noticia}
         color="#242424"
         minHeight="100vh"
         overflowX="hidden"
@@ -48,29 +54,47 @@ const Noticia: NextPage<Props> = ({newElement}) => {
         <Menu />
         <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
           <VStack minH="100vh" overflow="hidden" p={2} spacing={10}>
-            <Text as="h2" fontSize={["3xl", null, "5xl"]} fontWeight="bold" textAlign="center">
+            <MotionText
+              as="h2"
+              fontSize={["3xl", null, "5xl"]}
+              fontWeight="bold"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
               {newElement[0].title}
-            </Text>
+            </MotionText>
             <Divider w="90%" />
-            <Text color="#242424a9">{newElement[0].date}</Text>
-            <Box h={[300, null, 500]} position="relative" w={[300, null, 600]}>
+            <MotionText
+              color="#242424a9"
+              initial={{opacity: 0, y: 20}}
+              textAlign="center"
+              transition={{duration: 0.5, delay: 0.1}}
+              viewport={{once: true}}
+              whileInView={{opacity: 1, y: 0}}
+            >
+              {newElement[0].date}
+            </MotionText>
+            <MotionBox
+              h={[300, null, 500]}
+              initial={{opacity: 0, y: 20}}
+              position="relative"
+              transition={{duration: 0.5, delay: 0.2}}
+              viewport={{once: true}}
+              w={[300, null, 600]}
+              whileInView={{opacity: 1, y: 0}}
+            >
               <Image
                 alt={`Foto de ${newElement[0].title}`}
                 layout="fill"
                 objectFit="cover"
                 src={newElement[0].photo.url}
               />
-            </Box>
+            </MotionBox>
             <Divider w="90%" />
-            <Text
-              className={styles.link}
-              fontWeight="semibold"
-              m="auto"
-              w="90%"
-              whiteSpace="pre-wrap"
-            >
-              <Linkify className={styles.link}>{newElement[0].description}</Linkify>
-            </Text>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{newElement[0].description}</ReactMarkdown>
           </VStack>
         </Container>
         <Footer />
