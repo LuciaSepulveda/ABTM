@@ -44,7 +44,6 @@ const Noticia: NextPage<Props> = ({newElement}) => {
       />
       <VStack
         bg="#FBFBFB"
-        className={styles.noticia}
         color="#242424"
         minHeight="100vh"
         overflowX="hidden"
@@ -52,7 +51,13 @@ const Noticia: NextPage<Props> = ({newElement}) => {
         w="100%"
       >
         <Menu />
-        <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
+        <Container
+          className={styles.noticia}
+          maxW="8xl"
+          minH="100vh"
+          paddingBottom={10}
+          paddingTop={[8, null, 24]}
+        >
           <VStack minH="100vh" overflow="hidden" p={2} spacing={10}>
             <MotionText
               as="h2"
