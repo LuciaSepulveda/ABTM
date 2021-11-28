@@ -27,6 +27,7 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import {motion, useViewportScroll, useTransform} from "framer-motion"
 import {useMediaQuery} from "react-responsive"
+import Link from "next/link"
 
 import Menu from "../components/Menu"
 import Footer from "../components/Footer"
@@ -528,7 +529,32 @@ const Inscribirse: React.FC<Props> = ({open}) => {
                             bg="#f3f3f3"
                             {...register("reglamento", {required: true})}
                           />
-                          <Text w="100%"> Acepto los terminos del reglamento</Text>
+                          <Text w="100%">
+                            He leído y acepto lo expresado en{" "}
+                            <Link passHref href={"/reglamentos/Protocolo%20covid"}>
+                              <a
+                                style={{
+                                  color: "#044ace",
+                                  textDecoration: "underline",
+                                }}
+                                target="_blank"
+                              >
+                                Protocolo covid
+                              </a>
+                            </Link>{" "}
+                            y{" "}
+                            <Link passHref href={"/reglamentos/Reglamento%20ABTM"}>
+                              <a
+                                style={{
+                                  color: "#044ace",
+                                  textDecoration: "underline",
+                                }}
+                                target="_blank"
+                              >
+                                Reglamento ABTM
+                              </a>
+                            </Link>
+                          </Text>
                           <Text color="red" fontWeight="bold">
                             {errors.reglamento ? "*" : ""}
                           </Text>
