@@ -3,6 +3,7 @@ import React from "react"
 import Image from "next/image"
 import {motion} from "framer-motion"
 import {useMediaQuery} from "react-responsive"
+import {articulos} from "@prisma/client"
 import {MdKeyboardArrowLeft, MdKeyboardArrowRight} from "react-icons/md"
 import Link from "next/link"
 import Slider from "react-slick"
@@ -15,7 +16,7 @@ const MotionVStack = motion(VStack)
 const MotionText = motion(Text)
 
 interface Props {
-  news: New[]
+  news: articulos[]
 }
 
 const News: React.FC<Props> = ({news}) => {
@@ -99,9 +100,9 @@ const News: React.FC<Props> = ({news}) => {
           speed={500}
         >
           {news
-            .sort((a, b) => b.id - a.id)
+            .sort((a, b) => parseInt(b.id.toString()) - parseInt(a.id.toString()))
             .map((n) => (
-              <Box key={n.id} p={4}>
+              <Box key={parseInt(n.id.toString())} p={4}>
                 <MotionVStack
                   border="2px solid #EBEAED"
                   borderRadius="10px"
@@ -115,24 +116,26 @@ const News: React.FC<Props> = ({news}) => {
                   whileInView={{opacity: 1, y: 0}}
                 >
                   <Box h="100%" overflow="hidden" position="relative" w="100%">
-                    <Box
-                      _hover={{transform: "scale(1.4)"}}
-                      borderTopRadius="10px"
-                      h="100%"
-                      overflow="hidden"
-                      position="relative"
-                      transition="all ease-in 0.3s"
-                      w="100%"
-                    >
-                      <Image
-                        alt={"Foto de " + n.title}
-                        blurDataURL={`${n.photo.formats.small.url}`}
-                        layout="fill"
-                        objectFit="cover"
-                        placeholder="blur"
-                        src={n.photo.url}
-                      />
-                    </Box>
+                    {n.url_imagen && (
+                      <Box
+                        _hover={{transform: "scale(1.4)"}}
+                        borderTopRadius="10px"
+                        h="100%"
+                        overflow="hidden"
+                        position="relative"
+                        transition="all ease-in 0.3s"
+                        w="100%"
+                      >
+                        <Image
+                          alt={"Foto de " + n.titulo}
+                          blurDataURL={`${n.url_imagen}`}
+                          layout="fill"
+                          objectFit="cover"
+                          placeholder="blur"
+                          src={n.url_imagen}
+                        />
+                      </Box>
+                    )}
                   </Box>
                   <Box h={14} overflowY="hidden" p={1} w="100%">
                     <Text
@@ -142,7 +145,7 @@ const News: React.FC<Props> = ({news}) => {
                       ml={4}
                       textAlign="left"
                     >
-                      {n.date}
+                      {n.fecha?.toString().substring(0, 10)}
                     </Text>
                   </Box>
                   <Center
@@ -162,7 +165,7 @@ const News: React.FC<Props> = ({news}) => {
                           textAlign="center"
                           textDecoration="underline rgba(30, 14, 98, 1)"
                         >
-                          {n.title}
+                          {n.titulo}
                         </Text>
                       </a>
                     </Link>
@@ -175,7 +178,7 @@ const News: React.FC<Props> = ({news}) => {
                     w="100%"
                   >
                     <Text color="rgba(21, 20, 57, 0.6)" textAlign="center">
-                      {n.short_description}
+                      {n.resumen}
                     </Text>
                   </Center>
                 </MotionVStack>

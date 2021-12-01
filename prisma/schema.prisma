@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model articulos {
+  id         BigInt    @id @default(autoincrement())
+  titulo     String?   @db.VarChar(50)
+  resumen    String?   @db.VarChar(117)
+  url_imagen String?   @db.VarChar(1000)
+  tipo       String?   @db.VarChar(100)
+  fecha      DateTime? @default(now()) @db.Timestamp(0)
+  contenido  String?   @db.Text
+}
+
+model contacto {
+  id       BigInt  @id @default(autoincrement())
+  nombre   String? @db.VarChar(500)
+  email    String? @db.VarChar(200)
+  telefono String? @db.VarChar(100)
+  consulta String? @db.VarChar(2000)
+}
+
+model inscripcion {
+  id         BigInt    @id @default(autoincrement())
+  dni        String?   @db.VarChar(10)
+  nombre     String?   @db.VarChar(200)
+  apellido   String?   @db.VarChar(200)
+  email      String?   @db.VarChar(200)
+  telefono   String?   @db.VarChar(50)
+  categoria  String?   @db.VarChar(50)
+  federado   Boolean?  @db.Bit(1)
+  comentario String?   @db.VarChar(1000)
+  fechahora  DateTime? @default(now()) @db.Timestamp(0)
+  provincia  String?   @db.VarChar(50)
+  ciudad     String?   @db.VarChar(50)
+}
+
+model jugadores {
+  id        BigInt  @id @default(autoincrement())
+  categoria String? @db.VarChar(20)
+  dni       Int?
+  apellidos String? @db.VarChar(50)
+  nombres   String? @db.VarChar(50)
+  fecha_nac String? @db.VarChar(15)
+  club      String? @db.VarChar(50)
+  sexo      String? @db.VarChar(1)
+  direccion String? @db.VarChar(100)
+  localidad String? @db.VarChar(100)
+  provincia String? @db.VarChar(50)
+  pais      String? @db.VarChar(50)
+  telefono  String? @db.VarChar(50)
+  email     String? @db.VarChar(50)
+}
+
+model ranking_cuarta {
+  id       BigInt  @id @default(autoincrement())
+  posicion Int?
+  jugador  String? @db.VarChar(200)
+  puntos   Int?
+}
+
+model ranking_primera {
+  id       BigInt  @id @default(autoincrement())
+  jugador  String? @db.VarChar(200)
+  posicion Int?
+  puntos   Int?
+}
+
+model ranking_quinta {
+  id       BigInt @id @default(autoincrement())
+  posicion Int
+  jugador  String @db.VarChar(200)
+  puntos   Int
+}
+
+model ranking_sd {
+  id       BigInt  @id @default(autoincrement())
+  posicion Int?
+  jugador  String? @db.VarChar(200)
+  puntos   Int?
+}
+
+model ranking_segunda {
+  id       BigInt  @id @default(autoincrement())
+  posicion Int?
+  jugador  String? @db.VarChar(200)
+  puntos   Int?
+}
+
+model ranking_tercera {
+  id       BigInt  @id @default(autoincrement())
+  posicion Int?
+  jugador  String? @db.VarChar(200)
+  puntos   Int?
+}

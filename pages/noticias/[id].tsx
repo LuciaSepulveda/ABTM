@@ -1,28 +1,25 @@
-import axios from "axios"
 import {GetStaticPaths, GetStaticProps, NextPage} from "next"
 import {Box, Container, Divider, Text, VStack} from "@chakra-ui/react"
 import {motion} from "framer-motion"
 import React from "react"
 import Image from "next/image"
-import ReactMarkdown from "react-markdown"
-import remarkGfm from "remark-gfm"
+import {PrismaClient, articulos} from "@prisma/client"
+import ReactHtmlParse from "react-html-parser"
 
 import Menu from "../../components/Menu"
 import Footer from "../../components/Footer"
 import Head from "../../components/Head"
-import {New, Page} from "../../types/types"
+import {Page} from "../../types/types"
 import {useChangePage, usePage} from "../../context/hooks"
 import styles from "../../css/noticias.module.scss"
 
 interface Props {
-  newElement: New[]
+  newElement: articulos[]
 }
 
 interface Params extends Record<string, any> {
   id: string
 }
-
-const URL = "https://strapi-abtm.herokuapp.com"
 
 const MotionText = motion(Text)
 const MotionBox = motion(Box)
@@ -38,9 +35,9 @@ const Noticia: NextPage<Props> = ({newElement}) => {
   return (
     <>
       <Head
-        description={`${newElement[0].short_description}`}
+        description={`${newElement[0].resumen}`}
         siteTitle="ABTM"
-        title={`${newElement[0].title}`}
+        title={`${newElement[0].titulo}`}
       />
       <VStack
         bg="#FBFBFB"
@@ -55,7 +52,7 @@ const Noticia: NextPage<Props> = ({newElement}) => {
           className={styles.noticia}
           maxW="8xl"
           minH="100vh"
-          paddingBottom={10}
+          paddingBottom={[20, null, 10]}
           paddingTop={[8, null, 24]}
         >
           <VStack minH="100vh" overflow="hidden" p={2} spacing={10}>
@@ -69,7 +66,7 @@ const Noticia: NextPage<Props> = ({newElement}) => {
               viewport={{once: true}}
               whileInView={{opacity: 1, y: 0}}
             >
-              {newElement[0].title}
+              {newElement[0].titulo}
             </MotionText>
             <Divider w="90%" />
             <MotionText
@@ -80,26 +77,34 @@ const Noticia: NextPage<Props> = ({newElement}) => {
               viewport={{once: true}}
               whileInView={{opacity: 1, y: 0}}
             >
-              {newElement[0].date}
+              {newElement[0].fecha?.toString().substring(0, 10)}
             </MotionText>
-            <MotionBox
-              h={[300, null, 500]}
-              initial={{opacity: 0, y: 20}}
-              position="relative"
-              transition={{duration: 0.5, delay: 0.2}}
-              viewport={{once: true}}
-              w={[300, null, 600]}
-              whileInView={{opacity: 1, y: 0}}
-            >
-              <Image
-                alt={`Foto de ${newElement[0].title}`}
-                layout="fill"
-                objectFit="cover"
-                src={newElement[0].photo.url}
-              />
-            </MotionBox>
+            {newElement[0].url_imagen && (
+              <MotionBox
+                h={[300, null, 500]}
+                initial={{opacity: 0, y: 20}}
+                position="relative"
+                transition={{duration: 0.5, delay: 0.2}}
+                viewport={{once: true}}
+                w={[300, null, 600]}
+                whileInView={{opacity: 1, y: 0}}
+              >
+                <Image
+                  alt={`Foto de ${newElement[0].titulo}`}
+                  blurDataURL={`${newElement[0].url_imagen}`}
+                  layout="fill"
+                  objectFit="cover"
+                  placeholder="blur"
+                  src={newElement[0].url_imagen}
+                />
+              </MotionBox>
+            )}
             <Divider w="90%" />
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{newElement[0].description}</ReactMarkdown>
+            {newElement[0].contenido && (
+              <Box overflowX={["scroll", "scroll", null, "hidden"]} w="100%">
+                {ReactHtmlParse(newElement[0].contenido)}
+              </Box>
+            )}
           </VStack>
         </Container>
         <Footer />
@@ -109,13 +114,13 @@ const Noticia: NextPage<Props> = ({newElement}) => {
 }
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const res = await axios.get(URL + "/noticias")
-  const news: New[] = res.data
+  const prisma = new PrismaClient()
+  const news: articulos[] = await prisma.articulos.findMany()
 
   return {
     paths: news.map((n) => ({
       params: {
-        id: n.id.toString(),
+        id: JSON.parse(JSON.stringify(n.id.toString())),
       },
     })),
     fallback: "blocking",
@@ -129,21 +134,35 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({params}) =>
     }
   }
 
-  const res = await axios.get<New[]>(URL + `/noticias?id=${params?.id}`)
+  const prisma = new PrismaClient()
 
-  const newElement = res.data
+  if (!isNaN(parseInt(params?.id))) {
+    const res: articulos[] = await prisma.articulos.findMany({
+      where: {
+        id: parseInt(params?.id),
+      },
+    })
 
-  if (!newElement) {
+    const newElement = JSON.parse(
+      JSON.stringify(res, (key, value) => (typeof value === "bigint" ? value.toString() : value)),
+    )
+
+    if (!res || !newElement) {
+      return {
+        notFound: true,
+      }
+    }
+
+    return {
+      props: {
+        newElement: newElement,
+      },
+      revalidate: 1,
+    }
+  } else {
     return {
       notFound: true,
     }
-  }
-
-  return {
-    props: {
-      newElement: newElement,
-    },
-    revalidate: 1,
   }
 }
 

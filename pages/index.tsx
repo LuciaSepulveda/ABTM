@@ -3,18 +3,19 @@ import {VStack} from "@chakra-ui/react"
 import React from "react"
 import axios from "axios"
 import Head from "next/head"
+import {PrismaClient, articulos} from "@prisma/client"
 
 import Header from "../components/index/Header"
 import About from "../components/index/About"
 import Footer from "../components/Footer"
 import Photos from "../components/index/Photos"
 import Motivation from "../components/index/Motivation"
-import {New, Photo, Page} from "../types/types"
+import {Photo, Page} from "../types/types"
 import News from "../components/index/News"
 import {useChangePage, usePage} from "../context/hooks"
 
 interface Props {
-  news: New[]
+  news: articulos[]
   photos: Photo[]
 }
 
@@ -52,13 +53,17 @@ const Home: NextPage<Props> = ({news, photos}) => {
 }
 
 export const getStaticProps: GetStaticProps<Props, never> = async () => {
-  const res = await axios.get<New[]>("https://strapi-abtm.herokuapp.com/noticias")
   const res1 = await axios.get<Photo[]>("https://strapi-abtm.herokuapp.com/fotos")
+  const prisma = new PrismaClient()
+  const res: articulos[] = await prisma.articulos.findMany()
 
-  const news = res.data
+  const news = JSON.parse(
+    JSON.stringify(res, (key, value) => (typeof value === "bigint" ? value.toString() : value)),
+  )
+
   const photos = res1.data
 
-  if (!news) {
+  if (!news || !photos) {
     return {
       notFound: true,
     }
