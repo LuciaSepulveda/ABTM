@@ -16,9 +16,6 @@ const theme = extendTheme({config})
 function App({Component, pageProps}: AppProps) {
   return (
     <>
-      <Head>
-        <link href="logo.png" rel="icon" />
-      </Head>
       <ChakraProvider>
         <UserProvider>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
