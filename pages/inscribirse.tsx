@@ -107,7 +107,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
 
   const {scrollY} = useViewportScroll()
 
-  const y1 = useTransform(scrollY, [0, 300], [-260, 140])
+  const y1 = useTransform(scrollY, [0, 500], [-260, 140])
 
   React.useEffect(() => {
     if (page !== Page.Inscripcion) changePage(Page.Inscripcion)
@@ -584,19 +584,17 @@ const Inscribirse: React.FC<Props> = ({open}) => {
                 filter: "drop-shadow(6px 4px 4px #2e2e2e83)",
                 y: isPortrait ? 0 : y1,
               }}
-              transition={{duration: 0.5}}
+              transition={{duration: 0.5, ease: "linear"}}
               viewport={{once: true}}
               whileInView={{opacity: 1, x: 0}}
               width="100%"
             >
               <Image
                 alt="Ilustración tenis de mesa"
-                blurDataURL={`${imagen}`}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="center"
-                placeholder="blur"
-                src={imagen}
+                src="/Tabletennis3.svg"
               />
             </MotionCenter>
           </Stack>

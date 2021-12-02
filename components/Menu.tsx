@@ -81,7 +81,7 @@ const MenuHeader: React.FC = () => {
                   whileInView={{opacity: 1, y: 0}}
                   onClick={() => changePage(Page.Index)}
                 >
-                  <Image alt="logo abtm" blurDataURL={`${logo}`} placeholder="blur" src={logo} />
+                  <Image alt="logo abtm" src={logo} />
                 </MotionBox>
               </Link>
               {isPortrait && (

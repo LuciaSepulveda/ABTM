@@ -7,8 +7,6 @@ import {useMediaQuery} from "react-responsive"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-import tennis from "../../public/Tabletennis2.png"
-
 const MotionBox = motion(Box)
 
 const Motivation: React.FC = () => {
@@ -36,15 +34,7 @@ const Motivation: React.FC = () => {
           viewport={{once: true}}
           whileInView={{opacity: 1, x: 0}}
         >
-          <Image
-            priority
-            alt="Tenis de mesa"
-            blurDataURL={`${tennis}`}
-            height={500}
-            placeholder="blur"
-            src={tennis}
-            width={500}
-          />
+          <Image priority alt="Tenis de mesa" height={500} src={"/Tabletennis2.png"} width={500} />
         </MotionBox>
       </Center>
       <Container h="100%" maxW="8xl" mt="0px">

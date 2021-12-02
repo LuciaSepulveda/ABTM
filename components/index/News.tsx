@@ -1,6 +1,5 @@
 import {Box, Center, Container, Text, VStack} from "@chakra-ui/react"
 import React from "react"
-import Image from "next/image"
 import {motion} from "framer-motion"
 import {useMediaQuery} from "react-responsive"
 import {articulos} from "@prisma/client"
@@ -129,7 +128,7 @@ const News: React.FC<Props> = ({news}) => {
                         <ImageComponent
                           alt={"Foto de " + n.titulo}
                           layout="fill"
-                          loading="eager"
+                          loading="lazy"
                           objectFit="cover"
                           src={n.url_imagen}
                         />

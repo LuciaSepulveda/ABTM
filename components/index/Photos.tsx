@@ -1,9 +1,9 @@
 import {Box, Center, Container, Grid, GridItem, Heading, VStack} from "@chakra-ui/react"
-import Image from "next/image"
 import React from "react"
 import {motion} from "framer-motion"
 import {useMediaQuery} from "react-responsive"
 
+import ImageComponent from "../ImageComponent"
 import {Photo} from "../../types/types"
 
 interface Props {
@@ -61,13 +61,12 @@ const Photos: React.FC<Props> = ({photos}) => {
                   w="100%"
                   whileInView={{opacity: 1, y: !isPortrait ? i * 15 : 0}}
                 >
-                  <Image
-                    alt=""
-                    blurDataURL={`${photo.photo.formats.small.url}`}
+                  <ImageComponent
+                    alt="Foto reciente abtm"
                     layout="fill"
+                    loading="lazy"
                     objectFit="cover"
                     objectPosition="center"
-                    placeholder="blur"
                     src={photo.photo.url}
                   />
                 </MotionCenter>

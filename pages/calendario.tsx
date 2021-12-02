@@ -1,5 +1,4 @@
 import {Box, Container, Divider, ListItem, Text, UnorderedList, VStack} from "@chakra-ui/react"
-import Image from "next/image"
 import {GetStaticProps} from "next"
 import React from "react"
 import axios from "axios"
@@ -11,6 +10,7 @@ import Footer from "../components/Footer"
 import Head from "../components/Head"
 import {Calendar, Page} from "../types/types"
 import {useChangePage, usePage} from "../context/hooks"
+import ImageComponent from "../components/ImageComponent"
 
 interface Props {
   calendar: Calendar[]
@@ -127,10 +127,10 @@ const Calendario: React.FC<Props> = ({calendar}) => {
                             position="relative"
                             w="100%"
                           >
-                            <Image
+                            <ImageComponent
                               alt={elem.title}
-                              blurDataURL={elem.photo.url}
                               layout="fill"
+                              loading="lazy"
                               objectFit="cover"
                               objectPosition="center"
                               src={elem.photo.url}

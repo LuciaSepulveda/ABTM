@@ -6,7 +6,7 @@ type Props = ChakraImageProps & NextImageProps
 
 const Factory = chakra(Image, {
   baseStyle: {
-    backgroundColor: "gray.300",
+    backgroundColor: "gray.400",
   },
   shouldForwardProp: (prop) =>
     [

@@ -1,10 +1,9 @@
 import {Box, Text, VStack} from "@chakra-ui/react"
 import React from "react"
-import Image from "next/image"
 import {motion} from "framer-motion"
 
 import {Autoridad} from "../../types/types"
-import user from "../../public/user.png"
+import ImageComponent from "../ImageComponent"
 
 interface Props {
   autoridad: Autoridad
@@ -24,13 +23,12 @@ const Card2: React.FC<Props> = ({autoridad}) => {
       onMouseLeave={() => setShow(false)}
     >
       <Box borderRadius="50%" h="140px" overflow="hidden" position="relative" w="130px">
-        <Image
+        <ImageComponent
           alt={`Foto de ${autoridad.name}`}
-          blurDataURL={`${autoridad.photo?.url ? autoridad.photo.url : user}`}
           layout="fill"
+          loading="lazy"
           objectFit="cover"
-          placeholder="blur"
-          src={autoridad.photo?.url ? autoridad.photo.url : user}
+          src={autoridad.photo?.url ? autoridad.photo.url : "/user.png"}
         />
       </Box>
       <VStack borderRadius="10px" h="160px" justify="center" position="relative" w="100%">
