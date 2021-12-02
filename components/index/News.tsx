@@ -7,10 +7,10 @@ import {articulos} from "@prisma/client"
 import {MdKeyboardArrowLeft, MdKeyboardArrowRight} from "react-icons/md"
 import Link from "next/link"
 import Slider from "react-slick"
+
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-
-import {New} from "../../types/types"
+import ImageComponent from "../ImageComponent"
 
 const MotionVStack = motion(VStack)
 const MotionText = motion(Text)
@@ -126,12 +126,11 @@ const News: React.FC<Props> = ({news}) => {
                         transition="all ease-in 0.3s"
                         w="100%"
                       >
-                        <Image
+                        <ImageComponent
                           alt={"Foto de " + n.titulo}
-                          blurDataURL={`${n.url_imagen}`}
                           layout="fill"
+                          loading="eager"
                           objectFit="cover"
-                          placeholder="blur"
                           src={n.url_imagen}
                         />
                       </Box>

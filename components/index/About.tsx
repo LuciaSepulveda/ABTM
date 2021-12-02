@@ -1,12 +1,10 @@
 import {Box, Center, Container, Stack, Text} from "@chakra-ui/react"
 import React from "react"
 import {Element} from "react-scroll"
-import Image from "next/image"
 import {motion} from "framer-motion"
 import {useMediaQuery} from "react-responsive"
 
-import foto1 from "../../public/abtm.jpg"
-import foto2 from "../../public/abtm2.jpg"
+import ImageComponent from "../ImageComponent"
 
 const MotionText = motion(Text)
 const MotionBox = motion(Box)
@@ -77,13 +75,12 @@ const About: React.FC = () => {
                 w={[300, 400, 400, 400, 540]}
                 zIndex={1}
               >
-                <Image
-                  alt="foto"
-                  blurDataURL={`${foto1}`}
+                <ImageComponent
+                  alt="Imagen tenis de mesa"
                   layout="fill"
+                  loading="lazy"
                   objectFit="cover"
-                  placeholder="blur"
-                  src={foto1}
+                  src={"/abtm.jpg"}
                 />
               </Box>
             </MotionBox>
@@ -132,13 +129,12 @@ const About: React.FC = () => {
                     w={[300, 400, 400, 400, 540]}
                     zIndex={1}
                   >
-                    <Image
-                      alt="foto"
-                      blurDataURL={`${foto2}`}
+                    <ImageComponent
+                      alt="Imagen tenis de mesa"
                       layout="fill"
+                      loading="lazy"
                       objectFit="cover"
-                      placeholder="blur"
-                      src={foto2}
+                      src={"/abtm2.jpg"}
                     />
                   </Box>
                 </MotionBox>
@@ -163,13 +159,12 @@ const About: React.FC = () => {
                     w={[300, 400, 400, 400, 540]}
                     zIndex={1}
                   >
-                    <Image
-                      alt=""
-                      blurDataURL={`${foto2}`}
+                    <ImageComponent
+                      alt="Imagen tenis de mesa"
                       layout="fill"
+                      loading="lazy"
                       objectFit="cover"
-                      placeholder="blur"
-                      src={foto2}
+                      src={"/abtm2.jpg"}
                     />
                   </Box>
                 </MotionBox>
