@@ -398,6 +398,28 @@ const MenuHeader: React.FC = () => {
                             </Center>
                           </a>
                         </Link>
+                        <Link passHref href="/contacto">
+                          <a>
+                            <Center
+                              _hover={{
+                                backgroundColor: "#5586e0",
+                              }}
+                              borderRadius="lg"
+                              h={10}
+                              p={2}
+                            >
+                              <Text
+                                alignItems="center"
+                                cursor="pointer"
+                                fontSize="lg"
+                                textAlign="center"
+                                onClick={() => changePage(Page.Circuito)}
+                              >
+                                Contacto
+                              </Text>
+                            </Center>
+                          </a>
+                        </Link>
                       </PopoverBody>
                     </PopoverContent>
                   </Popover>
@@ -855,6 +877,29 @@ const MenuHeader: React.FC = () => {
                               }}
                             >
                               Donde jugar
+                            </Text>
+                          </Center>
+                        </a>
+                      </Link>
+                      <Link passHref href={"/contacto"}>
+                        <a>
+                          <Center
+                            _hover={{
+                              backgroundColor: "#5586e0",
+                            }}
+                            borderRadius="lg"
+                            h={10}
+                            p={2}
+                          >
+                            <Text
+                              cursor="pointer"
+                              fontSize="lg"
+                              w="100%"
+                              onClick={() => {
+                                changePage(Page.Circuito), setShow(false)
+                              }}
+                            >
+                              Contacto
                             </Text>
                           </Center>
                         </a>
