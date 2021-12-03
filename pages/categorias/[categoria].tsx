@@ -1,25 +1,37 @@
-import axios from "axios"
 import {GetStaticPaths, GetStaticProps, NextPage} from "next"
 import {Container, Table, Tbody, Td, Text, Th, Thead, Tr, VStack} from "@chakra-ui/react"
 import React from "react"
 import {motion} from "framer-motion"
+import {
+  PrismaClient,
+  ranking_sd,
+  ranking_primera,
+  ranking_segunda,
+  ranking_tercera,
+  ranking_cuarta,
+  ranking_quinta,
+} from "@prisma/client"
 
 import Menu from "../../components/Menu"
 import Footer from "../../components/Footer"
 import Head from "../../components/Head"
-import {Ranking, Page} from "../../types/types"
+import {Page} from "../../types/types"
 import {useChangePage, usePage} from "../../context/hooks"
 
 interface Props {
-  ranking: Ranking[]
+  ranking:
+    | ranking_sd[]
+    | ranking_primera[]
+    | ranking_segunda[]
+    | ranking_tercera[]
+    | ranking_cuarta[]
+    | ranking_quinta[]
   cat: string | undefined
 }
 
 interface Params extends Record<string, any> {
   categoria: string
 }
-
-const URL = "https://strapi-abtm.herokuapp.com"
 
 const MotionText = motion(Text)
 const MotionTable = motion(Table)
@@ -37,12 +49,12 @@ const RankingCategoria: NextPage<Props> = ({ranking, cat}) => {
 
   const animationChildren = {
     hidden: {opacity: 0, y: 10},
-    show: {opacity: 1, y: 0, transition: {duration: 0.5}},
+    show: {opacity: 1, y: 0, transition: {duration: 0.5, ease: "linear"}},
   }
 
   const animationDatos = {
     hidden: {opacity: 0},
-    show: {opacity: 1, transition: {duration: 0.5}},
+    show: {opacity: 1, transition: {duration: 0.5, ease: "linear"}},
   }
 
   const container = {
@@ -87,7 +99,7 @@ const RankingCategoria: NextPage<Props> = ({ranking, cat}) => {
               initial={{opacity: 0, y: 20}}
               paddingTop={30}
               transition={{duration: 0.5, delay: 0.1}}
-              variant="simple"
+              variant="striped"
               viewport={{once: true}}
               whileInView={{opacity: 1, y: 0}}
             >
@@ -107,20 +119,20 @@ const RankingCategoria: NextPage<Props> = ({ranking, cat}) => {
               <Tbody>
                 {ranking.map((elem) => (
                   <MotionTr
-                    key={elem.id}
+                    key={elem.id.toString()}
                     initial="hidden"
                     variants={container}
                     viewport={{once: true}}
                     whileInView="show"
                   >
                     <MotionTd textAlign="center" variants={animationDatos}>
-                      {elem.position}
+                      {elem.posicion}
                     </MotionTd>
                     <MotionTd textAlign="center" variants={animationDatos}>
-                      {elem.name}
+                      {elem.jugador}
                     </MotionTd>
                     <MotionTd textAlign="center" variants={animationDatos}>
-                      {elem.points}
+                      {elem.puntos}
                     </MotionTd>
                   </MotionTr>
                 ))}
@@ -143,7 +155,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
         categoria: cat,
       },
     })),
-    fallback: "blocking",
+    fallback: false,
   }
 }
 
@@ -154,9 +166,42 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({params}) =>
     }
   }
 
-  const res = await axios.get<Ranking[]>(URL + `/ranking-${params?.categoria}s`)
+  const prisma = new PrismaClient()
+  let res
 
-  const ranking = res.data
+  switch (params.categoria) {
+    case "sd":
+      res = await prisma.ranking_sd.findMany()
+      break
+    case "primera":
+      res = await prisma.ranking_primera.findMany()
+      break
+    case "segunda":
+      res = await prisma.ranking_segunda.findMany()
+      break
+    case "tercera":
+      res = await prisma.ranking_tercera.findMany()
+      break
+    case "cuarta":
+      res = await prisma.ranking_cuarta.findMany()
+      break
+    case "quinta":
+      res = await prisma.ranking_quinta.findMany()
+      break
+    default:
+      break
+  }
+
+  if (!res) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const ranking = JSON.parse(
+    JSON.stringify(res, (key, value) => (typeof value === "bigint" ? value.toString() : value)),
+  )
+  //const res = await axios.get<Ranking[]>(URL + `/ranking-${params?.categoria}s`)
 
   if (!ranking) {
     return {
