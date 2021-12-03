@@ -25,12 +25,12 @@ const SistemaDePuntaje: React.FC = () => {
 
   const animationChildren = {
     hidden: {opacity: 0, y: 10},
-    show: {opacity: 1, y: 0, transition: {duration: 0.5}},
+    show: {opacity: 1, y: 0, transition: {duration: 0.5, ease: "linear"}},
   }
 
   const animationDatos = {
     hidden: {opacity: 0},
-    show: {opacity: 1, transition: {duration: 0.5}},
+    show: {opacity: 1, transition: {duration: 0.5, ease: "linear"}},
   }
 
   const container = {
@@ -84,7 +84,7 @@ const SistemaDePuntaje: React.FC = () => {
                 initial={{opacity: 0, y: 20}}
                 p={[0, null, 4]}
                 transition={{duration: 0.5, delay: 0.1}}
-                variant="simple"
+                variant="striped"
                 viewport={{once: true}}
                 whileInView={{opacity: 1, y: 0}}
               >
