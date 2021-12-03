@@ -32,7 +32,6 @@ import Link from "next/link"
 import Menu from "../components/Menu"
 import Footer from "../components/Footer"
 import Head from "../components/Head"
-import imagen from "../public/Tabletennis3.svg"
 import {useChangePage, usePage} from "../context/hooks"
 import {Page, Open} from "../types/types"
 
@@ -122,18 +121,22 @@ const Inscribirse: React.FC<Props> = ({open}) => {
     resolver: yupResolver(schema),
   })
 
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-    axios.post(URL + "/inscriptos", {
-      DNI: data.dni,
-      nombre: data.nombre,
-      apellido: data.apellido,
-      email: data.email,
-      telefono: data.telefono,
-      provincia: data.provincia,
-      ciudad: data.ciudad,
-      categoria: data.categoria,
-      comentario: data.comentario,
-    })
+  const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
+    await axios
+      .post("/api/inscripcion", {
+        dni: data.dni,
+        nombre: data.nombre,
+        apellido: data.apellido,
+        email: data.email,
+        telefono: data.telefono,
+        categoria: data.categoria,
+        comentario: data.comentario,
+        provincia: data.provincia,
+        ciudad: data.ciudad,
+      })
+      .then((response) => {})
+      .catch((err) => {})
+
     onOpen()
     reset()
   }

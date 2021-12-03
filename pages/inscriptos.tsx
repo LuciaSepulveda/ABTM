@@ -1,35 +1,38 @@
-import {Box, Container, Table, Text, Tbody, Td, Th, Thead, VStack, Spinner} from "@chakra-ui/react"
-import axios from "axios"
+import {Box, Container, Table, Text, Tbody, Td, Th, Tr, Thead, VStack} from "@chakra-ui/react"
 import React from "react"
 import {motion} from "framer-motion"
+import {PrismaClient, inscripcion} from "@prisma/client"
+import {GetServerSideProps} from "next"
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
 import Head from "../components/Head"
 import {useChangePage, usePage} from "../context/hooks"
-import {Inscripto, Page} from "../types/types"
+import {Page} from "../types/types"
+
+interface Props {
+  inscriptos: inscripcion[]
+}
 
 const MotionText = motion(Text)
 const MotionTable = motion(Table)
 const MotionTh = motion(Th)
 const MotionThead = motion(Thead)
 const MotionTd = motion(Td)
-const MotionTbody = motion(Tbody)
+const MotionTr = motion(Tr)
 
-const Inscriptos: React.FC = () => {
-  const [status, setStatus] = React.useState<boolean>(false)
-  const [inscriptos, setInscriptos] = React.useState<Inscripto[]>([])
+const Inscriptos: React.FC<Props> = ({inscriptos}) => {
   const changePage = useChangePage()
   const page = usePage()
 
   const animationChildren = {
     hidden: {opacity: 0, y: 10},
-    show: {opacity: 1, y: 0, transition: {duration: 0.5}},
+    show: {opacity: 1, y: 0, transition: {duration: 0.5, ease: "linear"}},
   }
 
   const animationDatos = {
     hidden: {opacity: 0},
-    show: {opacity: 1, transition: {duration: 0.5}},
+    show: {opacity: 1, transition: {duration: 0.5, ease: "linear"}},
   }
 
   const container = {
@@ -39,22 +42,16 @@ const Inscriptos: React.FC = () => {
       transition: {
         staggerChildren: 0.1,
         duration: 0.5,
+        ease: "linear",
       },
     },
   }
 
+  const categorias = ["SD", "Primera", "Segunda", "Tercera", "Cuarta", "Quinta"]
+
   React.useEffect(() => {
     if (page !== Page.Inscripcion) changePage(Page.Inscripcion)
   }, [page, changePage])
-
-  React.useEffect(() => {
-    if (!status) {
-      axios.get("https://strapi-abtm.herokuapp.com/inscriptos").then((res) => {
-        setInscriptos(res.data)
-        setStatus(true)
-      })
-    }
-  }, [status])
 
   return (
     <>
@@ -73,7 +70,7 @@ const Inscriptos: React.FC = () => {
       >
         <Menu />
         <Container maxW="8xl" minH="100vh" paddingBottom={10} paddingTop={[8, null, 24]}>
-          <VStack minH="100vh" overflow="hidden" p={2} spacing={10}>
+          <VStack minH="100vh" overflow="hidden" p={[0, null, 2]} spacing={8}>
             <MotionText
               as="h2"
               fontSize="6xl"
@@ -86,67 +83,107 @@ const Inscriptos: React.FC = () => {
             >
               Inscriptos
             </MotionText>
-            {!status && <Spinner />}
-            {status && (
-              <Box
-                overflowX={["scroll", null, "hidden"]}
-                overflowY="hidden"
-                w={["100%", "90%", null, "80%"]}
-              >
-                <MotionTable
-                  colorScheme="facebook"
-                  initial={{opacity: 0, y: 20}}
-                  p={[0, null, 4]}
-                  transition={{duration: 0.5}}
-                  variant="simple"
-                  viewport={{once: true}}
-                  whileInView={{opacity: 1, y: 0}}
-                >
-                  <MotionThead
-                    bg="#3c6fcd88"
-                    initial="hidden"
-                    variants={container}
+            <Box
+              overflowX={["scroll", null, "hidden"]}
+              overflowY="hidden"
+              w={["100%", "90%", null, "80%"]}
+            >
+              {categorias.map((cat) => (
+                <VStack key={cat} my={14} spacing={14} w="100%">
+                  <MotionText
+                    as="h3"
+                    fontSize="3xl"
+                    fontWeight="bold"
+                    initial={{opacity: 0, y: 20}}
+                    textAlign="left"
+                    transition={{duration: 0.5}}
                     viewport={{once: true}}
-                    whileInView="show"
+                    w="100%"
+                    whileInView={{opacity: 1, y: 0}}
                   >
-                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
-                      Nombre
-                    </MotionTh>
-                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
-                      Apellido
-                    </MotionTh>
-                    <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
-                      Categoria
-                    </MotionTh>
-                  </MotionThead>
-                  {inscriptos.map((inscripto) => (
-                    <MotionTbody
-                      key={inscripto.id}
-                      initial="hidden"
-                      variants={container}
-                      viewport={{once: true}}
-                      whileInView="show"
-                    >
-                      <MotionTd textAlign="center" variants={animationDatos}>
-                        {inscripto.nombre}
-                      </MotionTd>
-                      <MotionTd textAlign="center" variants={animationDatos}>
-                        {inscripto.apellido}
-                      </MotionTd>
-                      <MotionTd textAlign="center" variants={animationDatos}>
-                        {inscripto.categoria}
-                      </MotionTd>
-                    </MotionTbody>
-                  ))}
-                </MotionTable>
-              </Box>
-            )}
+                    Ranking {cat}
+                  </MotionText>
+                  <MotionTable
+                    colorScheme="facebook"
+                    initial={{opacity: 0, y: 20}}
+                    p={[0, null, 4]}
+                    transition={{duration: 0.5}}
+                    variant="striped"
+                    viewport={{once: true}}
+                    whileInView={{opacity: 1, y: 0}}
+                  >
+                    <MotionThead bg="#3c6fcd88">
+                      <MotionTr
+                        initial="hidden"
+                        variants={container}
+                        viewport={{once: true}}
+                        whileInView="show"
+                      >
+                        <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
+                          Nombre
+                        </MotionTh>
+                        <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
+                          Apellido
+                        </MotionTh>
+                        <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
+                          Categoria
+                        </MotionTh>
+                      </MotionTr>
+                    </MotionThead>
+                    <Tbody>
+                      {inscriptos
+                        .filter((ins) => ins.categoria === cat)
+                        .map((inscripto) => (
+                          <MotionTr
+                            key={inscripto.id.toString()}
+                            initial="hidden"
+                            variants={container}
+                            viewport={{once: true}}
+                            whileInView="show"
+                          >
+                            <MotionTd textAlign="center" variants={animationDatos}>
+                              {inscripto.nombre}
+                            </MotionTd>
+                            <MotionTd textAlign="center" variants={animationDatos}>
+                              {inscripto.apellido}
+                            </MotionTd>
+                            <MotionTd textAlign="center" variants={animationDatos}>
+                              {inscripto.categoria}
+                            </MotionTd>
+                          </MotionTr>
+                        ))}
+                    </Tbody>
+                  </MotionTable>
+                </VStack>
+              ))}
+            </Box>
           </VStack>
         </Container>
         <Footer />
       </VStack>
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps<Props, never> = async () => {
+  const prisma = new PrismaClient()
+  const res = await prisma.inscripcion.findMany()
+
+  if (!res) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const inscriptos = JSON.parse(
+    JSON.stringify(res, (key, value) => (typeof value === "bigint" ? value.toString() : value)),
+  )
+
+  return {
+    props: {
+      inscriptos: inscriptos,
+    },
+  }
 }
 
 export default Inscriptos
