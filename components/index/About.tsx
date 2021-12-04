@@ -76,6 +76,7 @@ const About: React.FC = () => {
                 zIndex={1}
               >
                 <ImageComponent
+                  priority
                   alt="Imagen tenis de mesa"
                   layout="fill"
                   loading="lazy"
@@ -130,6 +131,7 @@ const About: React.FC = () => {
                     zIndex={1}
                   >
                     <ImageComponent
+                      priority
                       alt="Imagen tenis de mesa"
                       layout="fill"
                       loading="lazy"
@@ -160,6 +162,7 @@ const About: React.FC = () => {
                     zIndex={1}
                   >
                     <ImageComponent
+                      priority
                       alt="Imagen tenis de mesa"
                       layout="fill"
                       loading="lazy"
