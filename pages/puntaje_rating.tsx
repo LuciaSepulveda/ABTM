@@ -29,7 +29,12 @@ const Rating: React.FC<Props> = ({pdfs}) => {
 
   return (
     <>
-      <Head description="Puntaje rating" siteTitle="ABTM" title="Puntaje rating" />
+      <Head
+        description="Puntaje rating"
+        siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, rating general, torneo"
+        title="Puntaje rating"
+      />
       <VStack
         bg="#FBFBFB"
         color="#242424"

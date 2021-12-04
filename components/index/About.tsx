@@ -77,7 +77,7 @@ const About: React.FC = () => {
               >
                 <ImageComponent
                   priority
-                  alt="Imagen tenis de mesa"
+                  alt="Fotografía de un torneo de la ABTM"
                   layout="fill"
                   loading="lazy"
                   objectFit="cover"
@@ -132,7 +132,7 @@ const About: React.FC = () => {
                   >
                     <ImageComponent
                       priority
-                      alt="Imagen tenis de mesa"
+                      alt="Fotografía de un torneo de la ABTM"
                       layout="fill"
                       loading="lazy"
                       objectFit="cover"
@@ -163,7 +163,7 @@ const About: React.FC = () => {
                   >
                     <ImageComponent
                       priority
-                      alt="Imagen tenis de mesa"
+                      alt="Fotografía de un torneo de la ABTM"
                       layout="fill"
                       loading="lazy"
                       objectFit="cover"

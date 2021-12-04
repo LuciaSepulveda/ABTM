@@ -56,7 +56,12 @@ const Reglamento: React.FC = () => {
 
   return (
     <>
-      <Head description="Reglamento de tenis de mesa" siteTitle="ABTM" title="Reglamento" />
+      <Head
+        description="Reglamento de tenis de mesa"
+        siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, reglamento"
+        title="Reglamento"
+      />
       <VStack
         bg="#FBFBFB"
         color="#242424"

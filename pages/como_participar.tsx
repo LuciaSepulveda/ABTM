@@ -69,7 +69,12 @@ const ComoParticipar: React.FC = () => {
 
   return (
     <>
-      <Head description="Cómo participar en los torneos" siteTitle="ABTM" title="Cómo participar" />
+      <Head
+        description="Cómo participar en los torneos"
+        siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, torneo"
+        title="Cómo participar"
+      />
       <VStack
         bg="#FBFBFB"
         color="#242424"

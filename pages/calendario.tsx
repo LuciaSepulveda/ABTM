@@ -34,6 +34,7 @@ const Calendario: React.FC<Props> = ({calendar}) => {
       <Head
         description="Calendario torneo puntable anual ABTM"
         siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, calendario, fechas, torneos"
         title="Calendario"
       />
       <VStack
@@ -128,7 +129,7 @@ const Calendario: React.FC<Props> = ({calendar}) => {
                             w="100%"
                           >
                             <ImageComponent
-                              alt={elem.title}
+                              alt={`Foto de ${elem.title}`}
                               layout="fill"
                               loading="lazy"
                               objectFit="cover"

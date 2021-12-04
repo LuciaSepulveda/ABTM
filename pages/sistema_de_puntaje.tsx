@@ -49,6 +49,7 @@ const SistemaDePuntaje: React.FC = () => {
       <Head
         description="Sistema de puntaje para los torneos"
         siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, puntaje, torneo"
         title="Sistema de puntaje"
       />
       <VStack

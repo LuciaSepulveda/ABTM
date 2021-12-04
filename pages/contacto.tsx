@@ -91,7 +91,12 @@ const Contacto: React.FC = () => {
 
   return (
     <>
-      <Head description="Formulario de contacto" siteTitle="ABTM" title="Contacto" />
+      <Head
+        description="Formulario de contacto"
+        siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, contacto"
+        title="Contacto"
+      />
       <VStack
         bg="#FBFBFB"
         color="#242424"
@@ -144,7 +149,7 @@ const Contacto: React.FC = () => {
                   width="100%"
                 >
                   <Image
-                    alt="Ilustración tenis de mesa"
+                    alt="Ilustración de dos personas jugando al tenis de mesa"
                     layout="fill"
                     objectFit="cover"
                     objectPosition="center"

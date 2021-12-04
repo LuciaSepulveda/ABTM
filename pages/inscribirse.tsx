@@ -153,6 +153,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
       <Head
         description="Formulario de inscripción al próximo torneo organizado por la Asociación Bahiense de Tenis de Mesa"
         siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, inscripción, formulario, torneo"
         title="Inscribirse"
       />
       <VStack bg="#FBFBFB" color="#242424" minHeight="100vh" spacing="0px" w="100%">
@@ -611,7 +612,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
                   width="100%"
                 >
                   <Image
-                    alt="Ilustración tenis de mesa"
+                    alt="Ilustración de dos personas jugando al tenis de mesa"
                     layout="fill"
                     objectFit="cover"
                     objectPosition="center"

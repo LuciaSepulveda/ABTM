@@ -33,6 +33,7 @@ const Autoridades: React.FC<Props> = ({autoridades}) => {
       <Head
         description="Autoridades de la Asociación Bahiense de Tenis de Mesa"
         siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, autoridades"
         title="Autoridades"
       />
       <VStack

@@ -24,7 +24,11 @@ const Card2: React.FC<Props> = ({autoridad}) => {
     >
       <Box borderRadius="50%" h="140px" overflow="hidden" position="relative" w="130px">
         <ImageComponent
-          alt={`Foto de ${autoridad.name}`}
+          alt={
+            autoridad.photo?.url
+              ? `Fotografía de ${autoridad.name}`
+              : "Imagen de usuario predeterminada"
+          }
           layout="fill"
           loading="lazy"
           objectFit="cover"

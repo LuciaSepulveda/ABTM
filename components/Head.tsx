@@ -4,9 +4,10 @@ interface Props {
   title: string
   siteTitle: string
   description: string
+  tags?: string
 }
 
-const NewHead: React.FC<Props> = ({title, siteTitle, description}) => {
+const NewHead: React.FC<Props> = ({title, siteTitle, description, tags}) => {
   return (
     <Head>
       <title>{`${title} | ${siteTitle}`}</title>
@@ -15,6 +16,7 @@ const NewHead: React.FC<Props> = ({title, siteTitle, description}) => {
       <meta content={siteTitle} property="og:title" />
       <meta content={description} property="og:description" />
       <meta content={siteTitle} property="og:site_name" />
+      {tags && <meta content={tags} name="keywords" />}
     </Head>
   )
 }

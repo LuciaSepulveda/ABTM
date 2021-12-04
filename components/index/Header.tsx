@@ -70,7 +70,13 @@ const Header: React.FC = () => {
             w={["100%", null, "60%"]}
             whileInView={{opacity: 1, y: 0}}
           >
-            <Image priority alt="Tenis de mesa" height={480} src={tt} width={980} />
+            <Image
+              priority
+              alt="Ilustración de dos personas jugando al tenis de mesa"
+              height={480}
+              src={tt}
+              width={980}
+            />
           </MotionBox>
         </Stack>
       </Container>

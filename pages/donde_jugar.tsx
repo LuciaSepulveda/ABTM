@@ -180,6 +180,8 @@ const DondeJugar: React.FC = () => {
       <Head
         description="Lugares donde practicar tenis de mesa"
         siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, donde jugar, entranamiento, 
+        polideportivo norte, club tiro federal, clases"
         title="Dónde jugar"
       />
       <VStack

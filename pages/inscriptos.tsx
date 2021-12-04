@@ -72,6 +72,7 @@ const Inscriptos: React.FC = () => {
       <Head
         description="Inscriptos en el último torneo a realizarse"
         siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, inscriptos, torneo"
         title="Inscriptos"
       />
       <VStack

@@ -34,7 +34,13 @@ const Motivation: React.FC = () => {
           viewport={{once: true}}
           whileInView={{opacity: 1, x: 0}}
         >
-          <Image priority alt="Tenis de mesa" height={500} src={"/Tabletennis2.png"} width={500} />
+          <Image
+            priority
+            alt="Ilustración de dos personas jugando al tenis de mesa"
+            height={500}
+            src={"/Tabletennis2.png"}
+            width={500}
+          />
         </MotionBox>
       </Center>
       <Container h="100%" maxW="8xl" mt="0px">

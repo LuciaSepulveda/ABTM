@@ -34,7 +34,12 @@ const Reglamentos: NextPage<Props> = ({reglamentos, name}) => {
 
   return (
     <>
-      <Head description={`PDF sobre: ${name}`} siteTitle="ABTM" title={`${name}`} />
+      <Head
+        description={`PDF sobre: ${name}`}
+        siteTitle="ABTM"
+        tags={`tenis de mesa, asociación, Bahía Blanca, reglamentos, ${name}`}
+        title={`${name}`}
+      />
       <VStack
         bg="#FBFBFB"
         color="#242424"

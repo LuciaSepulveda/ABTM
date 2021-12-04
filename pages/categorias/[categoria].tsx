@@ -70,7 +70,12 @@ const RankingCategoria: NextPage<Props> = ({ranking, cat}) => {
 
   return (
     <>
-      <Head description={`Ranking para la categoria ${cat}`} siteTitle="ABTM" title={`${cat}`} />
+      <Head
+        description={`Ranking para la categoria ${cat}`}
+        siteTitle="ABTM"
+        tags={`tenis de mesa, asociación, Bahía Blanca, categoria ${cat}, ranking, torneo`}
+        title={`${cat}`}
+      />
       <VStack
         bg="#FBFBFB"
         color="#242424"

@@ -20,7 +20,12 @@ const Historia: React.FC = () => {
 
   return (
     <>
-      <Head description="Historia del tenis de mesa" siteTitle="ABTM" title="Historia" />
+      <Head
+        description="Historia del tenis de mesa"
+        siteTitle="ABTM"
+        tags="tenis de mesa, asociación, Bahía Blanca, historia"
+        title="Historia"
+      />
       <VStack
         bg="#FBFBFB"
         color="#242424"

@@ -39,6 +39,7 @@ const Home: NextPage<Props> = ({news, photos}) => {
           property="og:description"
         />
         <meta content="ABTM" property="og:site_name" />
+        <meta content="tenis de mesa, asociación, Bahía Blanca" name="keywords" />
       </Head>
       <VStack bg="#FBFBFB" minHeight="100vh" overflowX="hidden" spacing="0px" w="100%">
         <Header />

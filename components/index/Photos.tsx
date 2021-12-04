@@ -62,7 +62,7 @@ const Photos: React.FC<Props> = ({photos}) => {
                   whileInView={{opacity: 1, y: !isPortrait ? i * 15 : 0}}
                 >
                   <ImageComponent
-                    alt="Foto reciente abtm"
+                    alt="Fotografía reciente de la ABTM"
                     layout="fill"
                     loading="lazy"
                     objectFit="cover"
