@@ -118,7 +118,7 @@ const Inscriptos: React.FC = () => {
                         w="100%"
                         whileInView={{opacity: 1, y: 0}}
                       >
-                        Ranking {cat}
+                        Categoria {cat}
                       </MotionText>
                       <MotionTable
                         colorScheme="facebook"
