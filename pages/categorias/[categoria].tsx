@@ -104,7 +104,12 @@ const RankingCategoria: NextPage<Props> = ({ranking, cat}) => {
               whileInView={{opacity: 1, y: 0}}
             >
               <Thead bg="#3c6fcd88">
-                <MotionTr initial="hidden" variants={container} whileInView="show">
+                <MotionTr
+                  initial="hidden"
+                  variants={container}
+                  viewport={{once: true}}
+                  whileInView="show"
+                >
                   <MotionTh color="#242424" textAlign="center" variants={animationChildren}>
                     Posicion
                   </MotionTh>
