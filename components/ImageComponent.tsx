@@ -36,7 +36,7 @@ const ImageComponent: React.FC<Props> = (props) => {
         transition="filter .5s"
         onLoadingComplete={() => setIsLoading(false)}
         {...props}
-        filter={isLoading ? "blur(10px)" : "blur(0)"}
+        filter={isLoading ? "blur(10px) grayscale(1)" : "blur(0) grayscale(0)"}
       />
     </Box>
   )
