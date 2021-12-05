@@ -166,7 +166,20 @@ const Inscribirse: React.FC<Props> = ({open}) => {
             spacing={0}
             w="100%"
           >
-            {loading && <Spinner />}
+            {loading && (
+              <VStack
+                minH="100vh"
+                overflow="hidden"
+                p={2}
+                paddingBottom={10}
+                paddingTop={[8, null, 20]}
+                spacing={[10, null, 2]}
+                w="100%"
+              >
+                <Spinner />
+                <Text fontSize="xl">Su inscripción se está procesando</Text>
+              </VStack>
+            )}
             {!loading && (
               <>
                 <VStack>

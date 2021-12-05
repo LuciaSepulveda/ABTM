@@ -128,7 +128,20 @@ const Contacto: React.FC = () => {
                 <ModalBody>Su consulta se ha registrado correctamente. &#10004;</ModalBody>
               </ModalContent>
             </Modal>
-            {loading && <Spinner />}
+            {loading && (
+              <VStack
+                minH="100vh"
+                overflow="hidden"
+                p={2}
+                paddingBottom={10}
+                paddingTop={[8, null, 20]}
+                spacing={[10, null, 2]}
+                w="100%"
+              >
+                <Spinner />
+                <Text fontSize="xl">Su consulta se está procesando</Text>
+              </VStack>
+            )}
             {!loading && (
               <Stack
                 alignItems="center"
