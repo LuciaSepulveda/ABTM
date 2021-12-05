@@ -47,6 +47,7 @@ const MotionBox = motion(Box)
 const MenuHeader: React.FC = () => {
   const isPortrait = useMediaQuery({query: "(orientation: portrait)"})
   const isBigScreen = useMediaQuery({query: "(min-width: 1824px)"})
+  const isTablet = useMediaQuery({query: "(min-width: 768px)"})
   const [show, setShow] = React.useState<boolean>(false)
   const changePage = useChangePage()
   const page = usePage()
@@ -1085,7 +1086,7 @@ const MenuHeader: React.FC = () => {
           transform: "rotate(180deg)",
           transition: "0.3s",
           filter: "drop-shadow(0px -8px 4px #2e2e2e5e)",
-          marginTop: isPortrait ? "-12px" : isBigScreen ? "-60px" : "-30px",
+          marginTop: isPortrait ? (isTablet ? "-20px" : "-12px") : isBigScreen ? "-60px" : "-34px",
         }}
         viewBox="0 0 1440 120"
         xmlns="http://www.w3.org/2000/svg"
