@@ -184,7 +184,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
               <>
                 <VStack>
                   {!open[0]?.Abierta && (
-                    <Center minH="50vh" w={["100%", "100%", "100%", 400, 500]}>
+                    <Center minH="40vh" w={["100%", "100%", "100%", 400, 480]}>
                       <MotionText
                         fontSize="5xl"
                         fontWeight="medium"
@@ -617,7 +617,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
                   initial={{opacity: 0, x: 100}}
                   style={{
                     filter: "drop-shadow(6px 4px 4px #2e2e2e83)",
-                    y: isPortrait ? 0 : y1,
+                    y: isPortrait || !open[0].Abierta ? 0 : y1,
                   }}
                   transition={{duration: 0.5, ease: "linear"}}
                   viewport={{once: true}}
