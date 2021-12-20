@@ -29,18 +29,17 @@ import * as yup from "yup"
 import {motion, useViewportScroll, useTransform} from "framer-motion"
 import {useMediaQuery} from "react-responsive"
 import Link from "next/link"
+import {PrismaClient, estado_inscripcion} from "@prisma/client"
 
 import Menu from "../components/Menu"
 import Footer from "../components/Footer"
 import Head from "../components/Head"
 import {useChangePage, usePage} from "../context/hooks"
-import {Page, Open} from "../types/types"
+import {Page} from "../types/types"
 
 interface Props {
-  open: Open[]
+  open: estado_inscripcion[]
 }
-
-const URL = "https://strapi-abtm.herokuapp.com"
 
 const MotionCenter = motion(Center)
 const MotionVStack = motion(VStack)
@@ -101,7 +100,7 @@ const schema = yup.object({
 const Inscribirse: React.FC<Props> = ({open}) => {
   const {isOpen, onOpen, onClose} = useDisclosure()
   const [loading, setLoading] = React.useState<boolean>(false)
-  const isPortrait = useMediaQuery({query: "(orientation: portrait)"})
+  const isTabletOrMobile = useMediaQuery({query: "(max-width: 1000px)"})
 
   const changePage = useChangePage()
   const page = usePage()
@@ -183,7 +182,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
             {!loading && (
               <>
                 <VStack>
-                  {!open[0]?.Abierta && (
+                  {open[0]?.abierta === 0 && (
                     <Center minH="40vh" w={["100%", "100%", "100%", 400, 480]}>
                       <MotionText
                         fontSize="5xl"
@@ -199,7 +198,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
                       </MotionText>
                     </Center>
                   )}
-                  {open[0]?.Abierta && (
+                  {open[0]?.abierta !== 0 && (
                     <VStack
                       minH="100vh"
                       overflow="hidden"
@@ -617,7 +616,7 @@ const Inscribirse: React.FC<Props> = ({open}) => {
                   initial={{opacity: 0, x: 100}}
                   style={{
                     filter: "drop-shadow(6px 4px 4px #2e2e2e83)",
-                    y: isPortrait || !open[0].Abierta ? 0 : y1,
+                    y: isTabletOrMobile || open[0].abierta === 0 ? 0 : y1,
                   }}
                   transition={{duration: 0.5, ease: "linear"}}
                   viewport={{once: true}}
@@ -643,13 +642,12 @@ const Inscribirse: React.FC<Props> = ({open}) => {
 }
 
 export const getStaticProps: GetStaticProps<Props, never> = async () => {
-  const res = await axios.get<Open[]>(URL + "/inscripcions")
-
-  const open = res.data
+  const prisma = new PrismaClient()
+  const estado: estado_inscripcion[] = await prisma.estado_inscripcion.findMany()
 
   return {
     props: {
-      open: open,
+      open: estado,
     },
     revalidate: 60,
   }

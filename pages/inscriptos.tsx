@@ -20,13 +20,13 @@ import {inscripcion} from "@prisma/client"
 import useSWR from "swr"
 import jsPDF from "jspdf"
 import autoTable from "jspdf-autotable"
-import axios from "axios"
+import {PrismaClient, estado_inscripcion} from "@prisma/client"
 
 import Footer from "../components/Footer"
 import Menu from "../components/Menu"
 import Head from "../components/Head"
 import {useChangePage, usePage} from "../context/hooks"
-import {Page, Open} from "../types/types"
+import {Page} from "../types/types"
 
 const MotionText = motion(Text)
 const MotionTable = motion(Table)
@@ -38,10 +38,8 @@ const MotionButton = motion(Button)
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
-const URL = "https://strapi-abtm.herokuapp.com"
-
 interface Props {
-  open: Open[]
+  open: estado_inscripcion[]
 }
 
 const Inscriptos: React.FC<Props> = ({open}) => {
@@ -107,7 +105,7 @@ const Inscriptos: React.FC<Props> = ({open}) => {
         <Container maxW="8xl" minH="100vh" paddingBottom={14} paddingTop={[8, null, 24]}>
           <VStack minH="100vh" overflow="hidden" p={[0, null, 2]} spacing={8}>
             <>
-              {!open[0].Abierta && (
+              {open[0].abierta === 0 && (
                 <Center minH="50vh" w={["100%", "100%", "100%", 400, 500]}>
                   <MotionText
                     fontSize="5xl"
@@ -123,7 +121,7 @@ const Inscriptos: React.FC<Props> = ({open}) => {
                   </MotionText>
                 </Center>
               )}
-              {open[0].Abierta && (
+              {open[0].abierta !== 0 && (
                 <>
                   {!data && <Spinner />}
                   {data && (
@@ -252,13 +250,12 @@ const Inscriptos: React.FC<Props> = ({open}) => {
 }
 
 export const getStaticProps: GetStaticProps<Props, never> = async () => {
-  const res = await axios.get<Open[]>(URL + "/inscripcions")
-
-  const open = res.data
+  const prisma = new PrismaClient()
+  const estado: estado_inscripcion[] = await prisma.estado_inscripcion.findMany()
 
   return {
     props: {
-      open: open,
+      open: estado,
     },
     revalidate: 60,
   }
