@@ -98,3 +98,7 @@ model ranking_tercera {
   jugador  String? @db.VarChar(200)
   puntos   Int?
 }
+
+model estado_inscripcion {
+  abierta   Int   @id
+}
